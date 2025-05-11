@@ -2814,7 +2814,7 @@ void usage()
 	printf("    print usage\n");
 }
 
-void main(int argc, char **argv) 
+int main(int argc, char **argv) 
 {
 	double stackEntropies[625],stackEnthalpies[625],stackint2Entropies[625],stackint2Enthalpies[625],dangleEntropies3[125],dangleEnthalpies3[125],dangleEntropies5[125],dangleEnthalpies5[125];
         double hairpinLoopEntropies[30],interiorLoopEntropies[30],bulgeLoopEntropies[30],hairpinLoopEnthalpies[30],interiorLoopEnthalpies[30],bulgeLoopEnthalpies[30],tstackEntropies[625],tstackEnthalpies[625],tstack2Entropies[625],tstack2Enthalpies[625];
@@ -3223,4 +3223,6 @@ void main(int argc, char **argv)
 	}
 	if(flag[8]||flag[9])
 		free(par_path);
+
+	return 0;
 }
