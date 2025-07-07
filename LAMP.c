@@ -2661,6 +2661,9 @@ int main(int argc,char **argv)
 
 	start=time(NULL);
 	begin=start;
+
+	setvbuf(stdout, NULL, _IOLBF, 0);  // Line-buffer stdout
+
         for(i=0;i<13;i++)
         {
                 flag[i]=0;

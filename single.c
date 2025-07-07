@@ -2829,6 +2829,9 @@ int main(int argc, char **argv)
         time_t start,end;
 	
 	start=time(NULL);
+
+	setvbuf(stdout, NULL, _IOLBF, 0);  // Line-buffer stdout
+
 //get input
 	for(i=0;i<10;i++)
 	{
