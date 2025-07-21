@@ -8,7 +8,7 @@
 #include<sys/stat.h>
 #include<ctype.h>
 
-char str2int(char c)
+static char str2int(char c)
 {
         switch (c)
         {
@@ -24,7 +24,7 @@ char str2int(char c)
         return 4;
 }
 
-void readLoop(FILE *file,double *v1,double *v2,double *v3)
+static void readLoop(FILE *file,double *v1,double *v2,double *v3)
 {
         char *line,*p,*q;
         
@@ -74,7 +74,7 @@ void readLoop(FILE *file,double *v1,double *v2,double *v3)
                 sscanf(p, "%lf", v3);
 }
 
-void getStack(double stackEntropies[],double stackEnthalpies[], char *path)
+static void getStack(double stackEntropies[],double stackEnthalpies[], char *path)
 {
         int i, j, ii, jj;
         FILE *sFile, *hFile;
@@ -165,7 +165,7 @@ void getStack(double stackEntropies[],double stackEnthalpies[], char *path)
         free(line);
 }
 
-void getStackint2(double stackint2Entropies[],double stackint2Enthalpies[], char *path)
+static void getStackint2(double stackint2Entropies[],double stackint2Enthalpies[], char *path)
 {
         int i, j, ii, jj;
         FILE *sFile, *hFile;
@@ -256,7 +256,7 @@ void getStackint2(double stackint2Entropies[],double stackint2Enthalpies[], char
         free(line);
 }
 
-void getDangle(double dangleEntropies3[],double dangleEnthalpies3[],double dangleEntropies5[],double dangleEnthalpies5[],char *path)
+static void getDangle(double dangleEntropies3[],double dangleEnthalpies3[],double dangleEntropies5[],double dangleEnthalpies5[],char *path)
 {
         int i, j, k;
         FILE *sFile, *hFile;
@@ -389,7 +389,7 @@ void getDangle(double dangleEntropies3[],double dangleEnthalpies3[],double dangl
         free(line);
 }
 
-void getLoop(double hairpinLoopEntropies[30],double interiorLoopEntropies[30],double bulgeLoopEntropies[30],double hairpinLoopEnthalpies[30],double interiorLoopEnthalpies[30],double bulgeLoopEnthalpies[30],char *path)
+static void getLoop(double hairpinLoopEntropies[30],double interiorLoopEntropies[30],double bulgeLoopEntropies[30],double hairpinLoopEnthalpies[30],double interiorLoopEnthalpies[30],double bulgeLoopEnthalpies[30],char *path)
 {
         int k;
         FILE *sFile, *hFile;
@@ -437,7 +437,7 @@ void getLoop(double hairpinLoopEntropies[30],double interiorLoopEntropies[30],do
         fclose(hFile);
 }
 
-void getTstack(double tstackEntropies[],double tstackEnthalpies[],char *path)
+static void getTstack(double tstackEntropies[],double tstackEnthalpies[],char *path)
 {
         int i1, j1, i2, j2;
         FILE *sFile, *hFile;
@@ -525,7 +525,7 @@ void getTstack(double tstackEntropies[],double tstackEnthalpies[],char *path)
         free(line);
 }
 
-void getTstack2(double tstack2Entropies[],double tstack2Enthalpies[],char *path)
+static void getTstack2(double tstack2Entropies[],double tstack2Enthalpies[],char *path)
 {
         int i1, j1, i2, j2;
         FILE *sFile, *hFile;
@@ -614,7 +614,7 @@ void getTstack2(double tstack2Entropies[],double tstack2Enthalpies[],char *path)
         free(line);
 }
 
-int get_num_line(char *path,int flag)
+static int get_num_line(char *path,int flag)
 {
 	FILE *fp;
 	int i,size;
@@ -647,7 +647,7 @@ int get_num_line(char *path,int flag)
 	return size;
 }
 
-void getTriloop(char *triloopEntropies1,char *triloopEnthalpies1,double *triloopEntropies2,double *triloopEnthalpies2,char *path)
+static void getTriloop(char *triloopEntropies1,char *triloopEnthalpies1,double *triloopEntropies2,double *triloopEnthalpies2,char *path)
 {
         FILE *sFile, *hFile;
         int i,turn;
@@ -714,7 +714,7 @@ void getTriloop(char *triloopEntropies1,char *triloopEnthalpies1,double *triloop
         fclose(hFile);
 }
 
-void getTetraloop(char *tetraloopEntropies1,char *tetraloopEnthalpies1,double *tetraloopEntropies2,double *tetraloopEnthalpies2,char *path)
+static void getTetraloop(char *tetraloopEntropies1,char *tetraloopEnthalpies1,double *tetraloopEntropies2,double *tetraloopEnthalpies2,char *path)
 {
         FILE *sFile, *hFile;
         int i, turn;
@@ -780,7 +780,7 @@ void getTetraloop(char *tetraloopEntropies1,char *tetraloopEnthalpies1,double *t
         fclose(hFile);
 }
 
-void tableStartATS(double atp_value, double atpS[])
+static void tableStartATS(double atp_value, double atpS[])
 {
         int i, j;
 
@@ -790,7 +790,7 @@ void tableStartATS(double atp_value, double atpS[])
         atpS[3] = atpS[15] = atp_value;
 }
 
-void tableStartATH(double atp_value,double atpH[])
+static void tableStartATH(double atp_value,double atpH[])
 {
         int i, j;
 
@@ -800,7 +800,7 @@ void tableStartATH(double atp_value,double atpH[])
         atpH[3] = atpH[15] = atp_value;
 }
 
-void initMatrix2(int Initint[],double enthalpyDPT[],double entropyDPT[],char numSeq1[])
+static void initMatrix2(int Initint[],double enthalpyDPT[],double entropyDPT[],char numSeq1[])
 {
 	int i,j;
 	for(i=1;i<=Initint[0];++i)
@@ -817,7 +817,7 @@ void initMatrix2(int Initint[],double enthalpyDPT[],double entropyDPT[],char num
 			}
 }
 
-double Ss(int i,int j,int k,double stackEntropies[],int Initint[],char numSeq1[],char numSeq2[])
+static double Ss(int i,int j,int k,double stackEntropies[],int Initint[],char numSeq1[],char numSeq2[])
 {
 	if(k==2)
 	{
@@ -836,7 +836,7 @@ double Ss(int i,int j,int k,double stackEntropies[],int Initint[],char numSeq1[]
 		return stackEntropies[numSeq1[i]*125+numSeq1[i+1]*25+numSeq2[j]*5+numSeq2[j+1]];
 }
 
-double Hs(int i,int j,int k,double stackEnthalpies[],int Initint[],char numSeq1[],char numSeq2[])
+static double Hs(int i,int j,int k,double stackEnthalpies[],int Initint[],char numSeq1[],char numSeq2[])
 {
 	if(k==2)
 	{
@@ -858,7 +858,7 @@ double Hs(int i,int j,int k,double stackEnthalpies[],int Initint[],char numSeq1[
 		return stackEnthalpies[numSeq1[i]*125+numSeq1[i+1]*25+numSeq2[j]*5+numSeq2[j+1]];
 }
 
-void maxTM2(int i,int j,double stackEntropies[],double stackEnthalpies[],double Initdouble[],int Initint[],double enthalpyDPT[],double entropyDPT[],char numSeq1[],char numSeq2[])
+static void maxTM2(int i,int j,double stackEntropies[],double stackEnthalpies[],double Initdouble[],int Initint[],double enthalpyDPT[],double entropyDPT[],char numSeq1[],char numSeq2[])
 {
 	double T0,T1,S0,S1,H0,H1;
 
@@ -899,7 +899,7 @@ void maxTM2(int i,int j,double stackEntropies[],double stackEnthalpies[],double 
 	}
 }
 
-void calc_bulge_internal2(int i,int j,int ii,int jj,double *EntropyEnthalpy,int traceback,double stackEntropies[],double stackEnthalpies[],double stackint2Entropies[],double stackint2Enthalpies[],double interiorLoopEntropies[],double bulgeLoopEntropies[],double interiorLoopEnthalpies[],double bulgeLoopEnthalpies[],double tstackEntropies[],double tstackEnthalpies[],double atpS[],double atpH[],double Initdouble[0],int Initint[],double enthalpyDPT[],double entropyDPT[],char numSeq1[],char numSeq2[])
+static void calc_bulge_internal2(int i,int j,int ii,int jj,double *EntropyEnthalpy,int traceback,double stackEntropies[],double stackEnthalpies[],double stackint2Entropies[],double stackint2Enthalpies[],double interiorLoopEntropies[],double bulgeLoopEntropies[],double interiorLoopEnthalpies[],double bulgeLoopEnthalpies[],double tstackEntropies[],double tstackEnthalpies[],double atpS[],double atpH[],double Initdouble[0],int Initint[],double enthalpyDPT[],double entropyDPT[],char numSeq1[],char numSeq2[])
 {
 	int loopSize1,loopSize2,loopSize;
 	double T1,T2,S,H;
@@ -1019,7 +1019,7 @@ void calc_bulge_internal2(int i,int j,int ii,int jj,double *EntropyEnthalpy,int 
 	return;
 }
 
-void CBI(int i,int j,double* EntropyEnthalpy,int traceback,double stackEntropies[],double stackEnthalpies[],double stackint2Entropies[],double stackint2Enthalpies[],double interiorLoopEntropies[],double bulgeLoopEntropies[],double interiorLoopEnthalpies[],double bulgeLoopEnthalpies[],double tstackEntropies[],double tstackEnthalpies[],double atpS[],double atpH[],double Initdouble[],int Initint[],double enthalpyDPT[],double entropyDPT[],char numSeq1[],char numSeq2[])
+static void CBI(int i,int j,double* EntropyEnthalpy,int traceback,double stackEntropies[],double stackEnthalpies[],double stackint2Entropies[],double stackint2Enthalpies[],double interiorLoopEntropies[],double bulgeLoopEntropies[],double interiorLoopEnthalpies[],double bulgeLoopEnthalpies[],double tstackEntropies[],double tstackEnthalpies[],double atpS[],double atpH[],double Initdouble[],int Initint[],double enthalpyDPT[],double entropyDPT[],char numSeq1[],char numSeq2[])
 {
 	int d,ii,jj;
 
@@ -1053,7 +1053,7 @@ void CBI(int i,int j,double* EntropyEnthalpy,int traceback,double stackEntropies
 	return;
 }
 
-int find_pos(char *ref,int ref_start,char *source,int length,int num)
+static int find_pos(char *ref,int ref_start,char *source,int length,int num)
 {
 	int flag,i,j;
 
@@ -1074,7 +1074,7 @@ int find_pos(char *ref,int ref_start,char *source,int length,int num)
 	return -1;
 }
 
-void calc_hairpin(int i,int j,double *EntropyEnthalpy,int traceback,double hairpinLoopEntropies[],double hairpinLoopEnthalpies[],double tstack2Entropies[],double tstack2Enthalpies[],char *triloopEntropies1,char *triloopEnthalpies1,char *tetraloopEntropies1,char *tetraloopEnthalpies1,double *triloopEntropies2,double *triloopEnthalpies2,double *tetraloopEntropies2,double *tetraloopEnthalpies2,int numTriloops,int numTetraloops,double atpS[],double atpH[],double Initdouble[],int Initint[],double enthalpyDPT[],double entropyDPT[],char numSeq1[])
+static void calc_hairpin(int i,int j,double *EntropyEnthalpy,int traceback,double hairpinLoopEntropies[],double hairpinLoopEnthalpies[],double tstack2Entropies[],double tstack2Enthalpies[],char *triloopEntropies1,char *triloopEnthalpies1,char *tetraloopEntropies1,char *tetraloopEnthalpies1,double *triloopEntropies2,double *triloopEnthalpies2,double *tetraloopEntropies2,double *tetraloopEnthalpies2,int numTriloops,int numTetraloops,double atpS[],double atpH[],double Initdouble[],int Initint[],double enthalpyDPT[],double entropyDPT[],char numSeq1[])
 {
 	int pos,loopSize=j-i-1;
 	double T1,T2;
@@ -1153,7 +1153,7 @@ void calc_hairpin(int i,int j,double *EntropyEnthalpy,int traceback,double hairp
 	return;
 }
 
-void fillMatrix2(double stackEntropies[],double stackEnthalpies[],double stackint2Entropies[],double stackint2Enthalpies[],double hairpinLoopEntropies[],double interiorLoopEntropies[],double bulgeLoopEntropies[],double hairpinLoopEnthalpies[],double interiorLoopEnthalpies[],double bulgeLoopEnthalpies[],double tstackEntropies[],double tstackEnthalpies[],double tstack2Entropies[],double tstack2Enthalpies[],char *triloopEntropies1,char *triloopEnthalpies1,char *tetraloopEntropies1,char *tetraloopEnthalpies1,double *triloopEntropies2,double *triloopEnthalpies2,double *tetraloopEntropies2,double *tetraloopEnthalpies2,int numTriloops,int numTetraloops,double atpS[],double atpH[],double Initdouble[],int Initint[],double enthalpyDPT[],double entropyDPT[],char numSeq1[],char numSeq2[])
+static void fillMatrix2(double stackEntropies[],double stackEnthalpies[],double stackint2Entropies[],double stackint2Enthalpies[],double hairpinLoopEntropies[],double interiorLoopEntropies[],double bulgeLoopEntropies[],double hairpinLoopEnthalpies[],double interiorLoopEnthalpies[],double bulgeLoopEnthalpies[],double tstackEntropies[],double tstackEnthalpies[],double tstack2Entropies[],double tstack2Enthalpies[],char *triloopEntropies1,char *triloopEnthalpies1,char *tetraloopEntropies1,char *tetraloopEnthalpies1,double *triloopEntropies2,double *triloopEnthalpies2,double *tetraloopEntropies2,double *tetraloopEnthalpies2,int numTriloops,int numTetraloops,double atpS[],double atpH[],double Initdouble[],int Initint[],double enthalpyDPT[],double entropyDPT[],char numSeq1[],char numSeq2[])
 {
 	int i, j;
 	double SH[2];
@@ -1185,7 +1185,7 @@ void fillMatrix2(double stackEntropies[],double stackEnthalpies[],double stackin
 		}
 }
 
-int max5(double a,double b,double c,double d,double e)
+static int max5(double a,double b,double c,double d,double e)
 {
 	if(a>b&&a>c&&a>d&&a>e)
 		return 1;
@@ -1199,37 +1199,37 @@ int max5(double a,double b,double c,double d,double e)
 		return 5;
 }
 
-double Sd5(int i,int j,double dangleEntropies5[],char numSeq1[])
+static double Sd5(int i,int j,double dangleEntropies5[],char numSeq1[])
 {
 	return dangleEntropies5[numSeq1[i]*25+numSeq1[j]*5+numSeq1[j-1]];
 }
 
-double Hd5(int i,int j,double dangleEnthalpies5[],char numSeq1[])
+static double Hd5(int i,int j,double dangleEnthalpies5[],char numSeq1[])
 {
 	return dangleEnthalpies5[numSeq1[i]*25+numSeq1[j]*5+numSeq1[j-1]];
 }
 
-double Sd3(int i,int j,double dangleEntropies3[],char numSeq1[])
+static double Sd3(int i,int j,double dangleEntropies3[],char numSeq1[])
 {
 	return dangleEntropies3[numSeq1[i]*25+numSeq1[i+1]*5+numSeq1[j]];
 }
 
-double Hd3(int i,int j,double dangleEnthalpies3[],char numSeq1[])
+static double Hd3(int i,int j,double dangleEnthalpies3[],char numSeq1[])
 {
 	return dangleEnthalpies3[numSeq1[i]*25+numSeq1[i+1]*5+numSeq1[j]];
 }
 
-double Ststack(int i,int j,double tstack2Entropies[],char numSeq1[])
+static double Ststack(int i,int j,double tstack2Entropies[],char numSeq1[])
 {
 	return tstack2Entropies[numSeq1[i]*125+numSeq1[i+1]*25+numSeq1[j]*5+numSeq1[j-1]];
 }
 
-double Htstack(int i,int j,double tstack2Enthalpies[],char numSeq1[])
+static double Htstack(int i,int j,double tstack2Enthalpies[],char numSeq1[])
 {
 	return tstack2Enthalpies[numSeq1[i]*125+numSeq1[i+1]*25+numSeq1[j]*5+numSeq1[j-1]];
 }
 
-double END5_1(int i,int hs,double atpS[],double atpH[],double Initdouble[],int Initint[],double enthalpyDPT[],double entropyDPT[],double send5[],double hend5[],char numSeq1[])
+static double END5_1(int i,int hs,double atpS[],double atpH[],double Initdouble[],int Initint[],double enthalpyDPT[],double entropyDPT[],double send5[],double hend5[],char numSeq1[])
 {
 	int k;
 	double max_tm,T1,T2,H,S,H_max,S_max;
@@ -1279,7 +1279,7 @@ double END5_1(int i,int hs,double atpS[],double atpH[],double Initdouble[],int I
 	return S_max;
 }
 
-double END5_2(int i,int hs,double dangleEntropies5[],double dangleEnthalpies5[],double atpS[],double atpH[],double Initdouble[],int Initint[],double enthalpyDPT[],double entropyDPT[],double send5[],double hend5[],char numSeq1[])
+static double END5_2(int i,int hs,double dangleEntropies5[],double dangleEnthalpies5[],double atpS[],double atpH[],double Initdouble[],int Initint[],double enthalpyDPT[],double entropyDPT[],double send5[],double hend5[],char numSeq1[])
 {
 	int k;
 	double max_tm,T1,T2,H,S,H_max,S_max;
@@ -1329,7 +1329,7 @@ double END5_2(int i,int hs,double dangleEntropies5[],double dangleEnthalpies5[],
 	return S_max;
 }
 
-double END5_3(int i,int hs,double dangleEntropies3[],double dangleEnthalpies3[],double atpS[],double atpH[],double Initdouble[],int Initint[],double enthalpyDPT[],double entropyDPT[],double send5[],double hend5[],char numSeq1[])
+static double END5_3(int i,int hs,double dangleEntropies3[],double dangleEnthalpies3[],double atpS[],double atpH[],double Initdouble[],int Initint[],double enthalpyDPT[],double entropyDPT[],double send5[],double hend5[],char numSeq1[])
 {
 	int k;
 	double max_tm,T1,T2,H,S,H_max,S_max;
@@ -1379,7 +1379,7 @@ double END5_3(int i,int hs,double dangleEntropies3[],double dangleEnthalpies3[],
 	return S_max;
 }
 
-double END5_4(int i,int hs,double tstack2Entropies[],double tstack2Enthalpies[],double atpS[],double atpH[],double Initdouble[],int Initint[],double enthalpyDPT[],double entropyDPT[],double send5[],double hend5[],char numSeq1[])
+static double END5_4(int i,int hs,double tstack2Entropies[],double tstack2Enthalpies[],double atpS[],double atpH[],double Initdouble[],int Initint[],double enthalpyDPT[],double entropyDPT[],double send5[],double hend5[],char numSeq1[])
 {
 	int k;
 	double max_tm,T1,T2,H,S,H_max,S_max;
@@ -1429,7 +1429,7 @@ double END5_4(int i,int hs,double tstack2Entropies[],double tstack2Enthalpies[],
 	return S_max;
 }
 
-void calc_terminal_bp(double temp,double dangleEntropies3[],double dangleEnthalpies3[],double dangleEntropies5[],double dangleEnthalpies5[],double tstack2Entropies[],double tstack2Enthalpies[],double atpS[],double atpH[],double Initdouble[],int Initint[],double enthalpyDPT[],double entropyDPT[],double send5[],double hend5[],char numSeq1[])
+static void calc_terminal_bp(double temp,double dangleEntropies3[],double dangleEnthalpies3[],double dangleEntropies5[],double dangleEnthalpies5[],double tstack2Entropies[],double tstack2Enthalpies[],double atpS[],double atpH[],double Initdouble[],int Initint[],double enthalpyDPT[],double entropyDPT[],double send5[],double hend5[],char numSeq1[])
 {
 	int i,max;
 	double T1,T2,T3,T4,T5,G,end5_11,end5_12,end5_21,end5_22,end5_31,end5_32,end5_41,end5_42;
@@ -1526,7 +1526,7 @@ void calc_terminal_bp(double temp,double dangleEntropies3[],double dangleEnthalp
 	}
 }
 
-int newpush(int store[],int i,int j,int mtrx,int total,int next)
+static int newpush(int store[],int i,int j,int mtrx,int total,int next)
 {
         int k;
         for(k=total-1;k>=next;k--)
@@ -1542,14 +1542,14 @@ int newpush(int store[],int i,int j,int mtrx,int total,int next)
         return total+1;           
 }
 
-int equal(double a,double b)
+static int equal(double a,double b)
 {
 	if(fabs(a)>999999999||fabs(b)>999999999)
 		return 0;
 	return fabs(a-b)<1e-5;
 }
 
-void tracebacku(int bp[],double stackEntropies[],double stackEnthalpies[],double stackint2Entropies[],double stackint2Enthalpies[],double dangleEntropies3[],double dangleEnthalpies3[],double dangleEntropies5[],double dangleEnthalpies5[],double hairpinLoopEntropies[],double interiorLoopEntropies[],double bulgeLoopEntropies[],double hairpinLoopEnthalpies[],double interiorLoopEnthalpies[],double bulgeLoopEnthalpies[],double tstackEntropies[],double tstackEnthalpies[],double tstack2Entropies[],double tstack2Enthalpies[],char *triloopEntropies1,char *triloopEnthalpies1,char *tetraloopEntropies1,char *tetraloopEnthalpies1,double *triloopEntropies2,double *triloopEnthalpies2,double *tetraloopEntropies2,double *tetraloopEnthalpies2,int numTriloops,int numTetraloops,double atpS[],double atpH[],double Initdouble[],int Initint[],double enthalpyDPT[],double entropyDPT[],double send5[],double hend5[],char numSeq1[],char numSeq2[])
+static void tracebacku(int bp[],double stackEntropies[],double stackEnthalpies[],double stackint2Entropies[],double stackint2Enthalpies[],double dangleEntropies3[],double dangleEnthalpies3[],double dangleEntropies5[],double dangleEnthalpies5[],double hairpinLoopEntropies[],double interiorLoopEntropies[],double bulgeLoopEntropies[],double hairpinLoopEnthalpies[],double interiorLoopEnthalpies[],double bulgeLoopEnthalpies[],double tstackEntropies[],double tstackEnthalpies[],double tstack2Entropies[],double tstack2Enthalpies[],char *triloopEntropies1,char *triloopEnthalpies1,char *tetraloopEntropies1,char *tetraloopEnthalpies1,double *triloopEntropies2,double *triloopEnthalpies2,double *tetraloopEntropies2,double *tetraloopEnthalpies2,int numTriloops,int numTetraloops,double atpS[],double atpH[],double Initdouble[],int Initint[],double enthalpyDPT[],double entropyDPT[],double send5[],double hend5[],char numSeq1[],char numSeq2[])
 {
 	int i,j,store[50],total,now,ii,jj,k,d,done;
 	double SH1[2],SH2[2],EntropyEnthalpy[2];
@@ -1665,7 +1665,7 @@ void tracebacku(int bp[],double stackEntropies[],double stackEnthalpies[],double
         }
 }
 
-double drawHairpin(int bp[],double mh,double ms,int Initint[])
+static double drawHairpin(int bp[],double mh,double ms,int Initint[])
 {
         int i,N;
 
@@ -1685,7 +1685,7 @@ double drawHairpin(int bp[],double mh,double ms,int Initint[])
         }
 }
 
-void initMatrix(int Initint[],double enthalpyDPT[],double entropyDPT[],char numSeq1[],char numSeq2[])
+static void initMatrix(int Initint[],double enthalpyDPT[],double entropyDPT[],char numSeq1[],char numSeq2[])
 {
 	int i,j;
 
@@ -1707,7 +1707,7 @@ void initMatrix(int Initint[],double enthalpyDPT[],double entropyDPT[],char numS
 	}
 }
 
-void LSH(int i,int j,double *EntropyEnthalpy,double dangleEntropies3[],double dangleEnthalpies3[],double dangleEntropies5[],double dangleEnthalpies5[],double tstack2Entropies[],double tstack2Enthalpies[],double atpS[],double atpH[],double Initdouble[],int Initint[],double enthalpyDPT[],double entropyDPT[],char numSeq1[],char numSeq2[])
+static void LSH(int i,int j,double *EntropyEnthalpy,double dangleEntropies3[],double dangleEnthalpies3[],double dangleEntropies5[],double dangleEnthalpies5[],double tstack2Entropies[],double tstack2Enthalpies[],double atpS[],double atpH[],double Initdouble[],int Initint[],double enthalpyDPT[],double entropyDPT[],char numSeq1[],char numSeq2[])
 {
 	double S1,H1,T1,S2,H2,T2;
 
@@ -1832,7 +1832,7 @@ void LSH(int i,int j,double *EntropyEnthalpy,double dangleEntropies3[],double da
 	return;
 }
 
-void maxTM(int i,int j,double stackEntropies[],double stackEnthalpies[],double Initdouble[],int Initint[],double enthalpyDPT[],double entropyDPT[],char numSeq1[],char numSeq2[])
+static void maxTM(int i,int j,double stackEntropies[],double stackEnthalpies[],double Initdouble[],int Initint[],double enthalpyDPT[],double entropyDPT[],char numSeq1[],char numSeq2[])
 {
 	double T0,T1,S0,S1,H0,H1;
 
@@ -1875,7 +1875,7 @@ void maxTM(int i,int j,double stackEntropies[],double stackEnthalpies[],double I
 	}
 }
 
-void calc_bulge_internal(int i,int j,int ii,int jj,double* EntropyEnthalpy,int traceback,double stackEntropies[],double stackEnthalpies[],double stackint2Entropies[],double stackint2Enthalpies[],double interiorLoopEntropies[],double bulgeLoopEntropies[],double interiorLoopEnthalpies[],double bulgeLoopEnthalpies[],double tstackEntropies[],double tstackEnthalpies[],double atpS[],double atpH[],double Initdouble[],int Initint[],double enthalpyDPT[],double entropyDPT[],char numSeq1[],char numSeq2[])
+static void calc_bulge_internal(int i,int j,int ii,int jj,double* EntropyEnthalpy,int traceback,double stackEntropies[],double stackEnthalpies[],double stackint2Entropies[],double stackint2Enthalpies[],double interiorLoopEntropies[],double bulgeLoopEntropies[],double interiorLoopEnthalpies[],double bulgeLoopEnthalpies[],double tstackEntropies[],double tstackEnthalpies[],double atpS[],double atpH[],double Initdouble[],int Initint[],double enthalpyDPT[],double entropyDPT[],char numSeq1[],char numSeq2[])
 {
 	int loopSize1,loopSize2,loopSize,N,N_loop;
 	double T1,T2,S,H;
@@ -1998,7 +1998,7 @@ void calc_bulge_internal(int i,int j,int ii,int jj,double* EntropyEnthalpy,int t
 	return;
 }
 
-void fillMatrix(double stackEntropies[],double stackEnthalpies[],double stackint2Entropies[],double stackint2Enthalpies[],double dangleEntropies3[],double dangleEnthalpies3[],double dangleEntropies5[],double dangleEnthalpies5[],double interiorLoopEntropies[],double bulgeLoopEntropies[],double interiorLoopEnthalpies[],double bulgeLoopEnthalpies[],double tstackEntropies[],double tstackEnthalpies[],double tstack2Entropies[],double tstack2Enthalpies[],double atpS[],double atpH[],double Initdouble[],int Initint[],double enthalpyDPT[],double entropyDPT[],char numSeq1[],char numSeq2[])
+static void fillMatrix(double stackEntropies[],double stackEnthalpies[],double stackint2Entropies[],double stackint2Enthalpies[],double dangleEntropies3[],double dangleEnthalpies3[],double dangleEntropies5[],double dangleEnthalpies5[],double interiorLoopEntropies[],double bulgeLoopEntropies[],double interiorLoopEnthalpies[],double bulgeLoopEnthalpies[],double tstackEntropies[],double tstackEnthalpies[],double tstack2Entropies[],double tstack2Enthalpies[],double atpS[],double atpH[],double Initdouble[],int Initint[],double enthalpyDPT[],double entropyDPT[],char numSeq1[],char numSeq2[])
 {
 	int d,i,j,ii,jj;
 	double SH[2];
@@ -2057,7 +2057,7 @@ void fillMatrix(double stackEntropies[],double stackEnthalpies[],double stackint
 	} //for
 }
 
-void RSH(int i,int j,double EntropyEnthalpy[],double dangleEntropies3[],double dangleEnthalpies3[],double dangleEntropies5[],double dangleEnthalpies5[],double tstack2Entropies[],double tstack2Enthalpies[],double atpS[],double atpH[],double Initdouble[],char numSeq1[],char numSeq2[])
+static void RSH(int i,int j,double EntropyEnthalpy[],double dangleEntropies3[],double dangleEnthalpies3[],double dangleEntropies5[],double dangleEnthalpies5[],double tstack2Entropies[],double tstack2Enthalpies[],double atpS[],double atpH[],double Initdouble[],char numSeq1[],char numSeq2[])
 {
 	double S1,S2,H1,H2,T1,T2;
 
@@ -2181,7 +2181,7 @@ void RSH(int i,int j,double EntropyEnthalpy[],double dangleEntropies3[],double d
 	return;
 }
 
-void traceback(int i,int j,int* ps1,int* ps2,double stackEntropies[],double stackEnthalpies[],double stackint2Entropies[],double stackint2Enthalpies[],double dangleEntropies3[],double dangleEnthalpies3[],double dangleEntropies5[],double dangleEnthalpies5[],double interiorLoopEntropies[],double bulgeLoopEntropies[],double interiorLoopEnthalpies[],double bulgeLoopEnthalpies[],double tstackEntropies[],double tstackEnthalpies[],double tstack2Entropies[],double tstack2Enthalpies[],double atpS[],double atpH[],double Initdouble[],int Initint[],double enthalpyDPT[],double entropyDPT[],char numSeq1[],char numSeq2[])
+static void traceback(int i,int j,int* ps1,int* ps2,double stackEntropies[],double stackEnthalpies[],double stackint2Entropies[],double stackint2Enthalpies[],double dangleEntropies3[],double dangleEnthalpies3[],double dangleEntropies5[],double dangleEnthalpies5[],double interiorLoopEntropies[],double bulgeLoopEntropies[],double interiorLoopEnthalpies[],double bulgeLoopEnthalpies[],double tstackEntropies[],double tstackEnthalpies[],double tstack2Entropies[],double tstack2Enthalpies[],double atpS[],double atpH[],double Initdouble[],int Initint[],double enthalpyDPT[],double entropyDPT[],char numSeq1[],char numSeq2[])
 {
 	int d,ii,jj,done;
 	double SH[2];
@@ -2233,7 +2233,7 @@ void traceback(int i,int j,int* ps1,int* ps2,double stackEntropies[],double stac
 	}
 }
 
-double drawDimer(int *ps1,int *ps2,double H,double S,double Initdouble[],int Initint[])
+static double drawDimer(int *ps1,int *ps2,double H,double S,double Initdouble[],int Initint[])
 {
         int i,N;
 
@@ -2257,7 +2257,7 @@ double drawDimer(int *ps1,int *ps2,double H,double S,double Initdouble[],int Ini
         }
 }
 
-int symmetry_thermo(char seq[])
+static int symmetry_thermo(char seq[])
 {
         int i = 0;
         int seq_len=strlen(seq);
@@ -2276,7 +2276,7 @@ int symmetry_thermo(char seq[])
         return 1;
 }
 
-double thal(char oligo_f[],char oligo_r[],double stackEntropies[],double stackEnthalpies[],double stackint2Entropies[],double stackint2Enthalpies[],double dangleEntropies3[],double dangleEnthalpies3[],double dangleEntropies5[],double dangleEnthalpies5[],double hairpinLoopEntropies[],double interiorLoopEntropies[],double bulgeLoopEntropies[],double hairpinLoopEnthalpies[],double interiorLoopEnthalpies[],double bulgeLoopEnthalpies[],double tstackEntropies[],double tstackEnthalpies[],double tstack2Entropies[],double tstack2Enthalpies[],char *triloopEntropies1,char *triloopEnthalpies1,char *tetraloopEntropies1,char *tetraloopEnthalpies1,double *triloopEntropies2,double *triloopEnthalpies2,double *tetraloopEntropies2,double *tetraloopEnthalpies2,int numTriloops,int numTetraloops,double atpS[],double atpH[],int type)
+static double thal(char oligo_f[],char oligo_r[],double stackEntropies[],double stackEnthalpies[],double stackint2Entropies[],double stackint2Enthalpies[],double dangleEntropies3[],double dangleEnthalpies3[],double dangleEntropies5[],double dangleEnthalpies5[],double hairpinLoopEntropies[],double interiorLoopEntropies[],double bulgeLoopEntropies[],double hairpinLoopEnthalpies[],double interiorLoopEnthalpies[],double bulgeLoopEnthalpies[],double tstackEntropies[],double tstackEnthalpies[],double tstack2Entropies[],double tstack2Enthalpies[],char *triloopEntropies1,char *triloopEnthalpies1,char *tetraloopEntropies1,char *tetraloopEnthalpies1,double *triloopEntropies2,double *triloopEnthalpies2,double *tetraloopEntropies2,double *tetraloopEnthalpies2,int numTriloops,int numTetraloops,double atpS[],double atpH[],int type)
 {
 	double SH[2],Initdouble[4];//0 is dplx_init_H, 1 is dplx_init_S, 2 is RC, 3 is SHleft
 	int Initint[5]; //0 is len1, 1 is len2, 2 is len3, 3 is bestI, 4 is bestJ
@@ -2447,7 +2447,7 @@ struct Primer
 };
 
 //get the file size
-int file_size2(char *filename)
+static int file_size2(char *filename)
 {
 	int size;
         struct stat statbuf;
@@ -2457,7 +2457,7 @@ int file_size2(char *filename)
         return size;
 }
 
-void usage()
+static void usage()
 {
         printf("USAGE:\n");
         printf("  LAMP_CPU  -in <sinlge_primers_file>  -ref <ref_genome> -out <LAMP_primer_sets> [options]*\n\n");
@@ -2493,7 +2493,7 @@ void usage()
 	printf("    print usage\n");
 }
 
-void generate_primer(char *seq,char primer[],int start,int length,int flag) //flag=0:plus
+static void generate_primer(char *seq,char primer[],int start,int length,int flag) //flag=0:plus
 {
         int i;
         
@@ -2520,7 +2520,7 @@ void generate_primer(char *seq,char primer[],int start,int length,int flag) //fl
         }
 }
 
-int check_same(struct Primer *one[],struct Primer *two[],struct Primer *p_F3,struct Primer *p_F2,struct Primer *p_F1c,struct Primer *p_B1c,struct Primer *p_B2,struct Primer *p_B3)
+static int check_same(struct Primer *one[],struct Primer *two[],struct Primer *p_F3,struct Primer *p_F2,struct Primer *p_F1c,struct Primer *p_B1c,struct Primer *p_B2,struct Primer *p_B3)
 {
 	int i;
 	for(i=0;i<10;i++)
@@ -2576,7 +2576,7 @@ int check_same(struct Primer *one[],struct Primer *two[],struct Primer *p_F3,str
 	return 0;
 }
 
-int add_same(struct Primer *one[],struct Primer *two[],struct Primer *p_F3,struct Primer *p_F2,struct Primer *p_F1c,struct Primer *p_B1c,struct Primer *p_B2,struct Primer *p_B3,int error[],int replace)
+static int add_same(struct Primer *one[],struct Primer *two[],struct Primer *p_F3,struct Primer *p_F2,struct Primer *p_F1c,struct Primer *p_B1c,struct Primer *p_B2,struct Primer *p_B3,int error[],int replace)
 {
 	if(error[0]==0)
 	{
@@ -2633,7 +2633,1739 @@ int add_same(struct Primer *one[],struct Primer *two[],struct Primer *p_F3,struc
 	return replace;
 }
 
-void glapd_lamp_main(int argc,char **argv)
+
+static void merge(int *store,int *temp,int *data,int start,int end,int middle)
+{
+        int i,j,k;
+        i=start;
+        j=middle+1;
+        k=start;
+        while(i<=middle&&j<=end)
+        {
+                if(data[store[i]*6]<data[store[j]*6])
+                {
+                        temp[k]=store[i];
+                        k++;
+                        i++;
+                        continue;
+                }
+                if(data[store[j]*6]<data[store[i]*6])
+                {
+                        temp[k]=store[j];
+                        k++;
+                        j++;
+                        continue;
+                }
+        //len
+                if(data[store[i]*6+1]<data[store[j]*6+1])
+                {
+                        temp[k]=store[i];
+                        k++;
+                        i++;
+                        continue;
+                }
+                if(data[store[j]*6+1]<data[store[i]*6+1])
+                {
+                        temp[k]=store[j];
+                        k++;
+                        j++;
+                        continue;
+                }
+        //gi
+                if(data[store[i]*6+2]<data[store[j]*6+2])
+                {
+                        temp[k]=store[i];
+                        k++;
+                        i++;
+                        continue;
+                }
+                if(data[store[j]*6+2]<data[store[i]*6+2])
+                {
+                        temp[k]=store[j];
+                        k++;
+                        j++;
+                        continue;
+                }
+        //position
+                if(data[store[i]*6+3]<data[store[j]*6+3])
+                {
+                        temp[k]=store[i];
+                        k++;
+                        i++;
+                }
+                else
+                {
+                        temp[k]=store[j];
+                        k++;
+                        j++;
+                        continue;
+                }
+        }
+        while(i<=middle)
+        {
+                temp[k]=store[i];
+                k++;
+                i++;
+        }
+        while(j<=end)
+        {
+                temp[k]=store[j];
+                k++;
+                j++;
+        }
+        for(i=start;i<=end;i++)
+                store[i]=temp[i];
+}
+
+static void sort_merge(int *store,int *temp,int *data,int start,int end)
+{
+        int middle;
+
+        if(start<end)
+        {
+                middle=(start+end)/2;
+                sort_merge(store,temp,data,start,middle);
+                sort_merge(store,temp,data,(middle+1),end);
+                merge(store,temp,data,start,end,middle);
+        }
+}
+
+////function read primer informatin and align information 
+static struct Primer *read_par(char *path,int common_flag,int special_flag)
+{
+	char *in,line[100];
+	int pos,len,gi,position,plus,minus,size,i,flag,total,*store,*temp,*data;
+	float Tm;
+	struct Primer *new_primer,*p_primer,*head;
+	struct Node *new_node,*p_node;
+	FILE *fp;
+
+///read the  primer file
+	if(access(path,0)==-1)
+	{
+		printf("Error! Don't have the %s file!\n",path);
+		exit(1);
+	}
+        fp=fopen(path,"r");
+        if(fp==NULL)
+        {
+                printf("Error: can't open the %s file!\n",path);
+                exit(1);
+        }
+	
+	size=sizeof(struct Primer);
+	i=0;
+        while(fscanf(fp,"pos:%d\tlength:%d\t+:%d\t-:%d\t%f\n",&pos,&len,&plus,&minus,&Tm)!=EOF)
+        {
+		new_primer=(struct Primer *)malloc(size);
+		new_primer->pos=pos;
+		new_primer->len=len;
+		new_primer->total=1;
+		new_primer->plus=plus;
+		new_primer->minus=minus;
+		new_primer->Tm=Tm;
+		new_primer->next=NULL;
+		new_primer->self=NULL;
+		new_primer->loop=NULL;
+		new_primer->notloop=NULL;
+		new_primer->common=NULL;
+		new_primer->special=NULL;
+
+		if(i==0)
+		{
+			head=new_primer;
+			p_primer=new_primer;
+			i++;
+		}
+		else
+		{
+			p_primer->next=new_primer;
+			p_primer=new_primer;
+		}
+        }
+	fclose(fp);
+        if(i==0)
+        {
+                printf("Sorry! Don't have any candidate single primers in %s!\n",path);
+                exit(1);
+        }
+
+//parameter of common
+	if(common_flag==1)
+	{
+		i=strlen(path);
+		in=(char *)malloc(i+20);
+        	memset(in,'\0',i+20);
+        	strcpy(in,path);
+        	strcat(in,"-common.txt"); //suffix of parameter
+		if(access(in,0)==-1)
+		{
+			printf("Error! Don't have the %s file!\n",in);
+			exit(1);
+		}
+
+        	fp=fopen(in,"r");
+        	if(fp==NULL)
+        	{
+        	        printf("Error: can't open the %s file!\n",in);
+        	        exit(1);
+        	}
+		
+		total=0;
+		while(fgets(line,100,fp)!=NULL)
+			total++;
+		rewind(fp);
+		store=(int *)malloc(total*sizeof(int));
+		temp=(int *)malloc(total*sizeof(int));
+		data=(int *)malloc(6*total*sizeof(int));
+		total=0;
+		while(fscanf(fp,"%d\t%d\t%d\t%d\t%d\t%d\n",&pos,&len,&gi,&position,&plus,&minus)!=EOF)
+		{
+			data[6*total]=pos;
+			data[6*total+1]=len;
+			data[6*total+2]=gi;
+			data[6*total+3]=position;
+			data[6*total+4]=plus;
+			data[6*total+5]=minus;
+			store[total]=total;
+			total++;
+		}
+		fclose(fp);
+		sort_merge(store,temp,data,0,(total-1));
+
+		p_primer=head;
+		size=sizeof(struct Node);
+		flag=0;
+		i=0;
+		while(p_primer&&i<total)
+		{
+		//pos
+			if(data[store[i]*6]<p_primer->pos)
+			{
+				i++;
+				continue;
+			}
+			if(data[store[i]*6]>p_primer->pos)
+			{
+				p_primer=p_primer->next;
+				flag=0;
+				continue;
+			}
+		//len
+			if(data[store[i]*6+1]<p_primer->len)
+                        {
+                                i++;
+                                continue;
+                        }
+                        if(data[store[i]*6+1]>p_primer->len)
+                        {
+                                p_primer=p_primer->next;
+				flag=0;
+                                continue;
+                        }
+			new_node=(struct Node *)malloc(size);
+			new_node->gi=data[store[i]*6+2];
+			new_node->pos=data[store[i]*6+3];
+			new_node->plus=data[store[i]*6+4];
+			new_node->minus=data[store[i]*6+5];
+                        new_node->next=NULL;
+			if(flag==0)
+			{
+				flag++;
+				p_primer->common=new_node;
+				p_node=new_node;
+			}
+			else
+			{
+                        	p_node->next=new_node;
+				p_node=new_node;
+			}
+			i++;
+        	}
+		free(in);
+		free(data);
+		free(store);
+		free(temp);
+	}
+//paramter for special
+	if(special_flag==1)
+	{
+		i=strlen(path);
+		in=(char *)malloc(i+20);
+		memset(in,'\0',i+20);
+        	strcpy(in,path);
+        	strcat(in,"-specific.txt"); //suffix of parameter
+		if(access(in,0)==-1)
+		{
+			printf("Error! Don't have the %s file!\n",in);
+			exit(1);
+		}
+
+        	fp=fopen(in,"r");
+        	if(fp==NULL)
+        	{
+        	        printf("Error: can't open the %s file!\n",in);
+        	        exit(1);
+        	}
+		total=0;
+                while(fgets(line,100,fp)!=NULL)
+                        total++;
+                rewind(fp);
+                store=(int *)malloc(total*sizeof(int));
+                temp=(int *)malloc(total*sizeof(int));
+                data=(int *)malloc(6*total*sizeof(int));
+                total=0;
+                while(fscanf(fp,"%d\t%d\t%d\t%d\t%d\t%d\n",&pos,&len,&gi,&position,&plus,&minus)!=EOF)
+                {
+                        data[6*total]=pos;
+                        data[6*total+1]=len;
+                        data[6*total+2]=gi;
+                        data[6*total+3]=position;
+                        data[6*total+4]=plus;
+                        data[6*total+5]=minus;
+                        store[total]=total;
+                        total++;
+                }
+                fclose(fp);
+                sort_merge(store,temp,data,0,(total-1));
+
+                p_primer=head;
+                size=sizeof(struct Node);
+                flag=0;
+		i=0;
+                while(p_primer&&i<total)
+                {
+                //pos
+                        if(data[store[i]*6]<p_primer->pos)
+                        {
+                                i++;
+                                continue;
+                        }
+                        if(data[store[i]*6]>p_primer->pos)
+                        {
+                                p_primer=p_primer->next;
+				flag=0;
+                                continue;
+                        }
+                //len
+                        if(data[store[i]*6+1]<p_primer->len)
+                        {
+                                i++;
+                                continue;
+                        }
+                        if(data[store[i]*6+1]>p_primer->len)
+                        {
+                                p_primer=p_primer->next;
+				flag=0;
+                                continue;
+                        }
+                        new_node=(struct Node *)malloc(size);
+                        new_node->gi=data[store[i]*6+2];
+                        new_node->pos=data[store[i]*6+3];
+                        new_node->plus=data[store[i]*6+4];
+                        new_node->minus=data[store[i]*6+5];
+                        new_node->next=NULL;
+			if(flag==0)
+			{
+				flag++;
+				p_primer->special=new_node;
+				p_node=new_node;
+			}
+			else
+			{
+                        	p_node->next=new_node;
+                        	p_node=new_node;
+			}
+                        i++;
+                }
+		free(in);
+                free(data);
+                free(store);
+                free(temp);
+	}
+	return head;
+}
+
+static struct INFO *read_list(char *path,int common_num[])
+{
+        char *in,name[301];
+        int turn,i,size;
+        struct INFO *new_primer,*p_primer,*head;
+        FILE *fp;
+
+	i=strlen(path);
+	in=(char *)malloc(i+20);
+	memset(in,'\0',i+20);
+	strcpy(in,path);
+	strcat(in,"-common_list.txt");
+        if(access(in,0)==-1)
+        {
+                printf("Error! Don't have the %s file!\n",in);
+                exit(1);
+        }
+        fp=fopen(in,"r");
+        if(fp==NULL)
+        {
+                printf("Error: can't open the %s file!\n",in);
+                exit(1);
+        }
+        
+        size=sizeof(struct INFO);
+        i=0;
+        memset(name,'\0',301);
+        while(fscanf(fp,"%s\t%d\n",name,&turn)!=EOF)
+        {
+                new_primer=(struct INFO *)malloc(size);
+                new_primer->turn=turn;
+                strcpy(new_primer->name,name);
+                new_primer->next=NULL;
+
+                if(i==0)
+                {
+                        head=new_primer;
+                        p_primer=new_primer;
+                        i++;
+                }
+                else
+                {
+                        p_primer->next=new_primer;
+                        p_primer=new_primer;
+                }
+                memset(name,'\0',301);
+        }
+        fclose(fp);
+	common_num[0]=turn;
+	free(in);
+	return head;
+}
+
+//function: the next one
+static void next_one(struct Primer *first, struct Primer *second,int flag) //0:self,1:notloop;2:loop
+{
+	struct Primer *one,*two,*start;
+	int pos=-1;
+
+	one=first;
+	start=second;
+	two=start;
+
+	while(one)
+	{
+		if(pos!=one->pos)
+		{
+			while(start)
+			{
+				if(start->pos+18<one->pos)
+					start=start->next;
+				else
+					break;
+			}
+			pos=one->pos;
+		}
+		//move second
+		two=start;
+		while(two)
+		{
+			if(two->pos<one->pos+one->len)
+				two=two->next;
+			else
+			{
+				if(flag==0)
+					one->self=two;
+				else if(flag==1)
+					one->notloop=two;
+				else
+					one->loop=two;
+				break;
+			}
+		}
+		one=one->next;
+	}			
+}
+
+//function: check how many GIs this primer can be used for
+static int check_common(struct Primer *F3,struct Primer *F2,struct Primer *F1c,struct Primer *B1c,struct Primer *B2,struct Primer *B3,int *result,int common)
+{
+        int dis,num,i;
+	struct Node *c_F3,*c_F2,*c_F1c,*c_B1c,*c_B2,*c_B3;
+	struct Node *b_F2,*b_F1c,*b_B1c,*b_B2,*b_B3;
+
+	for(i=0;i<common;i++)
+		result[i]=0;
+//plus
+	b_F2=F2->common;
+        b_F1c=F1c->common;
+        b_B1c=B1c->common;
+        b_B2=B2->common;
+        b_B3=B3->common;
+	for(c_F3=F3->common;c_F3;c_F3=c_F3->next)
+	{
+		if(c_F3->plus!=1)
+			continue;
+		if(result[c_F3->gi])
+			continue;
+		for(c_F2=b_F2;c_F2;c_F2=c_F2->next)
+		{
+			if(c_F2->gi<c_F3->gi)
+			{
+				b_F2=c_F2->next;
+				continue;
+			}
+			if(c_F2->gi>c_F3->gi)
+				break;
+			if(c_F2->plus!=1)
+				continue;
+			if(c_F2->pos<c_F3->pos)
+			{
+				b_F2=c_F2->next;
+				continue;
+			}
+			if(c_F2->pos-c_F3->pos>300)
+				break;
+			for(c_F1c=b_F1c;c_F1c;c_F1c=c_F1c->next)
+			{
+				if(c_F1c->gi<c_F3->gi)
+				{
+					b_F1c=c_F1c->next;
+					continue;
+				}
+				if(c_F1c->gi>c_F3->gi)
+					break;
+				if(c_F1c->minus!=1)
+					continue;
+				if(c_F1c->pos<c_F3->pos)
+				{
+					b_F1c=c_F1c->next;
+					continue;
+				}
+				if(c_F1c->pos-c_F3->pos>300)
+					break;
+				for(c_B1c=b_B1c;c_B1c;c_B1c=c_B1c->next)
+				{
+					if(c_B1c->gi<c_F3->gi)
+					{
+						b_B1c=c_B1c->next;
+						continue;
+					}
+					if(c_B1c->gi>c_F3->gi)
+						break;
+					if(c_B1c->plus!=1)
+						continue;
+					if(c_B1c->pos<c_F3->pos)
+					{
+						b_B1c=c_B1c->next;
+						continue;
+					}
+					if(c_B1c->pos-c_F3->pos>300)
+						break;
+					for(c_B2=b_B2;c_B2;c_B2=c_B2->next)
+					{
+						if(c_B2->gi<c_F3->gi)
+						{
+							b_B2=c_B2->next;
+							continue;
+						}
+						if(c_B2->gi>c_F3->gi)
+							break;
+						if(c_B2->minus!=1)
+							continue;
+						if(c_B2->pos<c_F3->pos)
+						{
+							b_B2=c_B2->next;
+							continue;
+						}
+						if(c_B2->pos-c_F3->pos>300)
+							break;
+						for(c_B3=b_B3;c_B3;c_B3=c_B3->next)
+						{
+							if(c_B3->gi<c_F3->gi)
+							{
+								b_B3=c_B3->next;
+								continue;
+							}
+							if(c_B3->gi>c_F3->gi)
+								break;
+							if(c_B3->minus!=1)
+								continue;
+							if(c_B3->pos<c_F3->pos)
+							{
+								b_B3=c_B3->next;
+								continue;
+							}
+							if(c_B3->pos-c_F3->pos>300)
+								break;
+						//F3-F2 
+        						dis=c_F2->pos-(c_F3->pos+F3->len-1)-1;
+						        if(dis<0)
+                						continue;
+        						if(dis>20)
+                						continue;
+						//F2-F1c
+						        dis=c_F1c->pos-c_F2->pos-1;
+        						if(dis<40)
+                						continue;
+        						if(dis>60)
+                						continue;
+						//F1c-B1c
+        						dis=c_B1c->pos-(c_F1c->pos+F1c->len-1)-1;
+        						if(dis<0)
+                						continue;
+						//B1c-B2
+        						dis=(c_B2->pos+B2->len-1)-(c_B1c->pos+B1c->len-1)-1;
+        						if(dis<40)
+								continue;
+						        if(dis>60)
+                						continue;
+						//F2-B2
+        						dis=c_B2->pos+B2->len-1-c_F2->pos-1;
+        						if(dis<120)
+                						continue;
+						        if(dis>180)
+                						continue;
+						//B2-B3
+        						dis=c_B3->pos-(c_B2->pos+B2->len-1)-1;
+        						if(dis<0)
+                						continue;
+						        if(dis>20)
+                						continue;
+							result[c_F3->gi]=1;
+						}
+					}
+				}
+			}
+		}
+	}
+//minus
+	b_F2=F2->common;
+        b_F1c=F1c->common;
+        b_B1c=B1c->common;
+        b_B2=B2->common;
+        b_B3=B3->common;
+        for(c_F3=F3->common;c_F3;c_F3=c_F3->next)
+        {
+                if(c_F3->minus!=1)
+                        continue;
+                if(result[c_F3->gi])
+                        continue;  //this GI can common
+
+                for(c_F2=b_F2;c_F2;c_F2=c_F2->next)
+                {
+			if(c_F2->gi<c_F3->gi)
+                        {
+                                b_F2=c_F2->next;
+                                continue;
+                        }
+                        if(c_F2->gi>c_F3->gi)
+                                break;
+                        if(c_F2->minus!=1)
+                                continue;
+			if(c_F2->pos>c_F3->pos)
+				break;
+			if(c_F2->pos-c_F3->pos<-300)
+			{
+				b_F2=c_F2->next;
+				continue;
+			}
+                        for(c_F1c=b_F1c;c_F1c;c_F1c=c_F1c->next)
+                        {
+				if(c_F1c->gi<c_F3->gi)
+                                {
+                                        b_F1c=c_F1c->next;
+                                        continue;
+                                }
+                                if(c_F1c->gi>c_F3->gi)
+                                        break;
+                                if(c_F1c->plus!=1)
+                                        continue;
+				if(c_F1c->pos>c_F3->pos)
+					break;
+				if(c_F1c->pos-c_F3->pos<-300)
+				{
+					b_F1c=c_F1c->next;
+					continue;
+				}
+                                for(c_B1c=b_B1c;c_B1c;c_B1c=c_B1c->next)
+                                {
+					if(c_B1c->gi<c_F3->gi)
+                                        {
+                                                b_B1c=c_B1c->next;
+                                                continue;
+                                        }
+                                        if(c_B1c->gi>c_F3->gi)
+                                                break;
+                                        if(c_B1c->minus!=1)
+                                                continue;
+					if(c_B1c->pos>c_F3->pos)
+						break;
+					if(c_B1c->pos-c_F3->pos<-300)
+					{
+                                                b_B1c=c_B1c->next;
+                                                continue;
+                                        }
+                                        for(c_B2=b_B2;c_B2;c_B2=c_B2->next)
+                                        {
+						if(c_B2->gi<c_F3->gi)
+                                                {
+                                                        b_B2=c_B2->next;
+                                                        continue;
+                                                }
+                                                if(c_B2->gi>c_F3->gi)
+                                                        break;
+                                                if(c_B2->plus!=1)
+                                                        continue;
+						if(c_B2->pos>c_F3->pos)
+							break;
+						if(c_B2->pos-c_F3->pos<-300)
+						{
+                                                        b_B2=c_B2->next;
+                                                        continue;
+                                                }
+                                                for(c_B3=b_B3;c_B3;c_B3=c_B3->next)
+                                                {
+							if(c_B3->gi<c_F3->gi)
+                                                        {
+                                                                b_B3=c_B3->next;
+                                                                continue;
+                                                        }
+                                                        if(c_B3->gi>c_F3->gi)
+                                                                break;
+                                                        if(c_B3->plus!=1)
+                                                                continue;
+							if(c_B3->pos>c_F3->pos)
+								break;
+							if(c_B3->pos-c_F3->pos<-300)
+							{
+                                                                b_B3=c_B3->next;
+                                                                continue;
+                                                        }
+                                                //F3-F2 
+                                                        dis=c_F3->pos-(c_F2->pos+F2->len-1)-1;
+                                                        if(dis<0)
+                                                                continue;
+                                                        if(dis>20)
+                                                                continue;
+                                                //F2-F1c
+                                                        dis=(c_F2->pos+F2->len-1)-(c_F1c->pos+F1c->len-1)-1;
+                                                        if(dis<40)
+                                                                continue;
+                                                        if(dis>60)
+                                                                continue;
+                                                //F1c-B1c
+                                                        dis=c_F1c->pos-(c_B1c->pos+B1c->len-1)-1;
+                                                        if(dis<0)
+                                                                continue;
+                                                //B1c-B2
+                                                        dis=c_B1c->pos-c_B2->pos-1;
+                                                        if(dis<40)
+                                                                continue;
+                                                        if(dis>60)
+                                                                continue;
+                                                //F2-B2
+                                                        dis=c_F2->pos+F2->len-1-c_B2->pos-1;
+                                                        if(dis<120)
+                                                                continue;
+                                                        if(dis>180)
+                                                                continue;
+                                                //B2-B3
+                                                        dis=c_B2->pos-(c_B3->pos+B3->len-1)-1;
+                                                        if(dis<0)
+                                                                continue;
+                                                        if(dis>20)
+                                                                continue;
+                                                        result[c_F3->gi]=1;
+                                                }
+                                        }
+                                }
+                        }
+                }
+        }
+	num=0;
+	for(i=0;i<common;i++)
+	{
+		num=num+result[i];
+	}
+	return num;
+}
+
+static void reverse(char seq[],char rev[],int length)
+{
+        int i;
+        
+        for(i=0;i<length;i++)
+        {
+                if(seq[length-1-i]=='A')
+                {
+                        rev[i]='T';
+                        continue;
+                }
+                if(seq[length-1-i]=='T')
+                {
+                        rev[i]='A';
+                        continue;
+                }
+                if(seq[length-1-i]=='C')
+                {
+                        rev[i]='G';
+                        continue;
+                }
+                rev[i]='C';
+        }
+        rev[i]='\0';
+}
+
+static int check_structure(char F3[],char F2[],char F1c[],char B1c[],char B2[],char B3[],int GC,double stackEntropies[],double stackEnthalpies[],double stackint2Entropies[],double stackint2Enthalpies[],double dangleEntropies3[],double dangleEnthalpies3[],double dangleEntropies5[],double dangleEnthalpies5[],double hairpinLoopEntropies[],double interiorLoopEntropies[],double bulgeLoopEntropies[],double hairpinLoopEnthalpies[],double interiorLoopEnthalpies[],double bulgeLoopEnthalpies[],double tstackEntropies[],double tstackEnthalpies[],double tstack2Entropies[],double tstack2Enthalpies[],char *triloopEntropies1,char *triloopEnthalpies1,char *tetraloopEntropies1,char *tetraloopEnthalpies1,double *triloopEntropies2,double *triloopEnthalpies2,double *tetraloopEntropies2,double *tetraloopEnthalpies2,int numTriloops,int numTetraloops,double atpS[],double atpH[],int error[])
+{
+	int i,j,threshold;
+	double TH;
+	char *list[6],rev1[26],rev2[26];
+
+//prepare
+	if(GC==1||GC==4)
+		threshold=49;
+	else
+		threshold=45;
+	list[0]=F3;
+	list[1]=F2;
+	list[2]=F1c;
+	list[3]=B1c;
+	list[4]=B2;
+	list[5]=B3;
+	for(i=0;i<6;i++)
+	{
+		for(j=i+1;j<6;j++)
+		{
+			TH=thal(list[i],list[j],stackEntropies,stackEnthalpies,stackint2Entropies,stackint2Enthalpies,dangleEntropies3,dangleEnthalpies3,dangleEntropies5,dangleEnthalpies5,hairpinLoopEntropies,interiorLoopEntropies,bulgeLoopEntropies,hairpinLoopEnthalpies,interiorLoopEnthalpies,bulgeLoopEnthalpies,tstackEntropies,tstackEnthalpies,tstack2Entropies,tstack2Enthalpies,triloopEntropies1,triloopEnthalpies1,tetraloopEntropies1,tetraloopEnthalpies1,triloopEntropies2,triloopEnthalpies2,tetraloopEntropies2,tetraloopEnthalpies2,numTriloops,numTetraloops,atpS,atpH,1);
+			if(TH>threshold)
+			{
+				error[0]=i;
+				error[1]=j;
+				return 0;
+			}
+
+			TH=thal(list[i],list[j],stackEntropies,stackEnthalpies,stackint2Entropies,stackint2Enthalpies,dangleEntropies3,dangleEnthalpies3,dangleEntropies5,dangleEnthalpies5,hairpinLoopEntropies,interiorLoopEntropies,bulgeLoopEntropies,hairpinLoopEnthalpies,interiorLoopEnthalpies,bulgeLoopEnthalpies,tstackEntropies,tstackEnthalpies,tstack2Entropies,tstack2Enthalpies,triloopEntropies1,triloopEnthalpies1,tetraloopEntropies1,tetraloopEnthalpies1,triloopEntropies2,triloopEnthalpies2,tetraloopEntropies2,tetraloopEnthalpies2,numTriloops,numTetraloops,atpS,atpH,2);
+			if(TH>threshold)
+			{
+				error[0]=i;
+				error[1]=j;
+                                return 0;
+			}
+			TH=thal(list[i],list[j],stackEntropies,stackEnthalpies,stackint2Entropies,stackint2Enthalpies,dangleEntropies3,dangleEnthalpies3,dangleEntropies5,dangleEnthalpies5,hairpinLoopEntropies,interiorLoopEntropies,bulgeLoopEntropies,hairpinLoopEnthalpies,interiorLoopEnthalpies,bulgeLoopEnthalpies,tstackEntropies,tstackEnthalpies,tstack2Entropies,tstack2Enthalpies,triloopEntropies1,triloopEnthalpies1,tetraloopEntropies1,tetraloopEnthalpies1,triloopEntropies2,triloopEnthalpies2,tetraloopEntropies2,tetraloopEnthalpies2,numTriloops,numTetraloops,atpS,atpH,3);
+			if(TH>threshold)
+			{
+				error[0]=i;
+				error[1]=j;
+                                return 0;
+			}
+
+			reverse(list[j],rev1,strlen(list[j]));
+			reverse(list[i],rev2,strlen(list[i]));
+			TH=thal(rev1,rev2,stackEntropies,stackEnthalpies,stackint2Entropies,stackint2Enthalpies,dangleEntropies3,dangleEnthalpies3,dangleEntropies5,dangleEnthalpies5,hairpinLoopEntropies,interiorLoopEntropies,bulgeLoopEntropies,hairpinLoopEnthalpies,interiorLoopEnthalpies,bulgeLoopEnthalpies,tstackEntropies,tstackEnthalpies,tstack2Entropies,tstack2Enthalpies,triloopEntropies1,triloopEnthalpies1,tetraloopEntropies1,tetraloopEnthalpies1,triloopEntropies2,triloopEnthalpies2,tetraloopEntropies2,tetraloopEnthalpies2,numTriloops,numTetraloops,atpS,atpH,2);
+			if(TH>threshold)
+			{
+				error[0]=i;
+				error[1]=j;
+                                return 0;
+			}
+			TH=thal(rev1,rev2,stackEntropies,stackEnthalpies,stackint2Entropies,stackint2Enthalpies,dangleEntropies3,dangleEnthalpies3,dangleEntropies5,dangleEnthalpies5,hairpinLoopEntropies,interiorLoopEntropies,bulgeLoopEntropies,hairpinLoopEnthalpies,interiorLoopEnthalpies,bulgeLoopEnthalpies,tstackEntropies,tstackEnthalpies,tstack2Entropies,tstack2Enthalpies,triloopEntropies1,triloopEnthalpies1,tetraloopEntropies1,tetraloopEnthalpies1,triloopEntropies2,triloopEnthalpies2,tetraloopEntropies2,tetraloopEnthalpies2,numTriloops,numTetraloops,atpS,atpH,3);
+			if(TH>threshold)
+			{
+				error[0]=i;
+				error[1]=j;
+                                return 0;
+			}
+		}
+	}
+	return 1;
+}			
+
+static int check_structure_loop(char F3[],char F2[],char F1c[],char B1c[],char B2[],char B3[],char LF[],char LB[],int GC,double stackEntropies[],double stackEnthalpies[],double stackint2Entropies[],double stackint2Enthalpies[],double dangleEntropies3[],double dangleEnthalpies3[],double dangleEntropies5[],double dangleEnthalpies5[],double hairpinLoopEntropies[],double interiorLoopEntropies[],double bulgeLoopEntropies[],double hairpinLoopEnthalpies[],double interiorLoopEnthalpies[],double bulgeLoopEnthalpies[],double tstackEntropies[],double tstackEnthalpies[],double tstack2Entropies[],double tstack2Enthalpies[],char *triloopEntropies1,char *triloopEnthalpies1,char *tetraloopEntropies1,char *tetraloopEnthalpies1,double *triloopEntropies2,double *triloopEnthalpies2,double *tetraloopEntropies2,double *tetraloopEnthalpies2,int numTriloops,int numTetraloops,double atpS[],double atpH[])
+{
+        int i,threshold;
+        double TH;
+        char *list[8],rev1[26],rev2[26];
+
+//prepare
+	if(GC==1||GC==4)
+		threshold=49;
+	else
+		threshold=45;
+        list[0]=F3;
+        list[1]=F2;
+        list[2]=LF;
+        list[3]=F1c;
+        list[4]=B1c;
+	list[5]=LB;
+	list[6]=B2;
+	list[7]=B3;
+
+	if(list[2]!=NULL)
+	{
+		reverse(list[2],rev1,strlen(list[2]));
+        	for(i=0;i<=1;i++)
+		{
+			TH=thal(list[i],list[2],stackEntropies,stackEnthalpies,stackint2Entropies,stackint2Enthalpies,dangleEntropies3,dangleEnthalpies3,dangleEntropies5,dangleEnthalpies5,hairpinLoopEntropies,interiorLoopEntropies,bulgeLoopEntropies,hairpinLoopEnthalpies,interiorLoopEnthalpies,bulgeLoopEnthalpies,tstackEntropies,tstackEnthalpies,tstack2Entropies,tstack2Enthalpies,triloopEntropies1,triloopEnthalpies1,tetraloopEntropies1,tetraloopEnthalpies1,triloopEntropies2,triloopEnthalpies2,tetraloopEntropies2,tetraloopEnthalpies2,numTriloops,numTetraloops,atpS,atpH,1);
+			if(TH>threshold)
+				return 0;
+			TH=thal(list[i],list[2],stackEntropies,stackEnthalpies,stackint2Entropies,stackint2Enthalpies,dangleEntropies3,dangleEnthalpies3,dangleEntropies5,dangleEnthalpies5,hairpinLoopEntropies,interiorLoopEntropies,bulgeLoopEntropies,hairpinLoopEnthalpies,interiorLoopEnthalpies,bulgeLoopEnthalpies,tstackEntropies,tstackEnthalpies,tstack2Entropies,tstack2Enthalpies,triloopEntropies1,triloopEnthalpies1,tetraloopEntropies1,tetraloopEnthalpies1,triloopEntropies2,triloopEnthalpies2,tetraloopEntropies2,tetraloopEnthalpies2,numTriloops,numTetraloops,atpS,atpH,2);
+			if(TH>threshold)
+                                return 0;
+                        TH=thal(list[i],list[2],stackEntropies,stackEnthalpies,stackint2Entropies,stackint2Enthalpies,dangleEntropies3,dangleEnthalpies3,dangleEntropies5,dangleEnthalpies5,hairpinLoopEntropies,interiorLoopEntropies,bulgeLoopEntropies,hairpinLoopEnthalpies,interiorLoopEnthalpies,bulgeLoopEnthalpies,tstackEntropies,tstackEnthalpies,tstack2Entropies,tstack2Enthalpies,triloopEntropies1,triloopEnthalpies1,tetraloopEntropies1,tetraloopEnthalpies1,triloopEntropies2,triloopEnthalpies2,tetraloopEntropies2,tetraloopEnthalpies2,numTriloops,numTetraloops,atpS,atpH,3);
+			if(TH>threshold)
+                                return 0;
+
+			reverse(list[i],rev2,strlen(list[i]));
+			TH=thal(rev1,rev2,stackEntropies,stackEnthalpies,stackint2Entropies,stackint2Enthalpies,dangleEntropies3,dangleEnthalpies3,dangleEntropies5,dangleEnthalpies5,hairpinLoopEntropies,interiorLoopEntropies,bulgeLoopEntropies,hairpinLoopEnthalpies,interiorLoopEnthalpies,bulgeLoopEnthalpies,tstackEntropies,tstackEnthalpies,tstack2Entropies,tstack2Enthalpies,triloopEntropies1,triloopEnthalpies1,tetraloopEntropies1,tetraloopEnthalpies1,triloopEntropies2,triloopEnthalpies2,tetraloopEntropies2,tetraloopEnthalpies2,numTriloops,numTetraloops,atpS,atpH,2);
+			if(TH>threshold)
+                                return 0;
+			TH=thal(rev1,rev2,stackEntropies,stackEnthalpies,stackint2Entropies,stackint2Enthalpies,dangleEntropies3,dangleEnthalpies3,dangleEntropies5,dangleEnthalpies5,hairpinLoopEntropies,interiorLoopEntropies,bulgeLoopEntropies,hairpinLoopEnthalpies,interiorLoopEnthalpies,bulgeLoopEnthalpies,tstackEntropies,tstackEnthalpies,tstack2Entropies,tstack2Enthalpies,triloopEntropies1,triloopEnthalpies1,tetraloopEntropies1,tetraloopEnthalpies1,triloopEntropies2,triloopEnthalpies2,tetraloopEntropies2,tetraloopEnthalpies2,numTriloops,numTetraloops,atpS,atpH,3);
+			if(TH>44+threshold)
+                                return 0;
+		}
+
+		for(i=3;i<8;i++)
+		{
+			if(i==5)
+				continue;
+			TH=thal(list[2],list[i],stackEntropies,stackEnthalpies,stackint2Entropies,stackint2Enthalpies,dangleEntropies3,dangleEnthalpies3,dangleEntropies5,dangleEnthalpies5,hairpinLoopEntropies,interiorLoopEntropies,bulgeLoopEntropies,hairpinLoopEnthalpies,interiorLoopEnthalpies,bulgeLoopEnthalpies,tstackEntropies,tstackEnthalpies,tstack2Entropies,tstack2Enthalpies,triloopEntropies1,triloopEnthalpies1,tetraloopEntropies1,tetraloopEnthalpies1,triloopEntropies2,triloopEnthalpies2,tetraloopEntropies2,tetraloopEnthalpies2,numTriloops,numTetraloops,atpS,atpH,1);
+			if(TH>threshold)
+                                return 0;
+			TH=thal(list[2],list[i],stackEntropies,stackEnthalpies,stackint2Entropies,stackint2Enthalpies,dangleEntropies3,dangleEnthalpies3,dangleEntropies5,dangleEnthalpies5,hairpinLoopEntropies,interiorLoopEntropies,bulgeLoopEntropies,hairpinLoopEnthalpies,interiorLoopEnthalpies,bulgeLoopEnthalpies,tstackEntropies,tstackEnthalpies,tstack2Entropies,tstack2Enthalpies,triloopEntropies1,triloopEnthalpies1,tetraloopEntropies1,tetraloopEnthalpies1,triloopEntropies2,triloopEnthalpies2,tetraloopEntropies2,tetraloopEnthalpies2,numTriloops,numTetraloops,atpS,atpH,2);
+			if(TH>threshold)
+                                return 0;
+                        TH=thal(list[2],list[i],stackEntropies,stackEnthalpies,stackint2Entropies,stackint2Enthalpies,dangleEntropies3,dangleEnthalpies3,dangleEntropies5,dangleEnthalpies5,hairpinLoopEntropies,interiorLoopEntropies,bulgeLoopEntropies,hairpinLoopEnthalpies,interiorLoopEnthalpies,bulgeLoopEnthalpies,tstackEntropies,tstackEnthalpies,tstack2Entropies,tstack2Enthalpies,triloopEntropies1,triloopEnthalpies1,tetraloopEntropies1,tetraloopEnthalpies1,triloopEntropies2,triloopEnthalpies2,tetraloopEntropies2,tetraloopEnthalpies2,numTriloops,numTetraloops,atpS,atpH,3);
+			if(TH>threshold)
+                                return 0;
+
+			reverse(list[i],rev2,strlen(list[i]));
+			TH=thal(rev2,rev1,stackEntropies,stackEnthalpies,stackint2Entropies,stackint2Enthalpies,dangleEntropies3,dangleEnthalpies3,dangleEntropies5,dangleEnthalpies5,hairpinLoopEntropies,interiorLoopEntropies,bulgeLoopEntropies,hairpinLoopEnthalpies,interiorLoopEnthalpies,bulgeLoopEnthalpies,tstackEntropies,tstackEnthalpies,tstack2Entropies,tstack2Enthalpies,triloopEntropies1,triloopEnthalpies1,tetraloopEntropies1,tetraloopEnthalpies1,triloopEntropies2,triloopEnthalpies2,tetraloopEntropies2,tetraloopEnthalpies2,numTriloops,numTetraloops,atpS,atpH,2);
+			if(TH>threshold) 
+                                return 0;
+			TH=thal(rev2,rev1,stackEntropies,stackEnthalpies,stackint2Entropies,stackint2Enthalpies,dangleEntropies3,dangleEnthalpies3,dangleEntropies5,dangleEnthalpies5,hairpinLoopEntropies,interiorLoopEntropies,bulgeLoopEntropies,hairpinLoopEnthalpies,interiorLoopEnthalpies,bulgeLoopEnthalpies,tstackEntropies,tstackEnthalpies,tstack2Entropies,tstack2Enthalpies,triloopEntropies1,triloopEnthalpies1,tetraloopEntropies1,tetraloopEnthalpies1,triloopEntropies2,triloopEnthalpies2,tetraloopEntropies2,tetraloopEnthalpies2,numTriloops,numTetraloops,atpS,atpH,3);
+			if(TH>threshold)
+                                return 0;
+		}
+        }
+	if(list[5]!=NULL)
+	{
+		reverse(list[5],rev1,strlen(list[5]));
+		for(i=0;i<5;i++)
+		{
+			if(i==2)
+				continue;
+			TH=thal(list[i],list[5],stackEntropies,stackEnthalpies,stackint2Entropies,stackint2Enthalpies,dangleEntropies3,dangleEnthalpies3,dangleEntropies5,dangleEnthalpies5,hairpinLoopEntropies,interiorLoopEntropies,bulgeLoopEntropies,hairpinLoopEnthalpies,interiorLoopEnthalpies,bulgeLoopEnthalpies,tstackEntropies,tstackEnthalpies,tstack2Entropies,tstack2Enthalpies,triloopEntropies1,triloopEnthalpies1,tetraloopEntropies1,tetraloopEnthalpies1,triloopEntropies2,triloopEnthalpies2,tetraloopEntropies2,tetraloopEnthalpies2,numTriloops,numTetraloops,atpS,atpH,1);
+			if(TH>threshold)
+                                return 0;
+			TH=thal(list[i],list[5],stackEntropies,stackEnthalpies,stackint2Entropies,stackint2Enthalpies,dangleEntropies3,dangleEnthalpies3,dangleEntropies5,dangleEnthalpies5,hairpinLoopEntropies,interiorLoopEntropies,bulgeLoopEntropies,hairpinLoopEnthalpies,interiorLoopEnthalpies,bulgeLoopEnthalpies,tstackEntropies,tstackEnthalpies,tstack2Entropies,tstack2Enthalpies,triloopEntropies1,triloopEnthalpies1,tetraloopEntropies1,tetraloopEnthalpies1,triloopEntropies2,triloopEnthalpies2,tetraloopEntropies2,tetraloopEnthalpies2,numTriloops,numTetraloops,atpS,atpH,2);
+			if(TH>threshold)
+                                return 0;
+                        TH=thal(list[i],list[5],stackEntropies,stackEnthalpies,stackint2Entropies,stackint2Enthalpies,dangleEntropies3,dangleEnthalpies3,dangleEntropies5,dangleEnthalpies5,hairpinLoopEntropies,interiorLoopEntropies,bulgeLoopEntropies,hairpinLoopEnthalpies,interiorLoopEnthalpies,bulgeLoopEnthalpies,tstackEntropies,tstackEnthalpies,tstack2Entropies,tstack2Enthalpies,triloopEntropies1,triloopEnthalpies1,tetraloopEntropies1,tetraloopEnthalpies1,triloopEntropies2,triloopEnthalpies2,tetraloopEntropies2,tetraloopEnthalpies2,numTriloops,numTetraloops,atpS,atpH,3);
+			if(TH>threshold)
+                                return 0;
+
+			reverse(list[i],rev2,strlen(list[i]));
+			TH=thal(rev1,rev2,stackEntropies,stackEnthalpies,stackint2Entropies,stackint2Enthalpies,dangleEntropies3,dangleEnthalpies3,dangleEntropies5,dangleEnthalpies5,hairpinLoopEntropies,interiorLoopEntropies,bulgeLoopEntropies,hairpinLoopEnthalpies,interiorLoopEnthalpies,bulgeLoopEnthalpies,tstackEntropies,tstackEnthalpies,tstack2Entropies,tstack2Enthalpies,triloopEntropies1,triloopEnthalpies1,tetraloopEntropies1,tetraloopEnthalpies1,triloopEntropies2,triloopEnthalpies2,tetraloopEntropies2,tetraloopEnthalpies2,numTriloops,numTetraloops,atpS,atpH,2);
+			if(TH>threshold)
+                                return 0;
+			TH=thal(rev1,rev2,stackEntropies,stackEnthalpies,stackint2Entropies,stackint2Enthalpies,dangleEntropies3,dangleEnthalpies3,dangleEntropies5,dangleEnthalpies5,hairpinLoopEntropies,interiorLoopEntropies,bulgeLoopEntropies,hairpinLoopEnthalpies,interiorLoopEnthalpies,bulgeLoopEnthalpies,tstackEntropies,tstackEnthalpies,tstack2Entropies,tstack2Enthalpies,triloopEntropies1,triloopEnthalpies1,tetraloopEntropies1,tetraloopEnthalpies1,triloopEntropies2,triloopEnthalpies2,tetraloopEntropies2,tetraloopEnthalpies2,numTriloops,numTetraloops,atpS,atpH,3);
+			if(TH>threshold)
+				return 0;
+		}
+		for(i=6;i<8;i++)
+		{
+			TH=thal(list[5],list[i],stackEntropies,stackEnthalpies,stackint2Entropies,stackint2Enthalpies,dangleEntropies3,dangleEnthalpies3,dangleEntropies5,dangleEnthalpies5,hairpinLoopEntropies,interiorLoopEntropies,bulgeLoopEntropies,hairpinLoopEnthalpies,interiorLoopEnthalpies,bulgeLoopEnthalpies,tstackEntropies,tstackEnthalpies,tstack2Entropies,tstack2Enthalpies,triloopEntropies1,triloopEnthalpies1,tetraloopEntropies1,tetraloopEnthalpies1,triloopEntropies2,triloopEnthalpies2,tetraloopEntropies2,tetraloopEnthalpies2,numTriloops,numTetraloops,atpS,atpH,1);
+			if(TH>threshold)
+                                return 0;
+			TH=thal(list[5],list[i],stackEntropies,stackEnthalpies,stackint2Entropies,stackint2Enthalpies,dangleEntropies3,dangleEnthalpies3,dangleEntropies5,dangleEnthalpies5,hairpinLoopEntropies,interiorLoopEntropies,bulgeLoopEntropies,hairpinLoopEnthalpies,interiorLoopEnthalpies,bulgeLoopEnthalpies,tstackEntropies,tstackEnthalpies,tstack2Entropies,tstack2Enthalpies,triloopEntropies1,triloopEnthalpies1,tetraloopEntropies1,tetraloopEnthalpies1,triloopEntropies2,triloopEnthalpies2,tetraloopEntropies2,tetraloopEnthalpies2,numTriloops,numTetraloops,atpS,atpH,2);
+			if(TH>threshold)
+                                return 0;
+			TH=thal(list[5],list[i],stackEntropies,stackEnthalpies,stackint2Entropies,stackint2Enthalpies,dangleEntropies3,dangleEnthalpies3,dangleEntropies5,dangleEnthalpies5,hairpinLoopEntropies,interiorLoopEntropies,bulgeLoopEntropies,hairpinLoopEnthalpies,interiorLoopEnthalpies,bulgeLoopEnthalpies,tstackEntropies,tstackEnthalpies,tstack2Entropies,tstack2Enthalpies,triloopEntropies1,triloopEnthalpies1,tetraloopEntropies1,tetraloopEnthalpies1,triloopEntropies2,triloopEnthalpies2,tetraloopEntropies2,tetraloopEnthalpies2,numTriloops,numTetraloops,atpS,atpH,3);
+			if(TH>threshold)
+                                return 0;
+
+			reverse(list[i],rev2,strlen(list[i]));
+			TH=thal(rev2,rev1,stackEntropies,stackEnthalpies,stackint2Entropies,stackint2Enthalpies,dangleEntropies3,dangleEnthalpies3,dangleEntropies5,dangleEnthalpies5,hairpinLoopEntropies,interiorLoopEntropies,bulgeLoopEntropies,hairpinLoopEnthalpies,interiorLoopEnthalpies,bulgeLoopEnthalpies,tstackEntropies,tstackEnthalpies,tstack2Entropies,tstack2Enthalpies,triloopEntropies1,triloopEnthalpies1,tetraloopEntropies1,tetraloopEnthalpies1,triloopEntropies2,triloopEnthalpies2,tetraloopEntropies2,tetraloopEnthalpies2,numTriloops,numTetraloops,atpS,atpH,2);
+			if(TH>threshold)
+                                return 0;
+			TH=thal(rev2,rev1,stackEntropies,stackEnthalpies,stackint2Entropies,stackint2Enthalpies,dangleEntropies3,dangleEnthalpies3,dangleEntropies5,dangleEnthalpies5,hairpinLoopEntropies,interiorLoopEntropies,bulgeLoopEntropies,hairpinLoopEnthalpies,interiorLoopEnthalpies,bulgeLoopEnthalpies,tstackEntropies,tstackEnthalpies,tstack2Entropies,tstack2Enthalpies,triloopEntropies1,triloopEnthalpies1,tetraloopEntropies1,tetraloopEnthalpies1,triloopEntropies2,triloopEnthalpies2,tetraloopEntropies2,tetraloopEnthalpies2,numTriloops,numTetraloops,atpS,atpH,3);
+			if(TH>threshold)
+                                return 0;
+		}
+	}
+	if(list[2]!=NULL&&list[5]!=NULL)
+	{
+		TH=thal(list[2],list[5],stackEntropies,stackEnthalpies,stackint2Entropies,stackint2Enthalpies,dangleEntropies3,dangleEnthalpies3,dangleEntropies5,dangleEnthalpies5,hairpinLoopEntropies,interiorLoopEntropies,bulgeLoopEntropies,hairpinLoopEnthalpies,interiorLoopEnthalpies,bulgeLoopEnthalpies,tstackEntropies,tstackEnthalpies,tstack2Entropies,tstack2Enthalpies,triloopEntropies1,triloopEnthalpies1,tetraloopEntropies1,tetraloopEnthalpies1,triloopEntropies2,triloopEnthalpies2,tetraloopEntropies2,tetraloopEnthalpies2,numTriloops,numTetraloops,atpS,atpH,1);
+		if(TH>threshold)
+			return 0;
+		TH=thal(list[2],list[5],stackEntropies,stackEnthalpies,stackint2Entropies,stackint2Enthalpies,dangleEntropies3,dangleEnthalpies3,dangleEntropies5,dangleEnthalpies5,hairpinLoopEntropies,interiorLoopEntropies,bulgeLoopEntropies,hairpinLoopEnthalpies,interiorLoopEnthalpies,bulgeLoopEnthalpies,tstackEntropies,tstackEnthalpies,tstack2Entropies,tstack2Enthalpies,triloopEntropies1,triloopEnthalpies1,tetraloopEntropies1,tetraloopEnthalpies1,triloopEntropies2,triloopEnthalpies2,tetraloopEntropies2,tetraloopEnthalpies2,numTriloops,numTetraloops,atpS,atpH,2);
+		if(TH>threshold)
+                        return 0;
+                TH=thal(list[2],list[5],stackEntropies,stackEnthalpies,stackint2Entropies,stackint2Enthalpies,dangleEntropies3,dangleEnthalpies3,dangleEntropies5,dangleEnthalpies5,hairpinLoopEntropies,interiorLoopEntropies,bulgeLoopEntropies,hairpinLoopEnthalpies,interiorLoopEnthalpies,bulgeLoopEnthalpies,tstackEntropies,tstackEnthalpies,tstack2Entropies,tstack2Enthalpies,triloopEntropies1,triloopEnthalpies1,tetraloopEntropies1,tetraloopEnthalpies1,triloopEntropies2,triloopEnthalpies2,tetraloopEntropies2,tetraloopEnthalpies2,numTriloops,numTetraloops,atpS,atpH,3);
+		if(TH>threshold)
+                        return 0;
+
+		reverse(list[2],rev1,strlen(list[2]));
+		reverse(list[5],rev2,strlen(list[5]));
+		TH=thal(rev2,rev1,stackEntropies,stackEnthalpies,stackint2Entropies,stackint2Enthalpies,dangleEntropies3,dangleEnthalpies3,dangleEntropies5,dangleEnthalpies5,hairpinLoopEntropies,interiorLoopEntropies,bulgeLoopEntropies,hairpinLoopEnthalpies,interiorLoopEnthalpies,bulgeLoopEnthalpies,tstackEntropies,tstackEnthalpies,tstack2Entropies,tstack2Enthalpies,triloopEntropies1,triloopEnthalpies1,tetraloopEntropies1,tetraloopEnthalpies1,triloopEntropies2,triloopEnthalpies2,tetraloopEntropies2,tetraloopEnthalpies2,numTriloops,numTetraloops,atpS,atpH,2);
+		if(TH>threshold)
+                        return 0;
+		TH=thal(rev2,rev1,stackEntropies,stackEnthalpies,stackint2Entropies,stackint2Enthalpies,dangleEntropies3,dangleEnthalpies3,dangleEntropies5,dangleEnthalpies5,hairpinLoopEntropies,interiorLoopEntropies,bulgeLoopEntropies,hairpinLoopEnthalpies,interiorLoopEnthalpies,bulgeLoopEnthalpies,tstackEntropies,tstackEnthalpies,tstack2Entropies,tstack2Enthalpies,triloopEntropies1,triloopEnthalpies1,tetraloopEntropies1,tetraloopEnthalpies1,triloopEntropies2,triloopEnthalpies2,tetraloopEntropies2,tetraloopEnthalpies2,numTriloops,numTetraloops,atpS,atpH,3);
+		if(TH>threshold)
+                        return 0;
+	}
+	return 1;
+}
+
+static int check_common_loop(struct Primer *F3,struct Primer *F2,struct Primer *LF,struct Primer *F1c,struct Primer *B1c,struct Primer *LB,struct Primer *B2,struct Primer *B3,int *result,int common_num)
+{
+        int dis,i,*temp,success;
+        struct Node *c_F3,*c_F2,*c_LF,*c_F1c,*c_B1c,*c_LB,*c_B2,*c_B3;
+
+	temp=(int *)malloc(common_num*sizeof(int));
+	for(i=0;i<common_num;i++)
+		temp[i]=0;
+//plus
+        for(c_F3=F3->common;c_F3;c_F3=c_F3->next)
+        {
+                if(c_F3->plus!=1)
+                        continue;
+                if(result[c_F3->gi]==0)
+                        continue;
+		if(temp[c_F3->gi])
+			continue;
+                for(c_F2=F2->common;c_F2;c_F2=c_F2->next)
+                {
+                        if(c_F2->gi!=c_F3->gi)
+                                continue;
+                        if(c_F2->plus!=1)
+                                continue;
+                        for(c_F1c=F1c->common;c_F1c;c_F1c=c_F1c->next)
+                        {
+                                if(c_F1c->gi!=c_F3->gi)
+                                        continue;
+                                if(c_F1c->minus!=1)
+                                        continue;
+                                for(c_B1c=B1c->common;c_B1c;c_B1c=c_B1c->next)
+                                {
+                                        if(c_B1c->gi!=c_F3->gi)
+                                                continue;
+                                        if(c_B1c->plus!=1)
+                                                continue;
+                                        for(c_B2=B2->common;c_B2;c_B2=c_B2->next)
+                                        {
+                                                if(c_B2->gi!=c_F3->gi)
+                                                        continue;
+                                                if(c_B2->minus!=1)
+                                                        continue;
+                                                for(c_B3=B3->common;c_B3;c_B3=c_B3->next)
+                                                {
+                                                        if(c_B3->gi!=c_F3->gi)
+                                                                continue;
+                                                        if(c_B3->minus!=1)
+                                                                continue;
+                                                //F3-F2 
+                                                        dis=c_F2->pos-(c_F3->pos+F3->len-1)-1;
+                                                        if(dis<0)
+                                                                continue;
+                                                        if(dis>20)
+                                                                continue;
+                                                //F2-F1c
+                                                        dis=c_F1c->pos-c_F2->pos-1;
+                                                        if(dis<40)
+                                                                continue;
+                                                        if(dis>60)
+                                                                continue;
+                                                //F1c-B1c
+                                                        dis=c_B1c->pos-(c_F1c->pos+F1c->len-1)-1;
+                                                        if(dis<0)
+                                                                continue;
+                                                //B1c-B2
+                                                        dis=(c_B2->pos+B2->len-1)-(c_B1c->pos+B1c->len-1)-1;
+                                                        if(dis<40)
+                                                                continue;
+                                                        if(dis>60)
+                                                                continue;
+                                                //F2-B2
+                                                        dis=c_B2->pos+B2->len-1-c_F2->pos-1;
+                                                        if(dis<120)
+                                                                continue;
+                                                        if(dis>180)
+                                                                continue;
+                                                //B2-B3
+                                                        dis=c_B3->pos-(c_B2->pos+B2->len-1)-1;
+                                                        if(dis<0)
+                                                                continue;
+                                                        if(dis>20)
+                                                                continue;
+						//LF
+							if(LF)
+							{
+								success=0;
+								for(c_LF=LF->common;c_LF;c_LF=c_LF->next)
+								{
+									if(c_LF->gi!=c_F3->gi)
+										continue;
+									if(c_LF->minus!=1)
+										continue;
+									if(c_F2->pos+F2->len>c_LF->pos)
+										continue;
+									if(c_LF->pos+LF->len>c_F1c->pos)
+										continue;
+									success=1;
+									break;
+								}
+								if(success==0)
+									continue;
+							}
+						//LB
+							if(LB)
+                                                        {
+                                                                success=0;
+                                                                for(c_LB=LB->common;c_LB;c_LB=c_LB->next)
+                                                                {
+                                                                        if(c_LB->gi!=c_F3->gi)
+                                                                                continue;
+                                                                        if(c_LB->plus!=1)
+                                                                                continue;
+                                                                        if(c_B1c->pos+B1c->len>c_LB->pos)
+                                                                                continue;
+                                                                        if(c_LB->pos+LB->len>c_B2->pos)
+                                                                                continue;
+                                                                        success=1;
+                                                                        break;
+                                                                }
+                                                                if(success==0)
+                                                                        continue;
+                                                        }
+							temp[c_F3->gi]=1;
+                                                }
+                                        }
+                                }
+                        }
+                }
+        }
+//minus
+        for(c_F3=F3->common;c_F3;c_F3=c_F3->next)
+        {
+                if(c_F3->minus!=1)
+                        continue;
+                if(result[c_F3->gi]==0)
+                        continue;  
+		if(temp[c_F3->gi])
+			continue;
+                for(c_F2=F2->common;c_F2;c_F2=c_F2->next)
+                {
+                        if(c_F2->gi!=c_F3->gi)
+                                continue;
+                        if(c_F2->minus!=1)
+                                continue;
+                        for(c_F1c=F1c->common;c_F1c;c_F1c=c_F1c->next)
+                        {
+                                if(c_F1c->gi!=c_F3->gi)
+                                        continue;
+                                if(c_F1c->plus!=1)
+                                        continue;
+                                for(c_B1c=B1c->common;c_B1c;c_B1c=c_B1c->next)
+                                {
+                                        if(c_B1c->gi!=c_F3->gi)
+                                                continue;
+                                        if(c_B1c->minus!=1)
+                                                continue;
+                                        for(c_B2=B2->common;c_B2;c_B2=c_B2->next)
+                                        {
+                                                if(c_B2->gi!=c_F3->gi)
+                                                        continue;
+                                                if(c_B2->plus!=1)
+                                                        continue;
+                                                for(c_B3=B3->common;c_B3;c_B3=c_B3->next)
+                                                {
+                                                        if(c_B3->gi!=c_F3->gi)
+                                                                continue;
+                                                        if(c_B3->plus!=1)
+                                                                continue;
+                                                //F3-F2 
+                                                        dis=c_F3->pos-(c_F2->pos+F2->len-1)-1;
+                                                        if(dis<0)
+                                                                continue;
+                                                        if(dis>20)
+                                                                continue;
+                                                //F2-F1c
+                                                        dis=(c_F2->pos+F2->len-1)-(c_F1c->pos+F1c->len-1)-1;
+                                                        if(dis<40)
+                                                                continue;
+                                                        if(dis>60)
+                                                                continue;
+                                                //F1c-B1c
+                                                        dis=c_F1c->pos-(c_B1c->pos+B1c->len-1)-1;
+                                                        if(dis<0)
+                                                                continue;
+                                                //B1c-B2
+                                                        dis=c_B1c->pos-c_B2->pos-1;
+                                                        if(dis<40)
+                                                                continue;
+                                                        if(dis>60)
+                                                                continue;
+                                                //F2-B2
+                                                        dis=c_F2->pos+F2->len-1-c_B2->pos-1;
+                                                        if(dis<120)
+                                                                continue;
+                                                        if(dis>180)
+                                                                continue;
+                                                //B2-B3
+                                                        dis=c_B2->pos-(c_B3->pos+B3->len-1)-1;
+                                                        if(dis<0)
+                                                                continue;
+                                                        if(dis>20)
+                                                                continue;
+						//LF
+                                                        if(LF)
+                                                        {
+                                                                success=0;
+                                                                for(c_LF=LF->common;c_LF;c_LF=c_LF->next)
+                                                                {
+                                                                        if(c_LF->gi!=c_F3->gi)
+                                                                                continue;
+                                                                        if(c_LF->plus!=1)
+                                                                                continue;
+                                                                        if(c_F1c->pos+F1c->len>c_LF->pos)
+                                                                                continue;
+                                                                        if(c_LF->pos+LF->len>c_F2->pos)
+                                                                                continue;
+                                                                        success=1;
+                                                                        break;
+                                                                }
+                                                                if(success==0)
+                                                                        continue;
+                                                        }
+                                                //LB
+                                                        if(LB)
+                                                        {
+                                                                success=0;
+                                                                for(c_LB=LB->common;c_LB;c_LB=c_LB->next)
+                                                                {
+                                                                        if(c_LB->gi!=c_F3->gi)
+                                                                                continue;
+                                                                        if(c_LB->minus!=1)
+                                                                                continue;
+                                                                        if(c_B2->pos+B2->len>c_LB->pos)
+                                                                                continue;
+                                                                        if(c_LB->pos+LB->len>c_B1c->pos)
+                                                                                continue;
+                                                                        success=1;
+                                                                        break;
+                                                                }
+                                                                if(success==0)
+                                                                        continue;
+                                                        }
+                                                        temp[c_F3->gi]=1;
+                                                }
+                                        }
+                                }
+                        }
+                }
+        }
+        for(i=0;i<common_num;i++)
+        {
+                if(result[i]&&temp[i]==0)
+			return 0;
+        }
+        return 1;
+}
+
+static int design_loop(struct Primer *p_F3,struct Primer *p_F2,struct Primer *p_LF,struct Primer *p_F1c,struct Primer *p_B1c,struct Primer *p_LB,struct Primer *p_B2,struct Primer *p_B3,struct Primer *result_Loop[], int *result,int flag[],int common_num,char *seq,double stackEntropies[],double stackEnthalpies[],double stackint2Entropies[],double stackint2Enthalpies[],double dangleEntropies3[],double dangleEnthalpies3[],double dangleEntropies5[],double dangleEnthalpies5[],double hairpinLoopEntropies[],double interiorLoopEntropies[],double bulgeLoopEntropies[],double hairpinLoopEnthalpies[],double interiorLoopEnthalpies[],double bulgeLoopEnthalpies[],double tstackEntropies[],double tstackEnthalpies[],double tstack2Entropies[],double tstack2Enthalpies[],char *triloopEntropies1,char *triloopEnthalpies1,char *tetraloopEntropies1,char *tetraloopEnthalpies1,double *triloopEntropies2,double *triloopEnthalpies2,double *tetraloopEntropies2,double *tetraloopEnthalpies2,int numTriloops,int numTetraloops,double atpS[],double atpH[],int GC)
+{
+	int success;
+	struct Primer *LF,*LB;
+	struct Node *c_LF,*c_LB,*s_LF,*s_LB;
+	char primer_F3[26],primer_F2[26],primer_F1c[26],primer_B1c[26],primer_B2[26],primer_B3[26],primer_LF[26],primer_LB[26];
+
+	if(flag[7])
+	{
+		generate_primer(seq,primer_F3,p_F3->pos,p_F3->len,0);
+		generate_primer(seq,primer_F2,p_F2->pos,p_F2->len,0);
+		generate_primer(seq,primer_F1c,p_F1c->pos,p_F1c->len,1);
+		generate_primer(seq,primer_B1c,p_B1c->pos,p_B1c->len,0);
+		generate_primer(seq,primer_B2,p_B2->pos,p_B2->len,1);
+		generate_primer(seq,primer_B3,p_B3->pos,p_B3->len,1);
+	}
+//LF and LB 
+	success=0;
+	LF=p_LF;
+	while(LF)
+	{
+		if(LF->pos+LF->len>p_F1c->pos)
+			break;
+		if(LF->minus==0)
+		{
+			LF=LF->next;
+			continue;
+		}
+		if((LF->minus&GC)!=GC)
+		{
+			LF=LF->next;
+			continue;
+		}
+
+		LB=p_LB;
+		if(flag[7])
+			generate_primer(seq,primer_LF,LF->pos,LF->len,1);
+		while(LB)
+		{
+			if(LB->pos+LB->len>p_B2->pos)
+				break;
+			if(LB->plus==0)
+			{
+				LB=LB->next;
+				continue;
+			}
+			if((LB->plus&GC)!=GC)
+			{
+				LB=LB->next;
+				continue;
+			}
+		//check_common
+			if(flag[5])
+			{
+				success=check_common_loop(p_F3,p_F2,LF,p_F1c,p_B1c,LB,p_B2,p_B3,result,common_num);
+				if(success==0)
+				{
+					LB=LB->next;
+					continue;
+				}
+			}
+		//check_structure
+			if(flag[7])
+			{
+				generate_primer(seq,primer_LB,LB->pos,LB->len,0);
+				success=check_structure_loop(primer_F3,primer_F2,primer_F1c,primer_B1c,primer_B2,primer_B3,primer_LF,primer_LB,GC,stackEntropies,stackEnthalpies,stackint2Entropies,stackint2Enthalpies,dangleEntropies3,dangleEnthalpies3,dangleEntropies5,dangleEnthalpies5,hairpinLoopEntropies,interiorLoopEntropies,bulgeLoopEntropies,hairpinLoopEnthalpies,interiorLoopEnthalpies,bulgeLoopEnthalpies,tstackEntropies,tstackEnthalpies,tstack2Entropies,tstack2Enthalpies,triloopEntropies1,triloopEnthalpies1,tetraloopEntropies1,tetraloopEnthalpies1,triloopEntropies2,triloopEnthalpies2,tetraloopEntropies2,tetraloopEnthalpies2,numTriloops,numTetraloops,atpS,atpH);
+				if(success==0)
+                        	{
+                        	        LB=LB->next;
+                        	        continue;
+                        	}
+			}
+			result_Loop[0]=LF;
+			result_Loop[1]=LB;
+			success=1;
+			break;
+		}
+		if(success==1)
+			break;
+		else
+			LF=LF->next;
+	}
+	if(success==1)
+		return success;
+//only LF
+	LF=p_LF;
+	result_Loop[1]=NULL;
+        while(LF)
+        {
+                if(LF->pos+LF->len>p_F1c->pos)
+                        break;
+		if(LF->minus==0)
+		{
+			LF=LF->next;
+			continue;
+		}
+		if((LF->minus&GC)!=GC)
+		{
+			LF=LF->next;
+			continue;
+		}
+	//check_common
+		if(flag[5])
+		{
+			success=check_common_loop(p_F3,p_F2,LF,p_F1c,p_B1c,NULL,p_B2,p_B3,result,common_num);
+			if(success==0)
+			{
+				LF=LF->next;
+				continue;
+			}
+		}
+	//check_structure
+		if(flag[7])
+		{
+			generate_primer(seq,primer_LF,LF->pos,LF->len,1);
+			success=check_structure_loop(primer_F3,primer_F2,primer_F1c,primer_B1c,primer_B2,primer_B3,primer_LF,NULL,GC,stackEntropies,stackEnthalpies,stackint2Entropies,stackint2Enthalpies,dangleEntropies3,dangleEnthalpies3,dangleEntropies5,dangleEnthalpies5,hairpinLoopEntropies,interiorLoopEntropies,bulgeLoopEntropies,hairpinLoopEnthalpies,interiorLoopEnthalpies,bulgeLoopEnthalpies,tstackEntropies,tstackEnthalpies,tstack2Entropies,tstack2Enthalpies,triloopEntropies1,triloopEnthalpies1,tetraloopEntropies1,tetraloopEnthalpies1,triloopEntropies2,triloopEnthalpies2,tetraloopEntropies2,tetraloopEnthalpies2,numTriloops,numTetraloops,atpS,atpH);
+			if(success==0)
+			{
+				LF=LF->next;
+				continue;
+			}
+		}
+		result_Loop[0]=LF;
+		success=1;
+		break;
+        }
+        if(success==1)
+                return success;
+//only LB
+	LB=p_LB;
+	result_Loop[0]=NULL;
+        while(LB)
+        {
+                if(LB->pos+LB->len>p_B2->pos)
+                        break;
+		if(LB->plus==0)
+		{
+			LB=LB->next;
+			continue;
+		}
+		if((LB->plus&GC)!=GC)
+		{
+			LB=LB->next;
+			continue;
+		}
+	//check_common
+		if(flag[5])
+		{
+			success=check_common_loop(p_F3,p_F2,NULL,p_F1c,p_B1c,LB,p_B2,p_B3,result,common_num);
+			if(success==0)
+			{
+				LB=LB->next;
+				continue;
+			}
+		}
+	//check_structure
+		if(flag[7])
+		{
+			generate_primer(seq,primer_LB,LB->pos,LB->len,0);
+			success=check_structure_loop(primer_F3,primer_F2,primer_F1c,primer_B1c,primer_B2,primer_B3,NULL,primer_LB,GC,stackEntropies,stackEnthalpies,stackint2Entropies,stackint2Enthalpies,dangleEntropies3,dangleEnthalpies3,dangleEntropies5,dangleEnthalpies5,hairpinLoopEntropies,interiorLoopEntropies,bulgeLoopEntropies,hairpinLoopEnthalpies,interiorLoopEnthalpies,bulgeLoopEnthalpies,tstackEntropies,tstackEnthalpies,tstack2Entropies,tstack2Enthalpies,triloopEntropies1,triloopEnthalpies1,tetraloopEntropies1,tetraloopEnthalpies1,triloopEntropies2,triloopEnthalpies2,tetraloopEntropies2,tetraloopEnthalpies2,numTriloops,numTetraloops,atpS,atpH);
+			if(success==0)
+			{
+				LB=LB->next;
+				continue;
+			}
+		}
+		result_Loop[1]=LB;
+		success=1;
+		break;
+        }
+	return success;
+}			
+		
+static int check_add(int F3_pos,int *best_par,int expect)
+{
+        int i,dis;
+
+	for(i=0;i<expect;i++)
+	{
+		if(best_par[i]==-1) //the empty record
+			return 1;
+		dis=best_par[i]-F3_pos;
+		if(abs(dis)<300)
+			return 0;
+	}
+        return 1;
+}
+
+static int check_gc(char *seq,int start,int end)//p_F3->pos,(p_B3->pos+p_B3->len))
+{
+	int i,total=0;
+	float gc;
+
+	for(i=start;i<end;i++)
+	{
+		if(seq[i]=='C'||seq[i]=='G'||seq[i]=='c'||seq[i]=='g')
+			total++;
+	}
+	gc=total*100.0/(end-start);
+	if(gc>=60)
+		return 1;
+	if(gc<=45)
+		return 2;
+	return 4;
+}
+	
+///how many GIs this primer can be used in, return the biggest common number
+static void how_many(struct Primer *head,int common)
+{
+	struct Primer *p_primer;
+	struct Node *p_node;
+	int i,num,*list;
+
+	list=(int *)malloc(common*sizeof(int));
+	p_primer=head;
+	while(p_primer)
+	{
+		p_node=p_primer->common;
+		for(i=0;i<common;i++)
+			list[i]=0;
+		while(p_node)
+		{
+			list[p_node->gi]=1;
+			p_node=p_node->next;
+		}
+		num=0;
+                for(i=0;i<common;i++)
+                        num=num+list[i];
+		p_primer->total=num;
+		p_primer=p_primer->next;
+	}
+	free(list);
+}
+
+//check this LAMP primers are uniq or not
+//return=0: stop and return=1: go on
+static int check_uniq(struct Primer *F3,struct Primer *F2,struct Primer *F1c,struct Primer *B1c,struct Primer *B2,struct Primer *B3)
+{
+        struct Node *s_F3,*s_F2,*s_F1c,*s_B1c,*s_B2,*s_B3;
+	struct Node *b_F2,*b_F1c,*b_B1c,*b_B2,*b_B3;
+
+//plus
+	b_F2=F2->special;
+	b_F1c=F1c->special;
+	b_B1c=B1c->special;
+	b_B2=B2->special;
+	b_B3=B3->special;
+        for(s_F3=F3->special;s_F3;s_F3=s_F3->next)
+        {
+                if(s_F3->plus!=1)
+                        continue;
+                for(s_F2=b_F2;s_F2;s_F2=s_F2->next)
+                {
+			if(s_F2->gi<s_F3->gi)
+			{
+				b_F2=b_F2->next;
+				continue;
+			}
+                        if(s_F2->gi>s_F3->gi)
+                                break;
+			if(s_F2->pos<s_F3->pos)
+			{
+				b_F2=b_F2->next;
+                                continue;
+                        }
+			if(s_F2->pos-s_F3->pos>1000)
+				break;
+                        if(s_F2->plus!=1)
+                                continue;
+                        for(s_F1c=b_F1c;s_F1c;s_F1c=s_F1c->next)
+                        {
+                                if(s_F1c->gi<s_F3->gi)
+				{
+					b_F1c=b_F1c->next;
+                                        continue;
+				}
+				if(s_F1c->gi>s_F3->gi)
+					break;
+				if(s_F1c->pos<s_F3->pos)
+				{
+                                        b_F1c=b_F1c->next;
+                                        continue;
+                                }
+				if(s_F1c->pos-s_F3->pos>1000)
+					break;
+                                if(s_F1c->minus!=1)
+                                        continue;
+                                for(s_B1c=b_B1c;s_B1c;s_B1c=s_B1c->next)
+                                {
+                                        if(s_B1c->gi<s_F3->gi)
+					{
+						b_B1c=b_B1c->next;
+                                                continue;
+					}
+					if(s_B1c->gi>s_F3->gi)
+						break;
+					if(s_B1c->pos<s_F3->pos)
+					{
+						b_B1c=b_B1c->next;
+                                                continue;
+                                        }
+					if(s_B1c->pos-s_F3->pos>1000)
+						break;
+                                        if(s_B1c->plus!=1)
+                                                continue;
+                                        for(s_B2=b_B2;s_B2;s_B2=s_B2->next)
+                                        {
+                                                if(s_B2->gi<s_F3->gi)
+						{
+							b_B2=b_B2->next;
+                                                        continue;
+						}
+						if(s_B2->gi>s_F3->gi)
+							break;
+						if(s_B2->pos<s_F3->pos)
+						{
+							b_B2=b_B2->next;
+                                                        continue;
+                                                }
+						if(s_B2->pos-s_F3->pos>1000)
+							break;
+                                                if(s_B2->minus!=1)
+                                                        continue;
+                                                for(s_B3=b_B3;s_B3;s_B3=s_B3->next)
+                                                {
+                                                        if(s_B3->gi<s_F3->gi)
+							{
+								b_B3=b_B3->next;
+                                                                continue;
+							}
+							if(s_B3->gi>s_F3->gi)
+								break;
+							if(s_B3->pos<s_F3->pos)
+							{
+                                                                b_B3=b_B3->next;
+                                                                continue;
+                                                        }
+							if(s_B3->pos-s_F3->pos>1000)
+								break;
+                                                        if(s_B3->minus!=1)
+                                                                continue;
+                                                //F3-F2 
+                                                        if(s_F2->pos<s_F3->pos)
+                                                                continue;
+                                                //F2-F1c
+                                                        if(s_F1c->pos<s_F2->pos+F2->len)
+                                                                continue;
+                                                //F1c-B1c
+                                                        if(s_B1c->pos<s_F1c->pos+F1c->len)
+                                                                continue;
+                                                //B1c-B2
+                                                        if(s_B2->pos<s_B1c->pos+B1c->len)
+                                                                continue;
+                                                //B2-B3
+                                                        if(s_B3->pos<s_B2->pos)
+                                                                continue;
+						//whole
+							if(s_B3->pos-s_F3->pos>1000)
+								continue;
+							return 0;
+                                                }
+                                        }
+                                }
+                        }
+                }
+        }
+//minus
+	b_F2=F2->special;
+	b_F1c=F1c->special;
+	b_B1c=B1c->special;
+	b_B2=B2->special;
+	b_B3=B3->special;
+        for(s_F3=F3->special;s_F3;s_F3=s_F3->next)
+        {
+                if(s_F3->minus!=1)
+                        continue;
+                for(s_F2=b_F2;s_F2;s_F2=s_F2->next)
+                {
+                        if(s_F2->gi<s_F3->gi)
+			{
+				b_F2=b_F2->next;
+                                continue;
+			}
+			if(s_F2->gi>s_F3->gi)
+				break;
+			if(s_F2->pos>s_F3->pos)
+				break;
+			if(s_F2->pos-s_F3->pos<-1000)
+			{
+                                b_F2=b_F2->next;
+                                continue;
+                        }
+                        if(s_F2->minus!=1)
+                                continue;
+                        for(s_F1c=b_F1c;s_F1c;s_F1c=s_F1c->next)
+                        {
+                                if(s_F1c->gi<s_F3->gi)
+				{
+					b_F1c=b_F1c->next;
+                                        continue;
+				}
+				if(s_F1c->gi>s_F3->gi)
+					break;
+				if(s_F1c->pos>s_F3->pos)
+					break;
+				if(s_F1c->pos-s_F3->pos<-1000)
+				{
+                                        b_F1c=b_F1c->next;
+                                        continue;
+                                }
+                                if(s_F1c->plus!=1)
+                                        continue;
+                                for(s_B1c=b_B1c;s_B1c;s_B1c=s_B1c->next)
+                                {
+                                        if(s_B1c->gi<s_F3->gi)
+					{
+						b_B1c=b_B1c->next;
+                                                continue;
+					}
+					if(s_B1c->gi>s_F3->gi)
+						break;
+					if(s_B1c->pos>s_F3->pos)
+						break;
+					if(s_B1c->pos-s_F3->pos<-1000)
+					{
+                                                b_B1c=b_B1c->next;
+                                                continue;
+                                        }
+                                        if(s_B1c->minus!=1)
+                                                continue;
+                                        for(s_B2=b_B2;s_B2;s_B2=s_B2->next)
+                                        {
+                                                if(s_B2->gi<s_F3->gi)
+						{
+							b_B2=b_B2->next;
+                                                        continue;
+						}
+						if(s_B2->gi>s_F3->gi)
+							break;
+						if(s_B2->pos>s_F3->pos)
+							break;
+						if(s_B2->pos-s_F3->pos<-1000)
+						{
+                                                        b_B2=b_B2->next;
+                                                        continue;
+                                                }
+                                                if(s_B2->plus!=1)
+                                                        continue;
+                                                for(s_B3=b_B3;s_B3;s_B3=s_B3->next)
+                                                {
+                                                        if(s_B3->gi<s_F3->gi)
+							{
+								b_B3=b_B3->next;
+                                                                continue;
+							}
+							if(s_B3->gi>s_F3->gi)
+								break;
+							if(s_B3->pos>s_F3->pos)
+								break;
+							if(s_B3->pos-s_F3->pos<-1000)
+							{
+                                                                b_B3=b_B3->next;
+                                                                continue;
+                                                        }
+                                                        if(s_B3->plus!=1)
+                                                                continue;
+                                                //F3-F2 
+                                                        if(s_F3->pos<s_F2->pos)
+                                                                continue;
+                                                //F2-F1c
+                                                        if(s_F2->pos<s_F1c->pos+F1c->len)
+                                                                continue;
+                                                //F1c-B1c
+                                                        if(s_F1c->pos<s_B1c->pos+B1c->len)
+                                                                continue;
+                                                //B1c-B2
+                                                        if(s_B1c->pos<s_B2->pos+B2->len)
+                                                                continue;
+                                                //B2-B3
+                                                        if(s_B2->pos<s_B3->pos)
+                                                                continue;
+						//whole
+							if(s_F3->pos-s_B3->pos>1000)
+								continue;
+							return 0;
+                                                }
+                                        }
+                                }
+                        }
+                }
+        }
+	return 1;
+}
+
+void glapd_lamp_main(int argc, const char **argv)
 {
 	double stackEntropies[625],stackEnthalpies[625],stackint2Entropies[625],stackint2Enthalpies[625],dangleEntropies3[125],dangleEnthalpies3[125],dangleEntropies5[125],dangleEnthalpies5[125];
         double hairpinLoopEntropies[30],interiorLoopEntropies[30],bulgeLoopEntropies[30],hairpinLoopEnthalpies[30],interiorLoopEnthalpies[30],bulgeLoopEnthalpies[30],tstackEntropies[625],tstackEnthalpies[625],tstack2Entropies[625],tstack2Enthalpies[625];
@@ -2647,18 +4379,6 @@ void glapd_lamp_main(int argc,char **argv)
 	struct INFO *headList,*p_list;
 	time_t start,end,begin;
 	
-	struct Primer *read_par();
-	struct INFO *read_list();
-	void next_one();
-	int check_common();
-	void how_many();
-	void add();
-	int check_add();
-	int check_gc();
-	int check_uniq();
-	int check_structure();
-	int design_loop();
-
 	start=time(NULL);
 	begin=start;
         for(i=0;i<13;i++)
@@ -3396,1735 +5116,4 @@ void glapd_lamp_main(int argc,char **argv)
 	end=time(NULL);
 	printf("It takes %0.0f seconds to free memory.\n",difftime(end,start));
         printf("\nIt takes total %0.0f seconds to finish this design.\n",difftime(end,begin));
-}
-
-void merge(int *store,int *temp,int *data,int start,int end,int middle)
-{
-        int i,j,k;
-        i=start;
-        j=middle+1;
-        k=start;
-        while(i<=middle&&j<=end)
-        {
-                if(data[store[i]*6]<data[store[j]*6])
-                {
-                        temp[k]=store[i];
-                        k++;
-                        i++;
-                        continue;
-                }
-                if(data[store[j]*6]<data[store[i]*6])
-                {
-                        temp[k]=store[j];
-                        k++;
-                        j++;
-                        continue;
-                }
-        //len
-                if(data[store[i]*6+1]<data[store[j]*6+1])
-                {
-                        temp[k]=store[i];
-                        k++;
-                        i++;
-                        continue;
-                }
-                if(data[store[j]*6+1]<data[store[i]*6+1])
-                {
-                        temp[k]=store[j];
-                        k++;
-                        j++;
-                        continue;
-                }
-        //gi
-                if(data[store[i]*6+2]<data[store[j]*6+2])
-                {
-                        temp[k]=store[i];
-                        k++;
-                        i++;
-                        continue;
-                }
-                if(data[store[j]*6+2]<data[store[i]*6+2])
-                {
-                        temp[k]=store[j];
-                        k++;
-                        j++;
-                        continue;
-                }
-        //position
-                if(data[store[i]*6+3]<data[store[j]*6+3])
-                {
-                        temp[k]=store[i];
-                        k++;
-                        i++;
-                }
-                else
-                {
-                        temp[k]=store[j];
-                        k++;
-                        j++;
-                        continue;
-                }
-        }
-        while(i<=middle)
-        {
-                temp[k]=store[i];
-                k++;
-                i++;
-        }
-        while(j<=end)
-        {
-                temp[k]=store[j];
-                k++;
-                j++;
-        }
-        for(i=start;i<=end;i++)
-                store[i]=temp[i];
-}
-
-void sort_merge(int *store,int *temp,int *data,int start,int end)
-{
-        int middle;
-
-        if(start<end)
-        {
-                middle=(start+end)/2;
-                sort_merge(store,temp,data,start,middle);
-                sort_merge(store,temp,data,(middle+1),end);
-                merge(store,temp,data,start,end,middle);
-        }
-}
-
-////function read primer informatin and align information 
-struct Primer *read_par(char *path,int common_flag,int special_flag)
-{
-	char *in,line[100];
-	int pos,len,gi,position,plus,minus,size,i,flag,total,*store,*temp,*data;
-	float Tm;
-	struct Primer *new_primer,*p_primer,*head;
-	struct Node *new_node,*p_node;
-	FILE *fp;
-
-///read the  primer file
-	if(access(path,0)==-1)
-	{
-		printf("Error! Don't have the %s file!\n",path);
-		exit(1);
-	}
-        fp=fopen(path,"r");
-        if(fp==NULL)
-        {
-                printf("Error: can't open the %s file!\n",path);
-                exit(1);
-        }
-	
-	size=sizeof(struct Primer);
-	i=0;
-        while(fscanf(fp,"pos:%d\tlength:%d\t+:%d\t-:%d\t%f\n",&pos,&len,&plus,&minus,&Tm)!=EOF)
-        {
-		new_primer=(struct Primer *)malloc(size);
-		new_primer->pos=pos;
-		new_primer->len=len;
-		new_primer->total=1;
-		new_primer->plus=plus;
-		new_primer->minus=minus;
-		new_primer->Tm=Tm;
-		new_primer->next=NULL;
-		new_primer->self=NULL;
-		new_primer->loop=NULL;
-		new_primer->notloop=NULL;
-		new_primer->common=NULL;
-		new_primer->special=NULL;
-
-		if(i==0)
-		{
-			head=new_primer;
-			p_primer=new_primer;
-			i++;
-		}
-		else
-		{
-			p_primer->next=new_primer;
-			p_primer=new_primer;
-		}
-        }
-	fclose(fp);
-        if(i==0)
-        {
-                printf("Sorry! Don't have any candidate single primers in %s!\n",path);
-                exit(1);
-        }
-
-//parameter of common
-	if(common_flag==1)
-	{
-		i=strlen(path);
-		in=(char *)malloc(i+20);
-        	memset(in,'\0',i+20);
-        	strcpy(in,path);
-        	strcat(in,"-common.txt"); //suffix of parameter
-		if(access(in,0)==-1)
-		{
-			printf("Error! Don't have the %s file!\n",in);
-			exit(1);
-		}
-
-        	fp=fopen(in,"r");
-        	if(fp==NULL)
-        	{
-        	        printf("Error: can't open the %s file!\n",in);
-        	        exit(1);
-        	}
-		
-		total=0;
-		while(fgets(line,100,fp)!=NULL)
-			total++;
-		rewind(fp);
-		store=(int *)malloc(total*sizeof(int));
-		temp=(int *)malloc(total*sizeof(int));
-		data=(int *)malloc(6*total*sizeof(int));
-		total=0;
-		while(fscanf(fp,"%d\t%d\t%d\t%d\t%d\t%d\n",&pos,&len,&gi,&position,&plus,&minus)!=EOF)
-		{
-			data[6*total]=pos;
-			data[6*total+1]=len;
-			data[6*total+2]=gi;
-			data[6*total+3]=position;
-			data[6*total+4]=plus;
-			data[6*total+5]=minus;
-			store[total]=total;
-			total++;
-		}
-		fclose(fp);
-		sort_merge(store,temp,data,0,(total-1));
-
-		p_primer=head;
-		size=sizeof(struct Node);
-		flag=0;
-		i=0;
-		while(p_primer&&i<total)
-		{
-		//pos
-			if(data[store[i]*6]<p_primer->pos)
-			{
-				i++;
-				continue;
-			}
-			if(data[store[i]*6]>p_primer->pos)
-			{
-				p_primer=p_primer->next;
-				flag=0;
-				continue;
-			}
-		//len
-			if(data[store[i]*6+1]<p_primer->len)
-                        {
-                                i++;
-                                continue;
-                        }
-                        if(data[store[i]*6+1]>p_primer->len)
-                        {
-                                p_primer=p_primer->next;
-				flag=0;
-                                continue;
-                        }
-			new_node=(struct Node *)malloc(size);
-			new_node->gi=data[store[i]*6+2];
-			new_node->pos=data[store[i]*6+3];
-			new_node->plus=data[store[i]*6+4];
-			new_node->minus=data[store[i]*6+5];
-                        new_node->next=NULL;
-			if(flag==0)
-			{
-				flag++;
-				p_primer->common=new_node;
-				p_node=new_node;
-			}
-			else
-			{
-                        	p_node->next=new_node;
-				p_node=new_node;
-			}
-			i++;
-        	}
-		free(in);
-		free(data);
-		free(store);
-		free(temp);
-	}
-//paramter for special
-	if(special_flag==1)
-	{
-		i=strlen(path);
-		in=(char *)malloc(i+20);
-		memset(in,'\0',i+20);
-        	strcpy(in,path);
-        	strcat(in,"-specific.txt"); //suffix of parameter
-		if(access(in,0)==-1)
-		{
-			printf("Error! Don't have the %s file!\n",in);
-			exit(1);
-		}
-
-        	fp=fopen(in,"r");
-        	if(fp==NULL)
-        	{
-        	        printf("Error: can't open the %s file!\n",in);
-        	        exit(1);
-        	}
-		total=0;
-                while(fgets(line,100,fp)!=NULL)
-                        total++;
-                rewind(fp);
-                store=(int *)malloc(total*sizeof(int));
-                temp=(int *)malloc(total*sizeof(int));
-                data=(int *)malloc(6*total*sizeof(int));
-                total=0;
-                while(fscanf(fp,"%d\t%d\t%d\t%d\t%d\t%d\n",&pos,&len,&gi,&position,&plus,&minus)!=EOF)
-                {
-                        data[6*total]=pos;
-                        data[6*total+1]=len;
-                        data[6*total+2]=gi;
-                        data[6*total+3]=position;
-                        data[6*total+4]=plus;
-                        data[6*total+5]=minus;
-                        store[total]=total;
-                        total++;
-                }
-                fclose(fp);
-                sort_merge(store,temp,data,0,(total-1));
-
-                p_primer=head;
-                size=sizeof(struct Node);
-                flag=0;
-		i=0;
-                while(p_primer&&i<total)
-                {
-                //pos
-                        if(data[store[i]*6]<p_primer->pos)
-                        {
-                                i++;
-                                continue;
-                        }
-                        if(data[store[i]*6]>p_primer->pos)
-                        {
-                                p_primer=p_primer->next;
-				flag=0;
-                                continue;
-                        }
-                //len
-                        if(data[store[i]*6+1]<p_primer->len)
-                        {
-                                i++;
-                                continue;
-                        }
-                        if(data[store[i]*6+1]>p_primer->len)
-                        {
-                                p_primer=p_primer->next;
-				flag=0;
-                                continue;
-                        }
-                        new_node=(struct Node *)malloc(size);
-                        new_node->gi=data[store[i]*6+2];
-                        new_node->pos=data[store[i]*6+3];
-                        new_node->plus=data[store[i]*6+4];
-                        new_node->minus=data[store[i]*6+5];
-                        new_node->next=NULL;
-			if(flag==0)
-			{
-				flag++;
-				p_primer->special=new_node;
-				p_node=new_node;
-			}
-			else
-			{
-                        	p_node->next=new_node;
-                        	p_node=new_node;
-			}
-                        i++;
-                }
-		free(in);
-                free(data);
-                free(store);
-                free(temp);
-	}
-	return head;
-}
-
-struct INFO *read_list(char *path,int common_num[])
-{
-        char *in,name[301];
-        int turn,i,size;
-        struct INFO *new_primer,*p_primer,*head;
-        FILE *fp;
-
-	i=strlen(path);
-	in=(char *)malloc(i+20);
-	memset(in,'\0',i+20);
-	strcpy(in,path);
-	strcat(in,"-common_list.txt");
-        if(access(in,0)==-1)
-        {
-                printf("Error! Don't have the %s file!\n",in);
-                exit(1);
-        }
-        fp=fopen(in,"r");
-        if(fp==NULL)
-        {
-                printf("Error: can't open the %s file!\n",in);
-                exit(1);
-        }
-        
-        size=sizeof(struct INFO);
-        i=0;
-        memset(name,'\0',301);
-        while(fscanf(fp,"%s\t%d\n",name,&turn)!=EOF)
-        {
-                new_primer=(struct INFO *)malloc(size);
-                new_primer->turn=turn;
-                strcpy(new_primer->name,name);
-                new_primer->next=NULL;
-
-                if(i==0)
-                {
-                        head=new_primer;
-                        p_primer=new_primer;
-                        i++;
-                }
-                else
-                {
-                        p_primer->next=new_primer;
-                        p_primer=new_primer;
-                }
-                memset(name,'\0',301);
-        }
-        fclose(fp);
-	common_num[0]=turn;
-	free(in);
-	return head;
-}
-
-//function: the next one
-void next_one(struct Primer *first, struct Primer *second,int flag) //0:self,1:notloop;2:loop
-{
-	struct Primer *one,*two,*start;
-	int pos=-1;
-
-	one=first;
-	start=second;
-	two=start;
-
-	while(one)
-	{
-		if(pos!=one->pos)
-		{
-			while(start)
-			{
-				if(start->pos+18<one->pos)
-					start=start->next;
-				else
-					break;
-			}
-			pos=one->pos;
-		}
-		//move second
-		two=start;
-		while(two)
-		{
-			if(two->pos<one->pos+one->len)
-				two=two->next;
-			else
-			{
-				if(flag==0)
-					one->self=two;
-				else if(flag==1)
-					one->notloop=two;
-				else
-					one->loop=two;
-				break;
-			}
-		}
-		one=one->next;
-	}			
-}
-
-//function: check how many GIs this primer can be used for
-int check_common(struct Primer *F3,struct Primer *F2,struct Primer *F1c,struct Primer *B1c,struct Primer *B2,struct Primer *B3,int *result,int common)
-{
-        int dis,num,i;
-	struct Node *c_F3,*c_F2,*c_F1c,*c_B1c,*c_B2,*c_B3;
-	struct Node *b_F2,*b_F1c,*b_B1c,*b_B2,*b_B3;
-
-	for(i=0;i<common;i++)
-		result[i]=0;
-//plus
-	b_F2=F2->common;
-        b_F1c=F1c->common;
-        b_B1c=B1c->common;
-        b_B2=B2->common;
-        b_B3=B3->common;
-	for(c_F3=F3->common;c_F3;c_F3=c_F3->next)
-	{
-		if(c_F3->plus!=1)
-			continue;
-		if(result[c_F3->gi])
-			continue;
-		for(c_F2=b_F2;c_F2;c_F2=c_F2->next)
-		{
-			if(c_F2->gi<c_F3->gi)
-			{
-				b_F2=c_F2->next;
-				continue;
-			}
-			if(c_F2->gi>c_F3->gi)
-				break;
-			if(c_F2->plus!=1)
-				continue;
-			if(c_F2->pos<c_F3->pos)
-			{
-				b_F2=c_F2->next;
-				continue;
-			}
-			if(c_F2->pos-c_F3->pos>300)
-				break;
-			for(c_F1c=b_F1c;c_F1c;c_F1c=c_F1c->next)
-			{
-				if(c_F1c->gi<c_F3->gi)
-				{
-					b_F1c=c_F1c->next;
-					continue;
-				}
-				if(c_F1c->gi>c_F3->gi)
-					break;
-				if(c_F1c->minus!=1)
-					continue;
-				if(c_F1c->pos<c_F3->pos)
-				{
-					b_F1c=c_F1c->next;
-					continue;
-				}
-				if(c_F1c->pos-c_F3->pos>300)
-					break;
-				for(c_B1c=b_B1c;c_B1c;c_B1c=c_B1c->next)
-				{
-					if(c_B1c->gi<c_F3->gi)
-					{
-						b_B1c=c_B1c->next;
-						continue;
-					}
-					if(c_B1c->gi>c_F3->gi)
-						break;
-					if(c_B1c->plus!=1)
-						continue;
-					if(c_B1c->pos<c_F3->pos)
-					{
-						b_B1c=c_B1c->next;
-						continue;
-					}
-					if(c_B1c->pos-c_F3->pos>300)
-						break;
-					for(c_B2=b_B2;c_B2;c_B2=c_B2->next)
-					{
-						if(c_B2->gi<c_F3->gi)
-						{
-							b_B2=c_B2->next;
-							continue;
-						}
-						if(c_B2->gi>c_F3->gi)
-							break;
-						if(c_B2->minus!=1)
-							continue;
-						if(c_B2->pos<c_F3->pos)
-						{
-							b_B2=c_B2->next;
-							continue;
-						}
-						if(c_B2->pos-c_F3->pos>300)
-							break;
-						for(c_B3=b_B3;c_B3;c_B3=c_B3->next)
-						{
-							if(c_B3->gi<c_F3->gi)
-							{
-								b_B3=c_B3->next;
-								continue;
-							}
-							if(c_B3->gi>c_F3->gi)
-								break;
-							if(c_B3->minus!=1)
-								continue;
-							if(c_B3->pos<c_F3->pos)
-							{
-								b_B3=c_B3->next;
-								continue;
-							}
-							if(c_B3->pos-c_F3->pos>300)
-								break;
-						//F3-F2 
-        						dis=c_F2->pos-(c_F3->pos+F3->len-1)-1;
-						        if(dis<0)
-                						continue;
-        						if(dis>20)
-                						continue;
-						//F2-F1c
-						        dis=c_F1c->pos-c_F2->pos-1;
-        						if(dis<40)
-                						continue;
-        						if(dis>60)
-                						continue;
-						//F1c-B1c
-        						dis=c_B1c->pos-(c_F1c->pos+F1c->len-1)-1;
-        						if(dis<0)
-                						continue;
-						//B1c-B2
-        						dis=(c_B2->pos+B2->len-1)-(c_B1c->pos+B1c->len-1)-1;
-        						if(dis<40)
-								continue;
-						        if(dis>60)
-                						continue;
-						//F2-B2
-        						dis=c_B2->pos+B2->len-1-c_F2->pos-1;
-        						if(dis<120)
-                						continue;
-						        if(dis>180)
-                						continue;
-						//B2-B3
-        						dis=c_B3->pos-(c_B2->pos+B2->len-1)-1;
-        						if(dis<0)
-                						continue;
-						        if(dis>20)
-                						continue;
-							result[c_F3->gi]=1;
-						}
-					}
-				}
-			}
-		}
-	}
-//minus
-	b_F2=F2->common;
-        b_F1c=F1c->common;
-        b_B1c=B1c->common;
-        b_B2=B2->common;
-        b_B3=B3->common;
-        for(c_F3=F3->common;c_F3;c_F3=c_F3->next)
-        {
-                if(c_F3->minus!=1)
-                        continue;
-                if(result[c_F3->gi])
-                        continue;  //this GI can common
-
-                for(c_F2=b_F2;c_F2;c_F2=c_F2->next)
-                {
-			if(c_F2->gi<c_F3->gi)
-                        {
-                                b_F2=c_F2->next;
-                                continue;
-                        }
-                        if(c_F2->gi>c_F3->gi)
-                                break;
-                        if(c_F2->minus!=1)
-                                continue;
-			if(c_F2->pos>c_F3->pos)
-				break;
-			if(c_F2->pos-c_F3->pos<-300)
-			{
-				b_F2=c_F2->next;
-				continue;
-			}
-                        for(c_F1c=b_F1c;c_F1c;c_F1c=c_F1c->next)
-                        {
-				if(c_F1c->gi<c_F3->gi)
-                                {
-                                        b_F1c=c_F1c->next;
-                                        continue;
-                                }
-                                if(c_F1c->gi>c_F3->gi)
-                                        break;
-                                if(c_F1c->plus!=1)
-                                        continue;
-				if(c_F1c->pos>c_F3->pos)
-					break;
-				if(c_F1c->pos-c_F3->pos<-300)
-				{
-					b_F1c=c_F1c->next;
-					continue;
-				}
-                                for(c_B1c=b_B1c;c_B1c;c_B1c=c_B1c->next)
-                                {
-					if(c_B1c->gi<c_F3->gi)
-                                        {
-                                                b_B1c=c_B1c->next;
-                                                continue;
-                                        }
-                                        if(c_B1c->gi>c_F3->gi)
-                                                break;
-                                        if(c_B1c->minus!=1)
-                                                continue;
-					if(c_B1c->pos>c_F3->pos)
-						break;
-					if(c_B1c->pos-c_F3->pos<-300)
-					{
-                                                b_B1c=c_B1c->next;
-                                                continue;
-                                        }
-                                        for(c_B2=b_B2;c_B2;c_B2=c_B2->next)
-                                        {
-						if(c_B2->gi<c_F3->gi)
-                                                {
-                                                        b_B2=c_B2->next;
-                                                        continue;
-                                                }
-                                                if(c_B2->gi>c_F3->gi)
-                                                        break;
-                                                if(c_B2->plus!=1)
-                                                        continue;
-						if(c_B2->pos>c_F3->pos)
-							break;
-						if(c_B2->pos-c_F3->pos<-300)
-						{
-                                                        b_B2=c_B2->next;
-                                                        continue;
-                                                }
-                                                for(c_B3=b_B3;c_B3;c_B3=c_B3->next)
-                                                {
-							if(c_B3->gi<c_F3->gi)
-                                                        {
-                                                                b_B3=c_B3->next;
-                                                                continue;
-                                                        }
-                                                        if(c_B3->gi>c_F3->gi)
-                                                                break;
-                                                        if(c_B3->plus!=1)
-                                                                continue;
-							if(c_B3->pos>c_F3->pos)
-								break;
-							if(c_B3->pos-c_F3->pos<-300)
-							{
-                                                                b_B3=c_B3->next;
-                                                                continue;
-                                                        }
-                                                //F3-F2 
-                                                        dis=c_F3->pos-(c_F2->pos+F2->len-1)-1;
-                                                        if(dis<0)
-                                                                continue;
-                                                        if(dis>20)
-                                                                continue;
-                                                //F2-F1c
-                                                        dis=(c_F2->pos+F2->len-1)-(c_F1c->pos+F1c->len-1)-1;
-                                                        if(dis<40)
-                                                                continue;
-                                                        if(dis>60)
-                                                                continue;
-                                                //F1c-B1c
-                                                        dis=c_F1c->pos-(c_B1c->pos+B1c->len-1)-1;
-                                                        if(dis<0)
-                                                                continue;
-                                                //B1c-B2
-                                                        dis=c_B1c->pos-c_B2->pos-1;
-                                                        if(dis<40)
-                                                                continue;
-                                                        if(dis>60)
-                                                                continue;
-                                                //F2-B2
-                                                        dis=c_F2->pos+F2->len-1-c_B2->pos-1;
-                                                        if(dis<120)
-                                                                continue;
-                                                        if(dis>180)
-                                                                continue;
-                                                //B2-B3
-                                                        dis=c_B2->pos-(c_B3->pos+B3->len-1)-1;
-                                                        if(dis<0)
-                                                                continue;
-                                                        if(dis>20)
-                                                                continue;
-                                                        result[c_F3->gi]=1;
-                                                }
-                                        }
-                                }
-                        }
-                }
-        }
-	num=0;
-	for(i=0;i<common;i++)
-	{
-		num=num+result[i];
-	}
-	return num;
-}
-
-void reverse(char seq[],char rev[],int length)
-{
-        int i;
-        
-        for(i=0;i<length;i++)
-        {
-                if(seq[length-1-i]=='A')
-                {
-                        rev[i]='T';
-                        continue;
-                }
-                if(seq[length-1-i]=='T')
-                {
-                        rev[i]='A';
-                        continue;
-                }
-                if(seq[length-1-i]=='C')
-                {
-                        rev[i]='G';
-                        continue;
-                }
-                rev[i]='C';
-        }
-        rev[i]='\0';
-}
-
-int check_structure(char F3[],char F2[],char F1c[],char B1c[],char B2[],char B3[],int GC,double stackEntropies[],double stackEnthalpies[],double stackint2Entropies[],double stackint2Enthalpies[],double dangleEntropies3[],double dangleEnthalpies3[],double dangleEntropies5[],double dangleEnthalpies5[],double hairpinLoopEntropies[],double interiorLoopEntropies[],double bulgeLoopEntropies[],double hairpinLoopEnthalpies[],double interiorLoopEnthalpies[],double bulgeLoopEnthalpies[],double tstackEntropies[],double tstackEnthalpies[],double tstack2Entropies[],double tstack2Enthalpies[],char *triloopEntropies1,char *triloopEnthalpies1,char *tetraloopEntropies1,char *tetraloopEnthalpies1,double *triloopEntropies2,double *triloopEnthalpies2,double *tetraloopEntropies2,double *tetraloopEnthalpies2,int numTriloops,int numTetraloops,double atpS[],double atpH[],int error[])
-{
-	int i,j,threshold;
-	double TH;
-	char *list[6],rev1[26],rev2[26];
-
-//prepare
-	if(GC==1||GC==4)
-		threshold=49;
-	else
-		threshold=45;
-	list[0]=F3;
-	list[1]=F2;
-	list[2]=F1c;
-	list[3]=B1c;
-	list[4]=B2;
-	list[5]=B3;
-	for(i=0;i<6;i++)
-	{
-		for(j=i+1;j<6;j++)
-		{
-			TH=thal(list[i],list[j],stackEntropies,stackEnthalpies,stackint2Entropies,stackint2Enthalpies,dangleEntropies3,dangleEnthalpies3,dangleEntropies5,dangleEnthalpies5,hairpinLoopEntropies,interiorLoopEntropies,bulgeLoopEntropies,hairpinLoopEnthalpies,interiorLoopEnthalpies,bulgeLoopEnthalpies,tstackEntropies,tstackEnthalpies,tstack2Entropies,tstack2Enthalpies,triloopEntropies1,triloopEnthalpies1,tetraloopEntropies1,tetraloopEnthalpies1,triloopEntropies2,triloopEnthalpies2,tetraloopEntropies2,tetraloopEnthalpies2,numTriloops,numTetraloops,atpS,atpH,1);
-			if(TH>threshold)
-			{
-				error[0]=i;
-				error[1]=j;
-				return 0;
-			}
-
-			TH=thal(list[i],list[j],stackEntropies,stackEnthalpies,stackint2Entropies,stackint2Enthalpies,dangleEntropies3,dangleEnthalpies3,dangleEntropies5,dangleEnthalpies5,hairpinLoopEntropies,interiorLoopEntropies,bulgeLoopEntropies,hairpinLoopEnthalpies,interiorLoopEnthalpies,bulgeLoopEnthalpies,tstackEntropies,tstackEnthalpies,tstack2Entropies,tstack2Enthalpies,triloopEntropies1,triloopEnthalpies1,tetraloopEntropies1,tetraloopEnthalpies1,triloopEntropies2,triloopEnthalpies2,tetraloopEntropies2,tetraloopEnthalpies2,numTriloops,numTetraloops,atpS,atpH,2);
-			if(TH>threshold)
-			{
-				error[0]=i;
-				error[1]=j;
-                                return 0;
-			}
-			TH=thal(list[i],list[j],stackEntropies,stackEnthalpies,stackint2Entropies,stackint2Enthalpies,dangleEntropies3,dangleEnthalpies3,dangleEntropies5,dangleEnthalpies5,hairpinLoopEntropies,interiorLoopEntropies,bulgeLoopEntropies,hairpinLoopEnthalpies,interiorLoopEnthalpies,bulgeLoopEnthalpies,tstackEntropies,tstackEnthalpies,tstack2Entropies,tstack2Enthalpies,triloopEntropies1,triloopEnthalpies1,tetraloopEntropies1,tetraloopEnthalpies1,triloopEntropies2,triloopEnthalpies2,tetraloopEntropies2,tetraloopEnthalpies2,numTriloops,numTetraloops,atpS,atpH,3);
-			if(TH>threshold)
-			{
-				error[0]=i;
-				error[1]=j;
-                                return 0;
-			}
-
-			reverse(list[j],rev1,strlen(list[j]));
-			reverse(list[i],rev2,strlen(list[i]));
-			TH=thal(rev1,rev2,stackEntropies,stackEnthalpies,stackint2Entropies,stackint2Enthalpies,dangleEntropies3,dangleEnthalpies3,dangleEntropies5,dangleEnthalpies5,hairpinLoopEntropies,interiorLoopEntropies,bulgeLoopEntropies,hairpinLoopEnthalpies,interiorLoopEnthalpies,bulgeLoopEnthalpies,tstackEntropies,tstackEnthalpies,tstack2Entropies,tstack2Enthalpies,triloopEntropies1,triloopEnthalpies1,tetraloopEntropies1,tetraloopEnthalpies1,triloopEntropies2,triloopEnthalpies2,tetraloopEntropies2,tetraloopEnthalpies2,numTriloops,numTetraloops,atpS,atpH,2);
-			if(TH>threshold)
-			{
-				error[0]=i;
-				error[1]=j;
-                                return 0;
-			}
-			TH=thal(rev1,rev2,stackEntropies,stackEnthalpies,stackint2Entropies,stackint2Enthalpies,dangleEntropies3,dangleEnthalpies3,dangleEntropies5,dangleEnthalpies5,hairpinLoopEntropies,interiorLoopEntropies,bulgeLoopEntropies,hairpinLoopEnthalpies,interiorLoopEnthalpies,bulgeLoopEnthalpies,tstackEntropies,tstackEnthalpies,tstack2Entropies,tstack2Enthalpies,triloopEntropies1,triloopEnthalpies1,tetraloopEntropies1,tetraloopEnthalpies1,triloopEntropies2,triloopEnthalpies2,tetraloopEntropies2,tetraloopEnthalpies2,numTriloops,numTetraloops,atpS,atpH,3);
-			if(TH>threshold)
-			{
-				error[0]=i;
-				error[1]=j;
-                                return 0;
-			}
-		}
-	}
-	return 1;
-}			
-
-int check_structure_loop(char F3[],char F2[],char F1c[],char B1c[],char B2[],char B3[],char LF[],char LB[],int GC,double stackEntropies[],double stackEnthalpies[],double stackint2Entropies[],double stackint2Enthalpies[],double dangleEntropies3[],double dangleEnthalpies3[],double dangleEntropies5[],double dangleEnthalpies5[],double hairpinLoopEntropies[],double interiorLoopEntropies[],double bulgeLoopEntropies[],double hairpinLoopEnthalpies[],double interiorLoopEnthalpies[],double bulgeLoopEnthalpies[],double tstackEntropies[],double tstackEnthalpies[],double tstack2Entropies[],double tstack2Enthalpies[],char *triloopEntropies1,char *triloopEnthalpies1,char *tetraloopEntropies1,char *tetraloopEnthalpies1,double *triloopEntropies2,double *triloopEnthalpies2,double *tetraloopEntropies2,double *tetraloopEnthalpies2,int numTriloops,int numTetraloops,double atpS[],double atpH[])
-{
-        int i,threshold;
-        double TH;
-        char *list[8],rev1[26],rev2[26];
-
-//prepare
-	if(GC==1||GC==4)
-		threshold=49;
-	else
-		threshold=45;
-        list[0]=F3;
-        list[1]=F2;
-        list[2]=LF;
-        list[3]=F1c;
-        list[4]=B1c;
-	list[5]=LB;
-	list[6]=B2;
-	list[7]=B3;
-
-	if(list[2]!=NULL)
-	{
-		reverse(list[2],rev1,strlen(list[2]));
-        	for(i=0;i<=1;i++)
-		{
-			TH=thal(list[i],list[2],stackEntropies,stackEnthalpies,stackint2Entropies,stackint2Enthalpies,dangleEntropies3,dangleEnthalpies3,dangleEntropies5,dangleEnthalpies5,hairpinLoopEntropies,interiorLoopEntropies,bulgeLoopEntropies,hairpinLoopEnthalpies,interiorLoopEnthalpies,bulgeLoopEnthalpies,tstackEntropies,tstackEnthalpies,tstack2Entropies,tstack2Enthalpies,triloopEntropies1,triloopEnthalpies1,tetraloopEntropies1,tetraloopEnthalpies1,triloopEntropies2,triloopEnthalpies2,tetraloopEntropies2,tetraloopEnthalpies2,numTriloops,numTetraloops,atpS,atpH,1);
-			if(TH>threshold)
-				return 0;
-			TH=thal(list[i],list[2],stackEntropies,stackEnthalpies,stackint2Entropies,stackint2Enthalpies,dangleEntropies3,dangleEnthalpies3,dangleEntropies5,dangleEnthalpies5,hairpinLoopEntropies,interiorLoopEntropies,bulgeLoopEntropies,hairpinLoopEnthalpies,interiorLoopEnthalpies,bulgeLoopEnthalpies,tstackEntropies,tstackEnthalpies,tstack2Entropies,tstack2Enthalpies,triloopEntropies1,triloopEnthalpies1,tetraloopEntropies1,tetraloopEnthalpies1,triloopEntropies2,triloopEnthalpies2,tetraloopEntropies2,tetraloopEnthalpies2,numTriloops,numTetraloops,atpS,atpH,2);
-			if(TH>threshold)
-                                return 0;
-                        TH=thal(list[i],list[2],stackEntropies,stackEnthalpies,stackint2Entropies,stackint2Enthalpies,dangleEntropies3,dangleEnthalpies3,dangleEntropies5,dangleEnthalpies5,hairpinLoopEntropies,interiorLoopEntropies,bulgeLoopEntropies,hairpinLoopEnthalpies,interiorLoopEnthalpies,bulgeLoopEnthalpies,tstackEntropies,tstackEnthalpies,tstack2Entropies,tstack2Enthalpies,triloopEntropies1,triloopEnthalpies1,tetraloopEntropies1,tetraloopEnthalpies1,triloopEntropies2,triloopEnthalpies2,tetraloopEntropies2,tetraloopEnthalpies2,numTriloops,numTetraloops,atpS,atpH,3);
-			if(TH>threshold)
-                                return 0;
-
-			reverse(list[i],rev2,strlen(list[i]));
-			TH=thal(rev1,rev2,stackEntropies,stackEnthalpies,stackint2Entropies,stackint2Enthalpies,dangleEntropies3,dangleEnthalpies3,dangleEntropies5,dangleEnthalpies5,hairpinLoopEntropies,interiorLoopEntropies,bulgeLoopEntropies,hairpinLoopEnthalpies,interiorLoopEnthalpies,bulgeLoopEnthalpies,tstackEntropies,tstackEnthalpies,tstack2Entropies,tstack2Enthalpies,triloopEntropies1,triloopEnthalpies1,tetraloopEntropies1,tetraloopEnthalpies1,triloopEntropies2,triloopEnthalpies2,tetraloopEntropies2,tetraloopEnthalpies2,numTriloops,numTetraloops,atpS,atpH,2);
-			if(TH>threshold)
-                                return 0;
-			TH=thal(rev1,rev2,stackEntropies,stackEnthalpies,stackint2Entropies,stackint2Enthalpies,dangleEntropies3,dangleEnthalpies3,dangleEntropies5,dangleEnthalpies5,hairpinLoopEntropies,interiorLoopEntropies,bulgeLoopEntropies,hairpinLoopEnthalpies,interiorLoopEnthalpies,bulgeLoopEnthalpies,tstackEntropies,tstackEnthalpies,tstack2Entropies,tstack2Enthalpies,triloopEntropies1,triloopEnthalpies1,tetraloopEntropies1,tetraloopEnthalpies1,triloopEntropies2,triloopEnthalpies2,tetraloopEntropies2,tetraloopEnthalpies2,numTriloops,numTetraloops,atpS,atpH,3);
-			if(TH>44+threshold)
-                                return 0;
-		}
-
-		for(i=3;i<8;i++)
-		{
-			if(i==5)
-				continue;
-			TH=thal(list[2],list[i],stackEntropies,stackEnthalpies,stackint2Entropies,stackint2Enthalpies,dangleEntropies3,dangleEnthalpies3,dangleEntropies5,dangleEnthalpies5,hairpinLoopEntropies,interiorLoopEntropies,bulgeLoopEntropies,hairpinLoopEnthalpies,interiorLoopEnthalpies,bulgeLoopEnthalpies,tstackEntropies,tstackEnthalpies,tstack2Entropies,tstack2Enthalpies,triloopEntropies1,triloopEnthalpies1,tetraloopEntropies1,tetraloopEnthalpies1,triloopEntropies2,triloopEnthalpies2,tetraloopEntropies2,tetraloopEnthalpies2,numTriloops,numTetraloops,atpS,atpH,1);
-			if(TH>threshold)
-                                return 0;
-			TH=thal(list[2],list[i],stackEntropies,stackEnthalpies,stackint2Entropies,stackint2Enthalpies,dangleEntropies3,dangleEnthalpies3,dangleEntropies5,dangleEnthalpies5,hairpinLoopEntropies,interiorLoopEntropies,bulgeLoopEntropies,hairpinLoopEnthalpies,interiorLoopEnthalpies,bulgeLoopEnthalpies,tstackEntropies,tstackEnthalpies,tstack2Entropies,tstack2Enthalpies,triloopEntropies1,triloopEnthalpies1,tetraloopEntropies1,tetraloopEnthalpies1,triloopEntropies2,triloopEnthalpies2,tetraloopEntropies2,tetraloopEnthalpies2,numTriloops,numTetraloops,atpS,atpH,2);
-			if(TH>threshold)
-                                return 0;
-                        TH=thal(list[2],list[i],stackEntropies,stackEnthalpies,stackint2Entropies,stackint2Enthalpies,dangleEntropies3,dangleEnthalpies3,dangleEntropies5,dangleEnthalpies5,hairpinLoopEntropies,interiorLoopEntropies,bulgeLoopEntropies,hairpinLoopEnthalpies,interiorLoopEnthalpies,bulgeLoopEnthalpies,tstackEntropies,tstackEnthalpies,tstack2Entropies,tstack2Enthalpies,triloopEntropies1,triloopEnthalpies1,tetraloopEntropies1,tetraloopEnthalpies1,triloopEntropies2,triloopEnthalpies2,tetraloopEntropies2,tetraloopEnthalpies2,numTriloops,numTetraloops,atpS,atpH,3);
-			if(TH>threshold)
-                                return 0;
-
-			reverse(list[i],rev2,strlen(list[i]));
-			TH=thal(rev2,rev1,stackEntropies,stackEnthalpies,stackint2Entropies,stackint2Enthalpies,dangleEntropies3,dangleEnthalpies3,dangleEntropies5,dangleEnthalpies5,hairpinLoopEntropies,interiorLoopEntropies,bulgeLoopEntropies,hairpinLoopEnthalpies,interiorLoopEnthalpies,bulgeLoopEnthalpies,tstackEntropies,tstackEnthalpies,tstack2Entropies,tstack2Enthalpies,triloopEntropies1,triloopEnthalpies1,tetraloopEntropies1,tetraloopEnthalpies1,triloopEntropies2,triloopEnthalpies2,tetraloopEntropies2,tetraloopEnthalpies2,numTriloops,numTetraloops,atpS,atpH,2);
-			if(TH>threshold) 
-                                return 0;
-			TH=thal(rev2,rev1,stackEntropies,stackEnthalpies,stackint2Entropies,stackint2Enthalpies,dangleEntropies3,dangleEnthalpies3,dangleEntropies5,dangleEnthalpies5,hairpinLoopEntropies,interiorLoopEntropies,bulgeLoopEntropies,hairpinLoopEnthalpies,interiorLoopEnthalpies,bulgeLoopEnthalpies,tstackEntropies,tstackEnthalpies,tstack2Entropies,tstack2Enthalpies,triloopEntropies1,triloopEnthalpies1,tetraloopEntropies1,tetraloopEnthalpies1,triloopEntropies2,triloopEnthalpies2,tetraloopEntropies2,tetraloopEnthalpies2,numTriloops,numTetraloops,atpS,atpH,3);
-			if(TH>threshold)
-                                return 0;
-		}
-        }
-	if(list[5]!=NULL)
-	{
-		reverse(list[5],rev1,strlen(list[5]));
-		for(i=0;i<5;i++)
-		{
-			if(i==2)
-				continue;
-			TH=thal(list[i],list[5],stackEntropies,stackEnthalpies,stackint2Entropies,stackint2Enthalpies,dangleEntropies3,dangleEnthalpies3,dangleEntropies5,dangleEnthalpies5,hairpinLoopEntropies,interiorLoopEntropies,bulgeLoopEntropies,hairpinLoopEnthalpies,interiorLoopEnthalpies,bulgeLoopEnthalpies,tstackEntropies,tstackEnthalpies,tstack2Entropies,tstack2Enthalpies,triloopEntropies1,triloopEnthalpies1,tetraloopEntropies1,tetraloopEnthalpies1,triloopEntropies2,triloopEnthalpies2,tetraloopEntropies2,tetraloopEnthalpies2,numTriloops,numTetraloops,atpS,atpH,1);
-			if(TH>threshold)
-                                return 0;
-			TH=thal(list[i],list[5],stackEntropies,stackEnthalpies,stackint2Entropies,stackint2Enthalpies,dangleEntropies3,dangleEnthalpies3,dangleEntropies5,dangleEnthalpies5,hairpinLoopEntropies,interiorLoopEntropies,bulgeLoopEntropies,hairpinLoopEnthalpies,interiorLoopEnthalpies,bulgeLoopEnthalpies,tstackEntropies,tstackEnthalpies,tstack2Entropies,tstack2Enthalpies,triloopEntropies1,triloopEnthalpies1,tetraloopEntropies1,tetraloopEnthalpies1,triloopEntropies2,triloopEnthalpies2,tetraloopEntropies2,tetraloopEnthalpies2,numTriloops,numTetraloops,atpS,atpH,2);
-			if(TH>threshold)
-                                return 0;
-                        TH=thal(list[i],list[5],stackEntropies,stackEnthalpies,stackint2Entropies,stackint2Enthalpies,dangleEntropies3,dangleEnthalpies3,dangleEntropies5,dangleEnthalpies5,hairpinLoopEntropies,interiorLoopEntropies,bulgeLoopEntropies,hairpinLoopEnthalpies,interiorLoopEnthalpies,bulgeLoopEnthalpies,tstackEntropies,tstackEnthalpies,tstack2Entropies,tstack2Enthalpies,triloopEntropies1,triloopEnthalpies1,tetraloopEntropies1,tetraloopEnthalpies1,triloopEntropies2,triloopEnthalpies2,tetraloopEntropies2,tetraloopEnthalpies2,numTriloops,numTetraloops,atpS,atpH,3);
-			if(TH>threshold)
-                                return 0;
-
-			reverse(list[i],rev2,strlen(list[i]));
-			TH=thal(rev1,rev2,stackEntropies,stackEnthalpies,stackint2Entropies,stackint2Enthalpies,dangleEntropies3,dangleEnthalpies3,dangleEntropies5,dangleEnthalpies5,hairpinLoopEntropies,interiorLoopEntropies,bulgeLoopEntropies,hairpinLoopEnthalpies,interiorLoopEnthalpies,bulgeLoopEnthalpies,tstackEntropies,tstackEnthalpies,tstack2Entropies,tstack2Enthalpies,triloopEntropies1,triloopEnthalpies1,tetraloopEntropies1,tetraloopEnthalpies1,triloopEntropies2,triloopEnthalpies2,tetraloopEntropies2,tetraloopEnthalpies2,numTriloops,numTetraloops,atpS,atpH,2);
-			if(TH>threshold)
-                                return 0;
-			TH=thal(rev1,rev2,stackEntropies,stackEnthalpies,stackint2Entropies,stackint2Enthalpies,dangleEntropies3,dangleEnthalpies3,dangleEntropies5,dangleEnthalpies5,hairpinLoopEntropies,interiorLoopEntropies,bulgeLoopEntropies,hairpinLoopEnthalpies,interiorLoopEnthalpies,bulgeLoopEnthalpies,tstackEntropies,tstackEnthalpies,tstack2Entropies,tstack2Enthalpies,triloopEntropies1,triloopEnthalpies1,tetraloopEntropies1,tetraloopEnthalpies1,triloopEntropies2,triloopEnthalpies2,tetraloopEntropies2,tetraloopEnthalpies2,numTriloops,numTetraloops,atpS,atpH,3);
-			if(TH>threshold)
-				return 0;
-		}
-		for(i=6;i<8;i++)
-		{
-			TH=thal(list[5],list[i],stackEntropies,stackEnthalpies,stackint2Entropies,stackint2Enthalpies,dangleEntropies3,dangleEnthalpies3,dangleEntropies5,dangleEnthalpies5,hairpinLoopEntropies,interiorLoopEntropies,bulgeLoopEntropies,hairpinLoopEnthalpies,interiorLoopEnthalpies,bulgeLoopEnthalpies,tstackEntropies,tstackEnthalpies,tstack2Entropies,tstack2Enthalpies,triloopEntropies1,triloopEnthalpies1,tetraloopEntropies1,tetraloopEnthalpies1,triloopEntropies2,triloopEnthalpies2,tetraloopEntropies2,tetraloopEnthalpies2,numTriloops,numTetraloops,atpS,atpH,1);
-			if(TH>threshold)
-                                return 0;
-			TH=thal(list[5],list[i],stackEntropies,stackEnthalpies,stackint2Entropies,stackint2Enthalpies,dangleEntropies3,dangleEnthalpies3,dangleEntropies5,dangleEnthalpies5,hairpinLoopEntropies,interiorLoopEntropies,bulgeLoopEntropies,hairpinLoopEnthalpies,interiorLoopEnthalpies,bulgeLoopEnthalpies,tstackEntropies,tstackEnthalpies,tstack2Entropies,tstack2Enthalpies,triloopEntropies1,triloopEnthalpies1,tetraloopEntropies1,tetraloopEnthalpies1,triloopEntropies2,triloopEnthalpies2,tetraloopEntropies2,tetraloopEnthalpies2,numTriloops,numTetraloops,atpS,atpH,2);
-			if(TH>threshold)
-                                return 0;
-			TH=thal(list[5],list[i],stackEntropies,stackEnthalpies,stackint2Entropies,stackint2Enthalpies,dangleEntropies3,dangleEnthalpies3,dangleEntropies5,dangleEnthalpies5,hairpinLoopEntropies,interiorLoopEntropies,bulgeLoopEntropies,hairpinLoopEnthalpies,interiorLoopEnthalpies,bulgeLoopEnthalpies,tstackEntropies,tstackEnthalpies,tstack2Entropies,tstack2Enthalpies,triloopEntropies1,triloopEnthalpies1,tetraloopEntropies1,tetraloopEnthalpies1,triloopEntropies2,triloopEnthalpies2,tetraloopEntropies2,tetraloopEnthalpies2,numTriloops,numTetraloops,atpS,atpH,3);
-			if(TH>threshold)
-                                return 0;
-
-			reverse(list[i],rev2,strlen(list[i]));
-			TH=thal(rev2,rev1,stackEntropies,stackEnthalpies,stackint2Entropies,stackint2Enthalpies,dangleEntropies3,dangleEnthalpies3,dangleEntropies5,dangleEnthalpies5,hairpinLoopEntropies,interiorLoopEntropies,bulgeLoopEntropies,hairpinLoopEnthalpies,interiorLoopEnthalpies,bulgeLoopEnthalpies,tstackEntropies,tstackEnthalpies,tstack2Entropies,tstack2Enthalpies,triloopEntropies1,triloopEnthalpies1,tetraloopEntropies1,tetraloopEnthalpies1,triloopEntropies2,triloopEnthalpies2,tetraloopEntropies2,tetraloopEnthalpies2,numTriloops,numTetraloops,atpS,atpH,2);
-			if(TH>threshold)
-                                return 0;
-			TH=thal(rev2,rev1,stackEntropies,stackEnthalpies,stackint2Entropies,stackint2Enthalpies,dangleEntropies3,dangleEnthalpies3,dangleEntropies5,dangleEnthalpies5,hairpinLoopEntropies,interiorLoopEntropies,bulgeLoopEntropies,hairpinLoopEnthalpies,interiorLoopEnthalpies,bulgeLoopEnthalpies,tstackEntropies,tstackEnthalpies,tstack2Entropies,tstack2Enthalpies,triloopEntropies1,triloopEnthalpies1,tetraloopEntropies1,tetraloopEnthalpies1,triloopEntropies2,triloopEnthalpies2,tetraloopEntropies2,tetraloopEnthalpies2,numTriloops,numTetraloops,atpS,atpH,3);
-			if(TH>threshold)
-                                return 0;
-		}
-	}
-	if(list[2]!=NULL&&list[5]!=NULL)
-	{
-		TH=thal(list[2],list[5],stackEntropies,stackEnthalpies,stackint2Entropies,stackint2Enthalpies,dangleEntropies3,dangleEnthalpies3,dangleEntropies5,dangleEnthalpies5,hairpinLoopEntropies,interiorLoopEntropies,bulgeLoopEntropies,hairpinLoopEnthalpies,interiorLoopEnthalpies,bulgeLoopEnthalpies,tstackEntropies,tstackEnthalpies,tstack2Entropies,tstack2Enthalpies,triloopEntropies1,triloopEnthalpies1,tetraloopEntropies1,tetraloopEnthalpies1,triloopEntropies2,triloopEnthalpies2,tetraloopEntropies2,tetraloopEnthalpies2,numTriloops,numTetraloops,atpS,atpH,1);
-		if(TH>threshold)
-			return 0;
-		TH=thal(list[2],list[5],stackEntropies,stackEnthalpies,stackint2Entropies,stackint2Enthalpies,dangleEntropies3,dangleEnthalpies3,dangleEntropies5,dangleEnthalpies5,hairpinLoopEntropies,interiorLoopEntropies,bulgeLoopEntropies,hairpinLoopEnthalpies,interiorLoopEnthalpies,bulgeLoopEnthalpies,tstackEntropies,tstackEnthalpies,tstack2Entropies,tstack2Enthalpies,triloopEntropies1,triloopEnthalpies1,tetraloopEntropies1,tetraloopEnthalpies1,triloopEntropies2,triloopEnthalpies2,tetraloopEntropies2,tetraloopEnthalpies2,numTriloops,numTetraloops,atpS,atpH,2);
-		if(TH>threshold)
-                        return 0;
-                TH=thal(list[2],list[5],stackEntropies,stackEnthalpies,stackint2Entropies,stackint2Enthalpies,dangleEntropies3,dangleEnthalpies3,dangleEntropies5,dangleEnthalpies5,hairpinLoopEntropies,interiorLoopEntropies,bulgeLoopEntropies,hairpinLoopEnthalpies,interiorLoopEnthalpies,bulgeLoopEnthalpies,tstackEntropies,tstackEnthalpies,tstack2Entropies,tstack2Enthalpies,triloopEntropies1,triloopEnthalpies1,tetraloopEntropies1,tetraloopEnthalpies1,triloopEntropies2,triloopEnthalpies2,tetraloopEntropies2,tetraloopEnthalpies2,numTriloops,numTetraloops,atpS,atpH,3);
-		if(TH>threshold)
-                        return 0;
-
-		reverse(list[2],rev1,strlen(list[2]));
-		reverse(list[5],rev2,strlen(list[5]));
-		TH=thal(rev2,rev1,stackEntropies,stackEnthalpies,stackint2Entropies,stackint2Enthalpies,dangleEntropies3,dangleEnthalpies3,dangleEntropies5,dangleEnthalpies5,hairpinLoopEntropies,interiorLoopEntropies,bulgeLoopEntropies,hairpinLoopEnthalpies,interiorLoopEnthalpies,bulgeLoopEnthalpies,tstackEntropies,tstackEnthalpies,tstack2Entropies,tstack2Enthalpies,triloopEntropies1,triloopEnthalpies1,tetraloopEntropies1,tetraloopEnthalpies1,triloopEntropies2,triloopEnthalpies2,tetraloopEntropies2,tetraloopEnthalpies2,numTriloops,numTetraloops,atpS,atpH,2);
-		if(TH>threshold)
-                        return 0;
-		TH=thal(rev2,rev1,stackEntropies,stackEnthalpies,stackint2Entropies,stackint2Enthalpies,dangleEntropies3,dangleEnthalpies3,dangleEntropies5,dangleEnthalpies5,hairpinLoopEntropies,interiorLoopEntropies,bulgeLoopEntropies,hairpinLoopEnthalpies,interiorLoopEnthalpies,bulgeLoopEnthalpies,tstackEntropies,tstackEnthalpies,tstack2Entropies,tstack2Enthalpies,triloopEntropies1,triloopEnthalpies1,tetraloopEntropies1,tetraloopEnthalpies1,triloopEntropies2,triloopEnthalpies2,tetraloopEntropies2,tetraloopEnthalpies2,numTriloops,numTetraloops,atpS,atpH,3);
-		if(TH>threshold)
-                        return 0;
-	}
-	return 1;
-}
-
-int check_common_loop(struct Primer *F3,struct Primer *F2,struct Primer *LF,struct Primer *F1c,struct Primer *B1c,struct Primer *LB,struct Primer *B2,struct Primer *B3,int *result,int common_num)
-{
-        int dis,i,*temp,success;
-        struct Node *c_F3,*c_F2,*c_LF,*c_F1c,*c_B1c,*c_LB,*c_B2,*c_B3;
-
-	temp=(int *)malloc(common_num*sizeof(int));
-	for(i=0;i<common_num;i++)
-		temp[i]=0;
-//plus
-        for(c_F3=F3->common;c_F3;c_F3=c_F3->next)
-        {
-                if(c_F3->plus!=1)
-                        continue;
-                if(result[c_F3->gi]==0)
-                        continue;
-		if(temp[c_F3->gi])
-			continue;
-                for(c_F2=F2->common;c_F2;c_F2=c_F2->next)
-                {
-                        if(c_F2->gi!=c_F3->gi)
-                                continue;
-                        if(c_F2->plus!=1)
-                                continue;
-                        for(c_F1c=F1c->common;c_F1c;c_F1c=c_F1c->next)
-                        {
-                                if(c_F1c->gi!=c_F3->gi)
-                                        continue;
-                                if(c_F1c->minus!=1)
-                                        continue;
-                                for(c_B1c=B1c->common;c_B1c;c_B1c=c_B1c->next)
-                                {
-                                        if(c_B1c->gi!=c_F3->gi)
-                                                continue;
-                                        if(c_B1c->plus!=1)
-                                                continue;
-                                        for(c_B2=B2->common;c_B2;c_B2=c_B2->next)
-                                        {
-                                                if(c_B2->gi!=c_F3->gi)
-                                                        continue;
-                                                if(c_B2->minus!=1)
-                                                        continue;
-                                                for(c_B3=B3->common;c_B3;c_B3=c_B3->next)
-                                                {
-                                                        if(c_B3->gi!=c_F3->gi)
-                                                                continue;
-                                                        if(c_B3->minus!=1)
-                                                                continue;
-                                                //F3-F2 
-                                                        dis=c_F2->pos-(c_F3->pos+F3->len-1)-1;
-                                                        if(dis<0)
-                                                                continue;
-                                                        if(dis>20)
-                                                                continue;
-                                                //F2-F1c
-                                                        dis=c_F1c->pos-c_F2->pos-1;
-                                                        if(dis<40)
-                                                                continue;
-                                                        if(dis>60)
-                                                                continue;
-                                                //F1c-B1c
-                                                        dis=c_B1c->pos-(c_F1c->pos+F1c->len-1)-1;
-                                                        if(dis<0)
-                                                                continue;
-                                                //B1c-B2
-                                                        dis=(c_B2->pos+B2->len-1)-(c_B1c->pos+B1c->len-1)-1;
-                                                        if(dis<40)
-                                                                continue;
-                                                        if(dis>60)
-                                                                continue;
-                                                //F2-B2
-                                                        dis=c_B2->pos+B2->len-1-c_F2->pos-1;
-                                                        if(dis<120)
-                                                                continue;
-                                                        if(dis>180)
-                                                                continue;
-                                                //B2-B3
-                                                        dis=c_B3->pos-(c_B2->pos+B2->len-1)-1;
-                                                        if(dis<0)
-                                                                continue;
-                                                        if(dis>20)
-                                                                continue;
-						//LF
-							if(LF)
-							{
-								success=0;
-								for(c_LF=LF->common;c_LF;c_LF=c_LF->next)
-								{
-									if(c_LF->gi!=c_F3->gi)
-										continue;
-									if(c_LF->minus!=1)
-										continue;
-									if(c_F2->pos+F2->len>c_LF->pos)
-										continue;
-									if(c_LF->pos+LF->len>c_F1c->pos)
-										continue;
-									success=1;
-									break;
-								}
-								if(success==0)
-									continue;
-							}
-						//LB
-							if(LB)
-                                                        {
-                                                                success=0;
-                                                                for(c_LB=LB->common;c_LB;c_LB=c_LB->next)
-                                                                {
-                                                                        if(c_LB->gi!=c_F3->gi)
-                                                                                continue;
-                                                                        if(c_LB->plus!=1)
-                                                                                continue;
-                                                                        if(c_B1c->pos+B1c->len>c_LB->pos)
-                                                                                continue;
-                                                                        if(c_LB->pos+LB->len>c_B2->pos)
-                                                                                continue;
-                                                                        success=1;
-                                                                        break;
-                                                                }
-                                                                if(success==0)
-                                                                        continue;
-                                                        }
-							temp[c_F3->gi]=1;
-                                                }
-                                        }
-                                }
-                        }
-                }
-        }
-//minus
-        for(c_F3=F3->common;c_F3;c_F3=c_F3->next)
-        {
-                if(c_F3->minus!=1)
-                        continue;
-                if(result[c_F3->gi]==0)
-                        continue;  
-		if(temp[c_F3->gi])
-			continue;
-                for(c_F2=F2->common;c_F2;c_F2=c_F2->next)
-                {
-                        if(c_F2->gi!=c_F3->gi)
-                                continue;
-                        if(c_F2->minus!=1)
-                                continue;
-                        for(c_F1c=F1c->common;c_F1c;c_F1c=c_F1c->next)
-                        {
-                                if(c_F1c->gi!=c_F3->gi)
-                                        continue;
-                                if(c_F1c->plus!=1)
-                                        continue;
-                                for(c_B1c=B1c->common;c_B1c;c_B1c=c_B1c->next)
-                                {
-                                        if(c_B1c->gi!=c_F3->gi)
-                                                continue;
-                                        if(c_B1c->minus!=1)
-                                                continue;
-                                        for(c_B2=B2->common;c_B2;c_B2=c_B2->next)
-                                        {
-                                                if(c_B2->gi!=c_F3->gi)
-                                                        continue;
-                                                if(c_B2->plus!=1)
-                                                        continue;
-                                                for(c_B3=B3->common;c_B3;c_B3=c_B3->next)
-                                                {
-                                                        if(c_B3->gi!=c_F3->gi)
-                                                                continue;
-                                                        if(c_B3->plus!=1)
-                                                                continue;
-                                                //F3-F2 
-                                                        dis=c_F3->pos-(c_F2->pos+F2->len-1)-1;
-                                                        if(dis<0)
-                                                                continue;
-                                                        if(dis>20)
-                                                                continue;
-                                                //F2-F1c
-                                                        dis=(c_F2->pos+F2->len-1)-(c_F1c->pos+F1c->len-1)-1;
-                                                        if(dis<40)
-                                                                continue;
-                                                        if(dis>60)
-                                                                continue;
-                                                //F1c-B1c
-                                                        dis=c_F1c->pos-(c_B1c->pos+B1c->len-1)-1;
-                                                        if(dis<0)
-                                                                continue;
-                                                //B1c-B2
-                                                        dis=c_B1c->pos-c_B2->pos-1;
-                                                        if(dis<40)
-                                                                continue;
-                                                        if(dis>60)
-                                                                continue;
-                                                //F2-B2
-                                                        dis=c_F2->pos+F2->len-1-c_B2->pos-1;
-                                                        if(dis<120)
-                                                                continue;
-                                                        if(dis>180)
-                                                                continue;
-                                                //B2-B3
-                                                        dis=c_B2->pos-(c_B3->pos+B3->len-1)-1;
-                                                        if(dis<0)
-                                                                continue;
-                                                        if(dis>20)
-                                                                continue;
-						//LF
-                                                        if(LF)
-                                                        {
-                                                                success=0;
-                                                                for(c_LF=LF->common;c_LF;c_LF=c_LF->next)
-                                                                {
-                                                                        if(c_LF->gi!=c_F3->gi)
-                                                                                continue;
-                                                                        if(c_LF->plus!=1)
-                                                                                continue;
-                                                                        if(c_F1c->pos+F1c->len>c_LF->pos)
-                                                                                continue;
-                                                                        if(c_LF->pos+LF->len>c_F2->pos)
-                                                                                continue;
-                                                                        success=1;
-                                                                        break;
-                                                                }
-                                                                if(success==0)
-                                                                        continue;
-                                                        }
-                                                //LB
-                                                        if(LB)
-                                                        {
-                                                                success=0;
-                                                                for(c_LB=LB->common;c_LB;c_LB=c_LB->next)
-                                                                {
-                                                                        if(c_LB->gi!=c_F3->gi)
-                                                                                continue;
-                                                                        if(c_LB->minus!=1)
-                                                                                continue;
-                                                                        if(c_B2->pos+B2->len>c_LB->pos)
-                                                                                continue;
-                                                                        if(c_LB->pos+LB->len>c_B1c->pos)
-                                                                                continue;
-                                                                        success=1;
-                                                                        break;
-                                                                }
-                                                                if(success==0)
-                                                                        continue;
-                                                        }
-                                                        temp[c_F3->gi]=1;
-                                                }
-                                        }
-                                }
-                        }
-                }
-        }
-        for(i=0;i<common_num;i++)
-        {
-                if(result[i]&&temp[i]==0)
-			return 0;
-        }
-        return 1;
-}
-
-int design_loop(struct Primer *p_F3,struct Primer *p_F2,struct Primer *p_LF,struct Primer *p_F1c,struct Primer *p_B1c,struct Primer *p_LB,struct Primer *p_B2,struct Primer *p_B3,struct Primer *result_Loop[], int *result,int flag[],int common_num,char *seq,double stackEntropies[],double stackEnthalpies[],double stackint2Entropies[],double stackint2Enthalpies[],double dangleEntropies3[],double dangleEnthalpies3[],double dangleEntropies5[],double dangleEnthalpies5[],double hairpinLoopEntropies[],double interiorLoopEntropies[],double bulgeLoopEntropies[],double hairpinLoopEnthalpies[],double interiorLoopEnthalpies[],double bulgeLoopEnthalpies[],double tstackEntropies[],double tstackEnthalpies[],double tstack2Entropies[],double tstack2Enthalpies[],char *triloopEntropies1,char *triloopEnthalpies1,char *tetraloopEntropies1,char *tetraloopEnthalpies1,double *triloopEntropies2,double *triloopEnthalpies2,double *tetraloopEntropies2,double *tetraloopEnthalpies2,int numTriloops,int numTetraloops,double atpS[],double atpH[],int GC)
-{
-	int success;
-	struct Primer *LF,*LB;
-	struct Node *c_LF,*c_LB,*s_LF,*s_LB;
-	char primer_F3[26],primer_F2[26],primer_F1c[26],primer_B1c[26],primer_B2[26],primer_B3[26],primer_LF[26],primer_LB[26];
-
-	if(flag[7])
-	{
-		generate_primer(seq,primer_F3,p_F3->pos,p_F3->len,0);
-		generate_primer(seq,primer_F2,p_F2->pos,p_F2->len,0);
-		generate_primer(seq,primer_F1c,p_F1c->pos,p_F1c->len,1);
-		generate_primer(seq,primer_B1c,p_B1c->pos,p_B1c->len,0);
-		generate_primer(seq,primer_B2,p_B2->pos,p_B2->len,1);
-		generate_primer(seq,primer_B3,p_B3->pos,p_B3->len,1);
-	}
-//LF and LB 
-	success=0;
-	LF=p_LF;
-	while(LF)
-	{
-		if(LF->pos+LF->len>p_F1c->pos)
-			break;
-		if(LF->minus==0)
-		{
-			LF=LF->next;
-			continue;
-		}
-		if((LF->minus&GC)!=GC)
-		{
-			LF=LF->next;
-			continue;
-		}
-
-		LB=p_LB;
-		if(flag[7])
-			generate_primer(seq,primer_LF,LF->pos,LF->len,1);
-		while(LB)
-		{
-			if(LB->pos+LB->len>p_B2->pos)
-				break;
-			if(LB->plus==0)
-			{
-				LB=LB->next;
-				continue;
-			}
-			if((LB->plus&GC)!=GC)
-			{
-				LB=LB->next;
-				continue;
-			}
-		//check_common
-			if(flag[5])
-			{
-				success=check_common_loop(p_F3,p_F2,LF,p_F1c,p_B1c,LB,p_B2,p_B3,result,common_num);
-				if(success==0)
-				{
-					LB=LB->next;
-					continue;
-				}
-			}
-		//check_structure
-			if(flag[7])
-			{
-				generate_primer(seq,primer_LB,LB->pos,LB->len,0);
-				success=check_structure_loop(primer_F3,primer_F2,primer_F1c,primer_B1c,primer_B2,primer_B3,primer_LF,primer_LB,GC,stackEntropies,stackEnthalpies,stackint2Entropies,stackint2Enthalpies,dangleEntropies3,dangleEnthalpies3,dangleEntropies5,dangleEnthalpies5,hairpinLoopEntropies,interiorLoopEntropies,bulgeLoopEntropies,hairpinLoopEnthalpies,interiorLoopEnthalpies,bulgeLoopEnthalpies,tstackEntropies,tstackEnthalpies,tstack2Entropies,tstack2Enthalpies,triloopEntropies1,triloopEnthalpies1,tetraloopEntropies1,tetraloopEnthalpies1,triloopEntropies2,triloopEnthalpies2,tetraloopEntropies2,tetraloopEnthalpies2,numTriloops,numTetraloops,atpS,atpH);
-				if(success==0)
-                        	{
-                        	        LB=LB->next;
-                        	        continue;
-                        	}
-			}
-			result_Loop[0]=LF;
-			result_Loop[1]=LB;
-			success=1;
-			break;
-		}
-		if(success==1)
-			break;
-		else
-			LF=LF->next;
-	}
-	if(success==1)
-		return success;
-//only LF
-	LF=p_LF;
-	result_Loop[1]=NULL;
-        while(LF)
-        {
-                if(LF->pos+LF->len>p_F1c->pos)
-                        break;
-		if(LF->minus==0)
-		{
-			LF=LF->next;
-			continue;
-		}
-		if((LF->minus&GC)!=GC)
-		{
-			LF=LF->next;
-			continue;
-		}
-	//check_common
-		if(flag[5])
-		{
-			success=check_common_loop(p_F3,p_F2,LF,p_F1c,p_B1c,NULL,p_B2,p_B3,result,common_num);
-			if(success==0)
-			{
-				LF=LF->next;
-				continue;
-			}
-		}
-	//check_structure
-		if(flag[7])
-		{
-			generate_primer(seq,primer_LF,LF->pos,LF->len,1);
-			success=check_structure_loop(primer_F3,primer_F2,primer_F1c,primer_B1c,primer_B2,primer_B3,primer_LF,NULL,GC,stackEntropies,stackEnthalpies,stackint2Entropies,stackint2Enthalpies,dangleEntropies3,dangleEnthalpies3,dangleEntropies5,dangleEnthalpies5,hairpinLoopEntropies,interiorLoopEntropies,bulgeLoopEntropies,hairpinLoopEnthalpies,interiorLoopEnthalpies,bulgeLoopEnthalpies,tstackEntropies,tstackEnthalpies,tstack2Entropies,tstack2Enthalpies,triloopEntropies1,triloopEnthalpies1,tetraloopEntropies1,tetraloopEnthalpies1,triloopEntropies2,triloopEnthalpies2,tetraloopEntropies2,tetraloopEnthalpies2,numTriloops,numTetraloops,atpS,atpH);
-			if(success==0)
-			{
-				LF=LF->next;
-				continue;
-			}
-		}
-		result_Loop[0]=LF;
-		success=1;
-		break;
-        }
-        if(success==1)
-                return success;
-//only LB
-	LB=p_LB;
-	result_Loop[0]=NULL;
-        while(LB)
-        {
-                if(LB->pos+LB->len>p_B2->pos)
-                        break;
-		if(LB->plus==0)
-		{
-			LB=LB->next;
-			continue;
-		}
-		if((LB->plus&GC)!=GC)
-		{
-			LB=LB->next;
-			continue;
-		}
-	//check_common
-		if(flag[5])
-		{
-			success=check_common_loop(p_F3,p_F2,NULL,p_F1c,p_B1c,LB,p_B2,p_B3,result,common_num);
-			if(success==0)
-			{
-				LB=LB->next;
-				continue;
-			}
-		}
-	//check_structure
-		if(flag[7])
-		{
-			generate_primer(seq,primer_LB,LB->pos,LB->len,0);
-			success=check_structure_loop(primer_F3,primer_F2,primer_F1c,primer_B1c,primer_B2,primer_B3,NULL,primer_LB,GC,stackEntropies,stackEnthalpies,stackint2Entropies,stackint2Enthalpies,dangleEntropies3,dangleEnthalpies3,dangleEntropies5,dangleEnthalpies5,hairpinLoopEntropies,interiorLoopEntropies,bulgeLoopEntropies,hairpinLoopEnthalpies,interiorLoopEnthalpies,bulgeLoopEnthalpies,tstackEntropies,tstackEnthalpies,tstack2Entropies,tstack2Enthalpies,triloopEntropies1,triloopEnthalpies1,tetraloopEntropies1,tetraloopEnthalpies1,triloopEntropies2,triloopEnthalpies2,tetraloopEntropies2,tetraloopEnthalpies2,numTriloops,numTetraloops,atpS,atpH);
-			if(success==0)
-			{
-				LB=LB->next;
-				continue;
-			}
-		}
-		result_Loop[1]=LB;
-		success=1;
-		break;
-        }
-	return success;
-}			
-		
-int check_add(int F3_pos,int *best_par,int expect)
-{
-        int i,dis;
-
-	for(i=0;i<expect;i++)
-	{
-		if(best_par[i]==-1) //the empty record
-			return 1;
-		dis=best_par[i]-F3_pos;
-		if(abs(dis)<300)
-			return 0;
-	}
-        return 1;
-}
-
-int check_gc(char *seq,int start,int end)//p_F3->pos,(p_B3->pos+p_B3->len))
-{
-	int i,total=0;
-	float gc;
-
-	for(i=start;i<end;i++)
-	{
-		if(seq[i]=='C'||seq[i]=='G'||seq[i]=='c'||seq[i]=='g')
-			total++;
-	}
-	gc=total*100.0/(end-start);
-	if(gc>=60)
-		return 1;
-	if(gc<=45)
-		return 2;
-	return 4;
-}
-	
-///how many GIs this primer can be used in, return the biggest common number
-void how_many(struct Primer *head,int common)
-{
-	struct Primer *p_primer;
-	struct Node *p_node;
-	int i,num,*list;
-
-	list=(int *)malloc(common*sizeof(int));
-	p_primer=head;
-	while(p_primer)
-	{
-		p_node=p_primer->common;
-		for(i=0;i<common;i++)
-			list[i]=0;
-		while(p_node)
-		{
-			list[p_node->gi]=1;
-			p_node=p_node->next;
-		}
-		num=0;
-                for(i=0;i<common;i++)
-                        num=num+list[i];
-		p_primer->total=num;
-		p_primer=p_primer->next;
-	}
-	free(list);
-}
-
-//check this LAMP primers are uniq or not
-//return=0: stop and return=1: go on
-int check_uniq(struct Primer *F3,struct Primer *F2,struct Primer *F1c,struct Primer *B1c,struct Primer *B2,struct Primer *B3)
-{
-        struct Node *s_F3,*s_F2,*s_F1c,*s_B1c,*s_B2,*s_B3;
-	struct Node *b_F2,*b_F1c,*b_B1c,*b_B2,*b_B3;
-
-//plus
-	b_F2=F2->special;
-	b_F1c=F1c->special;
-	b_B1c=B1c->special;
-	b_B2=B2->special;
-	b_B3=B3->special;
-        for(s_F3=F3->special;s_F3;s_F3=s_F3->next)
-        {
-                if(s_F3->plus!=1)
-                        continue;
-                for(s_F2=b_F2;s_F2;s_F2=s_F2->next)
-                {
-			if(s_F2->gi<s_F3->gi)
-			{
-				b_F2=b_F2->next;
-				continue;
-			}
-                        if(s_F2->gi>s_F3->gi)
-                                break;
-			if(s_F2->pos<s_F3->pos)
-			{
-				b_F2=b_F2->next;
-                                continue;
-                        }
-			if(s_F2->pos-s_F3->pos>1000)
-				break;
-                        if(s_F2->plus!=1)
-                                continue;
-                        for(s_F1c=b_F1c;s_F1c;s_F1c=s_F1c->next)
-                        {
-                                if(s_F1c->gi<s_F3->gi)
-				{
-					b_F1c=b_F1c->next;
-                                        continue;
-				}
-				if(s_F1c->gi>s_F3->gi)
-					break;
-				if(s_F1c->pos<s_F3->pos)
-				{
-                                        b_F1c=b_F1c->next;
-                                        continue;
-                                }
-				if(s_F1c->pos-s_F3->pos>1000)
-					break;
-                                if(s_F1c->minus!=1)
-                                        continue;
-                                for(s_B1c=b_B1c;s_B1c;s_B1c=s_B1c->next)
-                                {
-                                        if(s_B1c->gi<s_F3->gi)
-					{
-						b_B1c=b_B1c->next;
-                                                continue;
-					}
-					if(s_B1c->gi>s_F3->gi)
-						break;
-					if(s_B1c->pos<s_F3->pos)
-					{
-						b_B1c=b_B1c->next;
-                                                continue;
-                                        }
-					if(s_B1c->pos-s_F3->pos>1000)
-						break;
-                                        if(s_B1c->plus!=1)
-                                                continue;
-                                        for(s_B2=b_B2;s_B2;s_B2=s_B2->next)
-                                        {
-                                                if(s_B2->gi<s_F3->gi)
-						{
-							b_B2=b_B2->next;
-                                                        continue;
-						}
-						if(s_B2->gi>s_F3->gi)
-							break;
-						if(s_B2->pos<s_F3->pos)
-						{
-							b_B2=b_B2->next;
-                                                        continue;
-                                                }
-						if(s_B2->pos-s_F3->pos>1000)
-							break;
-                                                if(s_B2->minus!=1)
-                                                        continue;
-                                                for(s_B3=b_B3;s_B3;s_B3=s_B3->next)
-                                                {
-                                                        if(s_B3->gi<s_F3->gi)
-							{
-								b_B3=b_B3->next;
-                                                                continue;
-							}
-							if(s_B3->gi>s_F3->gi)
-								break;
-							if(s_B3->pos<s_F3->pos)
-							{
-                                                                b_B3=b_B3->next;
-                                                                continue;
-                                                        }
-							if(s_B3->pos-s_F3->pos>1000)
-								break;
-                                                        if(s_B3->minus!=1)
-                                                                continue;
-                                                //F3-F2 
-                                                        if(s_F2->pos<s_F3->pos)
-                                                                continue;
-                                                //F2-F1c
-                                                        if(s_F1c->pos<s_F2->pos+F2->len)
-                                                                continue;
-                                                //F1c-B1c
-                                                        if(s_B1c->pos<s_F1c->pos+F1c->len)
-                                                                continue;
-                                                //B1c-B2
-                                                        if(s_B2->pos<s_B1c->pos+B1c->len)
-                                                                continue;
-                                                //B2-B3
-                                                        if(s_B3->pos<s_B2->pos)
-                                                                continue;
-						//whole
-							if(s_B3->pos-s_F3->pos>1000)
-								continue;
-							return 0;
-                                                }
-                                        }
-                                }
-                        }
-                }
-        }
-//minus
-	b_F2=F2->special;
-	b_F1c=F1c->special;
-	b_B1c=B1c->special;
-	b_B2=B2->special;
-	b_B3=B3->special;
-        for(s_F3=F3->special;s_F3;s_F3=s_F3->next)
-        {
-                if(s_F3->minus!=1)
-                        continue;
-                for(s_F2=b_F2;s_F2;s_F2=s_F2->next)
-                {
-                        if(s_F2->gi<s_F3->gi)
-			{
-				b_F2=b_F2->next;
-                                continue;
-			}
-			if(s_F2->gi>s_F3->gi)
-				break;
-			if(s_F2->pos>s_F3->pos)
-				break;
-			if(s_F2->pos-s_F3->pos<-1000)
-			{
-                                b_F2=b_F2->next;
-                                continue;
-                        }
-                        if(s_F2->minus!=1)
-                                continue;
-                        for(s_F1c=b_F1c;s_F1c;s_F1c=s_F1c->next)
-                        {
-                                if(s_F1c->gi<s_F3->gi)
-				{
-					b_F1c=b_F1c->next;
-                                        continue;
-				}
-				if(s_F1c->gi>s_F3->gi)
-					break;
-				if(s_F1c->pos>s_F3->pos)
-					break;
-				if(s_F1c->pos-s_F3->pos<-1000)
-				{
-                                        b_F1c=b_F1c->next;
-                                        continue;
-                                }
-                                if(s_F1c->plus!=1)
-                                        continue;
-                                for(s_B1c=b_B1c;s_B1c;s_B1c=s_B1c->next)
-                                {
-                                        if(s_B1c->gi<s_F3->gi)
-					{
-						b_B1c=b_B1c->next;
-                                                continue;
-					}
-					if(s_B1c->gi>s_F3->gi)
-						break;
-					if(s_B1c->pos>s_F3->pos)
-						break;
-					if(s_B1c->pos-s_F3->pos<-1000)
-					{
-                                                b_B1c=b_B1c->next;
-                                                continue;
-                                        }
-                                        if(s_B1c->minus!=1)
-                                                continue;
-                                        for(s_B2=b_B2;s_B2;s_B2=s_B2->next)
-                                        {
-                                                if(s_B2->gi<s_F3->gi)
-						{
-							b_B2=b_B2->next;
-                                                        continue;
-						}
-						if(s_B2->gi>s_F3->gi)
-							break;
-						if(s_B2->pos>s_F3->pos)
-							break;
-						if(s_B2->pos-s_F3->pos<-1000)
-						{
-                                                        b_B2=b_B2->next;
-                                                        continue;
-                                                }
-                                                if(s_B2->plus!=1)
-                                                        continue;
-                                                for(s_B3=b_B3;s_B3;s_B3=s_B3->next)
-                                                {
-                                                        if(s_B3->gi<s_F3->gi)
-							{
-								b_B3=b_B3->next;
-                                                                continue;
-							}
-							if(s_B3->gi>s_F3->gi)
-								break;
-							if(s_B3->pos>s_F3->pos)
-								break;
-							if(s_B3->pos-s_F3->pos<-1000)
-							{
-                                                                b_B3=b_B3->next;
-                                                                continue;
-                                                        }
-                                                        if(s_B3->plus!=1)
-                                                                continue;
-                                                //F3-F2 
-                                                        if(s_F3->pos<s_F2->pos)
-                                                                continue;
-                                                //F2-F1c
-                                                        if(s_F2->pos<s_F1c->pos+F1c->len)
-                                                                continue;
-                                                //F1c-B1c
-                                                        if(s_F1c->pos<s_B1c->pos+B1c->len)
-                                                                continue;
-                                                //B1c-B2
-                                                        if(s_B1c->pos<s_B2->pos+B2->len)
-                                                                continue;
-                                                //B2-B3
-                                                        if(s_B2->pos<s_B3->pos)
-                                                                continue;
-						//whole
-							if(s_F3->pos-s_B3->pos>1000)
-								continue;
-							return 0;
-                                                }
-                                        }
-                                }
-                        }
-                }
-        }
-	return 1;
 }
