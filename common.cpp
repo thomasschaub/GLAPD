@@ -57,7 +57,8 @@ static void readLoop(FILE *file, double *v1, double *v2, double *v3) {
     sscanf(p, "%lf", v3);
 }
 
-void getStack(double stackEntropies[], double stackEnthalpies[], char *path) {
+void getStack(double stackEntropies[], double stackEnthalpies[],
+              const char *path) {
   int i, j, ii, jj;
   FILE *sFile, *hFile;
   char *line;
@@ -138,7 +139,7 @@ void getStack(double stackEntropies[], double stackEnthalpies[], char *path) {
 }
 
 void getStackint2(double stackint2Entropies[], double stackint2Enthalpies[],
-                  char *path) {
+                  const char *path) {
   int i, j, ii, jj;
   FILE *sFile, *hFile;
   char *line;
@@ -223,7 +224,7 @@ void getStackint2(double stackint2Entropies[], double stackint2Enthalpies[],
 
 void getDangle(double dangleEntropies3[], double dangleEnthalpies3[],
                double dangleEntropies5[], double dangleEnthalpies5[],
-               char *path) {
+               const char *path) {
   int i, j, k;
   FILE *sFile, *hFile;
   char *line;
@@ -338,7 +339,7 @@ void getDangle(double dangleEntropies3[], double dangleEnthalpies3[],
 void getLoop(double hairpinLoopEntropies[30], double interiorLoopEntropies[30],
              double bulgeLoopEntropies[30], double hairpinLoopEnthalpies[30],
              double interiorLoopEnthalpies[30], double bulgeLoopEnthalpies[30],
-             char *path) {
+             const char *path) {
   int k;
   FILE *sFile, *hFile;
   char *line;
@@ -383,7 +384,7 @@ void getLoop(double hairpinLoopEntropies[30], double interiorLoopEntropies[30],
 }
 
 void getTstack(double tstackEntropies[], double tstackEnthalpies[],
-               char *path) {
+               const char *path) {
   int i1, j1, i2, j2;
   FILE *sFile, *hFile;
   char *line;
@@ -465,7 +466,7 @@ void getTstack(double tstackEntropies[], double tstackEnthalpies[],
 }
 
 void getTstack2(double tstack2Entropies[], double tstack2Enthalpies[],
-                char *path) {
+                const char *path) {
   int i1, j1, i2, j2;
   FILE *sFile, *hFile;
   char *line;
@@ -547,7 +548,7 @@ void getTstack2(double tstack2Entropies[], double tstack2Enthalpies[],
   free(line);
 }
 
-int get_num_line(char *path, int flag) {
+int get_num_line(const char *path, int flag) {
   FILE *fp;
   int i, size;
   char *line;
@@ -579,7 +580,7 @@ int get_num_line(char *path, int flag) {
 
 void getTriloop(char *triloopEntropies1, char *triloopEnthalpies1,
                 double *triloopEntropies2, double *triloopEnthalpies2,
-                char *path, str2int_fn str2int) {
+                const char *path, str2int_fn str2int) {
   FILE *sFile, *hFile;
   int i, turn;
   char *line, seq[10], value[10];
@@ -641,7 +642,7 @@ void getTriloop(char *triloopEntropies1, char *triloopEnthalpies1,
 
 void getTetraloop(char *tetraloopEntropies1, char *tetraloopEnthalpies1,
                   double *tetraloopEntropies2, double *tetraloopEnthalpies2,
-                  char *path, str2int_fn str2int) {
+                  const char *path, str2int_fn str2int) {
   FILE *sFile, *hFile;
   int i, turn;
   char *line, seq[10], value[10];
