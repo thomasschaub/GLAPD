@@ -8,6 +8,8 @@
 #include<sys/stat.h>
 #include<ctype.h>
 
+#include "glapd_signals.h"
+
 static char str2int(char c)
 {
         switch (c)
@@ -4365,6 +4367,14 @@ static int check_uniq(struct Primer *F3,struct Primer *F2,struct Primer *F1c,str
 	return 1;
 }
 
+static int count_primers(const struct Primer* primers)
+{
+	int total = 0;
+	for(const struct Primer* it = primers; it; it = it->next)
+		total += 1;
+	return total;
+}
+
 void glapd_lamp_main(int argc, const char **argv)
 {
 	double stackEntropies[625],stackEnthalpies[625],stackint2Entropies[625],stackint2Enthalpies[625],dangleEntropies3[125],dangleEnthalpies3[125],dangleEntropies5[125],dangleEnthalpies5[125];
@@ -4762,13 +4772,21 @@ void glapd_lamp_main(int argc, const char **argv)
 		}
 		replace=0;
 	}
+	
+	const int num_f3 = count_primers(headS);
+	
 	turn=0;
+
 	for(j=common_num[0];j>=1;j--)
 	{
 		if(common_num[0]>1)
 			printf("Running: amplify %d target genome.\n",j);
+			int f3_index = 0;
         	for(p_F3=headS;p_F3;p_F3=p_F3->next)   //F3
         	{
+				notify_about_to_check_primer_set_candidate(common_num[0], f3_index, num_f3);
+				f3_index += 1;
+
 			if(flag[10]&&(p_F3->pos+200)<min_loop)
 				continue;
 			if(flag[10]&&(p_F3->pos-200)>max_loop)

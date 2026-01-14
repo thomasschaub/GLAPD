@@ -8,6 +8,8 @@
 #include<sys/stat.h>
 #include<ctype.h>
 
+#include "glapd_signals.h"
+
 static char str2int(char c)
 {
         switch (c)
@@ -2646,6 +2648,7 @@ static void candidate_primer(char *seq,int flag[],FILE *Inner,FILE *Outer,FILE *
 
 	for(circle=0;circle<=(length-15);circle++)
 	{
+		notify_about_to_check_candidate_primer_region(circle, length-14);
 		for(i=15;i<=25;i++)  //read length is from 18 to 25
 		{
 			if(circle+i>length)
