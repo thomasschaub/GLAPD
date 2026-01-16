@@ -2,8 +2,7 @@ addToLibrary({
     notify_about_to_check_candidate_primer_region: function(current, total) {
         postMessage({
             'cmd': 'notify_about_to_check_candidate_primer_region',
-            'current': current,
-            'total': total,
+            current, total
         });
     },
     notify_about_to_check_primer_set_candidate: function(numTargets, current, total) {
@@ -12,6 +11,21 @@ addToLibrary({
             'numTargets': numTargets,
             'current': current,
             'total': total,
+        });
+    },
+    notify_found_primer_set_candidate: function(f3, f2, f1c, b1c, b2, b3, lf, lb) {
+        postMessage({
+            'cmd': 'notify_found_primer_set_candidate',
+            'args': {
+                'f3': UTF8ToString(f3),
+                'f2': UTF8ToString(f2),
+                'f1c': UTF8ToString(f1c),
+                'b1c': UTF8ToString(b1c),
+                'b2': UTF8ToString(b2),
+                'b3': UTF8ToString(b3),
+                'lf': UTF8ToString(lf),
+                'lb': UTF8ToString(lb),
+            },
         });
     }
 });

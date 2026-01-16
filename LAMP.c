@@ -4784,7 +4784,7 @@ void glapd_lamp_main(int argc, const char **argv)
 			int f3_index = 0;
         	for(p_F3=headS;p_F3;p_F3=p_F3->next)   //F3
         	{
-				notify_about_to_check_primer_set_candidate(common_num[0], f3_index, num_f3);
+				notify_about_to_check_primer_set_candidate(j, f3_index, num_f3);
 				f3_index += 1;
 
 			if(flag[10]&&(p_F3->pos+200)<min_loop)
@@ -4962,6 +4962,8 @@ void glapd_lamp_main(int argc, const char **argv)
 								fprintf(fp,"  B1c: pos:%d,length:%d bp, primer(5'-3'):%s\n",p_B1c->pos,p_B1c->len,B1c);
 								fprintf(fp,"  B2: pos:%d,length:%d bp, primer(5'-3'):%s\n",p_B2->pos,p_B2->len,B2);
 								fprintf(fp,"  B3: pos:%d,length:%d bp, primer(5'-3'):%s\n",p_B3->pos,p_B3->len,B3);
+								LF[0] = 0;
+								LB[0] = 0;
 								if(flag[10])
 								{
 									if(result_Loop[0]==NULL)
@@ -4979,6 +4981,7 @@ void glapd_lamp_main(int argc, const char **argv)
 										fprintf(fp,"  LB: pos:%d,length:%d bp, primer(5'-3'):%s\n",result_Loop[1]->pos,result_Loop[1]->len,LB);
 									}
 								}
+								notify_found_primer_set_candidate(F3, F2, F1c, B1c, B2, B3, LF, LB);
                 						if(flag[5])
 								{
 									fprintf(fp,"  This set of LAMP primers could be used in %d genomes, there are: ",j);
