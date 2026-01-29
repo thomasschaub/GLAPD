@@ -13,9 +13,9 @@ addToLibrary({
             'total': total,
         });
     },
-    notify_found_primer_set_candidate: function(f3, f2, f1c, b1c, b2, b3, lf, lb) {
+    notify_found_primer_set_candidate_begin: function(f3, f2, f1c, b1c, b2, b3, lf, lb) {
         postMessage({
-            'cmd': 'notify_found_primer_set_candidate',
+            'cmd': 'notify_found_primer_set_candidate_begin',
             'args': {
                 'f3': UTF8ToString(f3),
                 'f2': UTF8ToString(f2),
@@ -27,5 +27,19 @@ addToLibrary({
                 'lb': UTF8ToString(lb),
             },
         });
-    }
+    },
+    notify_primer_set_candidate_can_be_used_for: function(name) {
+        postMessage({
+            'cmd': 'notify_primer_set_candidate_can_be_used_for',
+            'args': {
+                'name': UTF8ToString(name),
+            }
+        })
+    },
+    notify_found_primer_set_candidate_end: function() {
+        postMessage({
+            'cmd': 'notify_found_primer_set_candidate_end',
+            'args': {},
+        });
+    },
 });

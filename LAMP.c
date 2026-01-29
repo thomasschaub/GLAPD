@@ -4981,7 +4981,7 @@ void glapd_lamp_main(int argc, const char **argv)
 										fprintf(fp,"  LB: pos:%d,length:%d bp, primer(5'-3'):%s\n",result_Loop[1]->pos,result_Loop[1]->len,LB);
 									}
 								}
-								notify_found_primer_set_candidate(F3, F2, F1c, B1c, B2, B3, LF, LB);
+								notify_found_primer_set_candidate_begin(F3, F2, F1c, B1c, B2, B3, LF, LB);
                 						if(flag[5])
 								{
 									fprintf(fp,"  This set of LAMP primers could be used in %d genomes, there are: ",j);
@@ -5003,9 +5003,11 @@ void glapd_lamp_main(int argc, const char **argv)
 										else
 											fprintf(fp,", %s",p_list->name);
 										success++;
+										notify_primer_set_candidate_can_be_used_for(p_list->name);
 									}
 									fprintf(fp,"\n");
 								}
+								notify_found_primer_set_candidate_end();
 								end=time(NULL);
 								printf("It takes %0.0f seconds to design the %d-th LAMP primer set successfully.\n",difftime(end,start),turn);
 								start=time(NULL);
