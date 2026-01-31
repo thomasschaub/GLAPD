@@ -2589,7 +2589,7 @@ int dimer(char primer[],int length)
 	}
 	else
 	{
-		if(primer[length-1]!='C')
+		if(primer[length-6]!='C')
 			return 1;
 	}
 
