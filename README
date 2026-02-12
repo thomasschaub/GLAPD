@@ -230,6 +230,10 @@ TIPS:
 3) Fast mode:
   When run the step 3, use the "-fast" option can accelerate the designing. But this mode may lost some right LAMP primer sets.
 ######
+Version log:
+  fix the bug in dimer() function.
+######
 If you have any questions, please contact with us:
 Ben Jia: chenmodexiaoxi@126.com
 Chaochun Wei: ccwei@sjtu.edu.cn
+
