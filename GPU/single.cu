@@ -2655,7 +2655,7 @@ __device__ int dimer(char *d_seq,int start,int length) //length=6: 5'; else :3'
         }
         else
         {
-                if(d_seq[start+length-1]!='C')
+                if(d_seq[start+length-6]!='C')
                         return 1;
         }
 
